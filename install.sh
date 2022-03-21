@@ -4,7 +4,7 @@
 
 # /home/user/pantheon
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)"
-STOWCONFIGPATH="~/.config"
+STOWCONFIGPATH="$HOME/.config"
 MACHINE=$1
 
 softlinks(){
@@ -15,7 +15,7 @@ softlinks(){
 	echo "stowing directories and/or files"
 	for d in $PWD/*
 	do
-	   #echo -e "${d}"
+	   echo -e "${d}"
 	   BNAME=$(basename ${d})
       	   echo -e "${BNAME}"
 	   if [[ ${BNAME} == "bash" ]];then
@@ -24,14 +24,14 @@ softlinks(){
 		echo "stowing:\n stow -Svt ~ bash/"
 		stoweth -Svt "~" ${BNAME}
 	   elif [[ ${BNAME} == "Wallpaper" ]];then
-		dircheck "~/Pictures" "${BASENAME}"
-		stoweth "~/Pictures/${BNAME}" "${BNAME}"
+		dircheck "$HOME/Pictures" "${BASENAME}"
+		stoweth "$HOME/Pictures/${BNAME}" "${BNAME}"
            elif [[ ${BNAME} == "nixos" ]];then
 		dircheck "/etc" ${BNAME}
                 stoweth "/etc/nixos" "${BNAME}"
 	   else
 		dircheck ${STOWCONFIGPATH} $BNAME
-		stoweth "${STOWCONFIGPATH}/" ${BNAME}
+		stoweth "${STOWCONFIGPATH}/${BNAME}" ${BNAME}
 	   fi
 	done
 }
@@ -47,9 +47,11 @@ dircheck()
           mkdir "$1/$2"
     else
 	  echo "$1/$2  exists, making back up then removing original"
-          cp $1/$2 $1/$2.bak
-	  rm  $1/$2/*
-    fi
+          cp -r $1/$2 $1/$2.bak
+	  if [[ $(ls -A $1/$2) ]];then
+             rm  $1/$2/* || echo "removed files from $1/$2"
+	  fi
+   fi
 }
 
 machinecheck(){
