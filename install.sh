@@ -47,9 +47,16 @@ dircheck()
           mkdir "$1/$2"
     else
 	  echo "$1/$2  exists, making back up then removing original"
-          cp -r $1/$2 $1/$2.bak
-	  if [[ $(ls -A $1/$2) ]];then
-             rm  $1/$2/* || echo "removed files from $1/$2"
+	  if [[ $3 == "s" ]];then
+	       sudo cp -r $1/$2 $1/$2.bak
+	       if [[ $(ls -A $1/$2) ]];then
+		   sudo rm  $1/$2/* || echo "removed files from $1/$2"
+	       fi
+	  else
+	       cp -r $1/$2 $1/$2.bak
+	       if [[ $(ls -A $1/$2) ]];then
+                    rm  $1/$2/* || echo "removed files from $1/$2"
+	       fi
 	  fi
    fi
 }
