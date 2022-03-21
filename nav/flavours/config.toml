@@ -1,0 +1,11 @@
+shell = "bash -c '{}'"
+
+[[items]]
+file = "~/.Installer/.dotfiles/alacritty//alacritty.yml"
+template = "alacritty"
+subtemplate = "default-256"
+
+[[items]]
+file = "~/.Installer/.dotfiles/i3/i3status.config"
+template= "i3status"
+subtemplate = "default-256"
