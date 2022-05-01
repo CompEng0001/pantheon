@@ -22,28 +22,32 @@ alias meetingTemplate="bash $HOME/PhD/scripts/UtilityScripts/meetingTemplate.sh"
 #SCRIPTS
 alias aliases="nano ~/.bash_aliases"
 alias bashrc="nano ~/.bashrc"
-alias passcode="python3 $HOME/.OTP/passcodes.py"
+alias passcode="$HOME/.OTP/passcodes.py"
 alias stowth="stow -vSt ~ $1"
 alias unstow="stow -vDt ~ $1"
-#alias lock="scrot Pictures/wallpaper/.lockscreen.png && betterlockscreen -u Pictures/wallpaper/.lockscreen.png --fx blur && betterlockscreen -l blur && rm Pictures/wallpaper/.lockscreen.png"
 alias digital="bash University/CCCU/CCCUTeaching/21-22/FCC/Digital.sh"
- 
+
 #SYSTEMSTUFF
 alias ls="lsd"
 alias layout="~/.config/i3/layouts/layout.sh"
 alias off="sudo shutdown -h now"
- historyStat()
+alias cat="bat -p"
+alias cccu="cd ~/Universities/CCCU/"
+#alias neofetch="neofetch --ascii /home/seb/Documents/ascii/throuple-ascii-art.txt"
+historyStat()
 {
    history | awk '{a[$2]++}END{for(i in a){print a[i] " " i}}' | sort -rn | head
 }
+
 #SSH
 alias nox="TERM=xterm ssh pi@192.168.1.87"
 alias nott="TERM=xterm ssh pi@192.168.1.174"
 alias nisha="TERM=xterm ssh -p 443 pi@10.150.200.120"
 alias stnix="TERM=xterm ssh sb1501@stnix.canterbury.ac.uk"
+
 #WIFI
 alias scan="iwctl station wlan0 scan && iwctl station wlan0 get-networks"
-alias wifi="~/.Installer/dotfiles/scripts/bash/wifi.sh"
+alias wifi="~/.config/scripts/bash/wifi.sh"
 
 # Reboot directly to Windows
 # Inspired by http://askubuntu.com/questions/18170/how-to-reboot-into-windows-from-ubuntu

@@ -43,7 +43,7 @@ alert = #bd2c40
 monitor = ${env:MONITOR1}
 modules-left = i3
 modules-center = fs-primary
-modules-right =  vlan date powermenu
+modules-right =  wlan date powermenu
 bottom = false
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
@@ -70,7 +70,7 @@ cursor-scroll = ns-resize
 
 [bar/bottom]
 monitor = ${env:MONITOR1}
-modules-left = uptime 
+modules-left = i3 uptime 
 modules-right =  pulseaudio jobs memory cpu
 bottom = true
 width = 100%
@@ -162,16 +162,16 @@ format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #4bffdc
 label = %gb_used%
 
-[module/vlan]
+[module/wlan]
 type = internal/network
-interface = enp0s3
+interface = wlan0
 interval = 0.5
 unknown-as-up = true
 format-connected-background  = ${colors.background}
 format-connected-foreground  = ${colors.foreground}
 format-connected-padding = 1
 format-connected = <label-connected>
-label-connected = [ %local_ip% ] [ %downspeed:9% ]  [ %upspeed:9% ] 
+label-connected = [ %essid% ] [ %local_ip% ] [ 直 %signal% ] [ %downspeed:9% ]  [ %upspeed:9% ] 
 format-disconnected-background  = ${colors.background}
 format-disconnected-foreground = ${colors.foreground}
 format-disconnected-padding = 1
@@ -259,7 +259,7 @@ margin-bottom = 5
 
 [module/uptime]
 type = custom/script
-exec = uptime -p | awk -F, '{print$1$2$3}'
+exec = check_uptime | awk -F '[:|]' '{print$2}'
 interval = 100
 label  = Uptime : %output%
 format-foreground = ${colors.foreground}

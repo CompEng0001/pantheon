@@ -25,10 +25,10 @@ softlinks(){
 		stoweth -Svt "~" ${BNAME}
 	   elif [[ ${BNAME} == "Wallpaper" ]];then
 		dircheck "$HOME/Pictures" "${BASENAME}"
-		stoweth "$HOME/Pictures/${BNAME}" "${BNAME}"
-           elif [[ ${BNAME} == "nixos" ]];then
-		dircheck "/etc" ${BNAME}
-                stoweth "/etc/nixos" "${BNAME}"
+		stoweth "$HOME/Pictures/${BNAME}" ${BNAME}
+#           elif [[ ${BNAME} == "nixos" ]];then
+#		dircheck "/etc" ${BNAME}
+#                stoweth "/etc/nixos" "${BNAME}"
 	   else
 		dircheck ${STOWCONFIGPATH} $BNAME
 		stoweth "${STOWCONFIGPATH}/${BNAME}" ${BNAME}
@@ -42,7 +42,7 @@ stoweth(){
 
 dircheck()
 {
-    if [[ ! -d "$1/$2" ]];
+    if [[ ! -d "$1/$2" ]];then
           echo creating "$1/$2"
           mkdir "$1/$2"
     else
@@ -58,7 +58,7 @@ dircheck()
                     rm  $1/$2/* || echo "removed files from $1/$2"
 	       fi
 	  fi
-   fi
+    fi
 }
 
 machinecheck(){
