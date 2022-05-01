@@ -5,23 +5,31 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-    ./hardware-configuration.nix
+  imports = [
+     # Include the results of the hardware scan.
+     ./hardware-configuration.nix
 #    ./vim-configuration.nix
   ];
 
+  boot = {
+      loader.systemd-boot.enable = true;
+      loader.efi.canTouchEfiVariables = true;
+     # kernelPackages = pkgs.linuxPackages_lastest;
+  };
   # Use the GRUB 2 boot loader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.version = 2;
-  boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
+  #boot.loader.grub.enable = true;
+  #boot.loader.grub.version = 2;
+  #boot.loader.grub.device = "/dev/nvme0n1p3"; # or "nodev" for efi only
 
   time.timeZone = "Europe/London";
-
-  networking.hostName = "nixos"; # Define your hostname.
-  networking.useDHCP = false;
-  networking.interfaces.enp0s3.useDHCP = true;
-  networking.firewall.enable = false;
+  networking ={
+     hostName = "Vakare"; # Define your hostname.  Lithuanian Goddess of the evening star
+     useDHCP = false;
+     interfaces.wlan0.useDHCP = true;
+     firewall.enable = false;
+     wireless.iwd.enable = true;
+     networkmanager.wifi.backend = "iwd";
+  };
 
   i18n.defaultLocale = "en_GB.UTF-8";
   console = {
@@ -29,22 +37,45 @@
     keyMap = "uk";
   };
 
+  services.udev.extraRules = ''
+    ACTION=="add", 
+    SUBSYSTEM=="backlight", 
+    KERNEL=="intel_backlight", 
+    MODE="0666", 
+    RUN+="${pkgs.coreutils}/bin/chmod a+w /sys/class/backlight/intel_backlight/brightness"
+    '';
+
   services.xserver = {
     enable = true;
     layout = "gb";
-    displayManager.defaultSession = "none+i3";
-    displayManager.lightdm = {
+    libinput = {
       enable = true;
+      touchpad.naturalScrolling = true ;
+      touchpad.middleEmulation = true; 
+      touchpad.tapping = true; 
     };
-    windowManager.i3 = {
-      enable = true;
-      package = pkgs.i3-gaps;
-      extraPackages = with pkgs; [
-	betterlockscreen i3-gaps i3lock i3lock-color i3status-rust polybar ];
-    };
+  
+  displayManager ={
+    defaultSession = "none+i3"; 
+    lightdm.enable = true;
   };
 
-  services.pipewire = {
+  windowManager.i3 = {
+     enable = true;
+     package = pkgs.i3-gaps;
+     extraPackages = with pkgs; [
+	betterlockscreen i3-gaps i3lock i3lock-color polybar];
+     };
+  };
+ 
+  nixpkgs.config =  {
+ 	packageOverrides = pkgs: rec {
+	  polybar = pkgs.polybar.override {
+		i3Support = true;
+		};
+	};
+  };
+  services.pipewire= {
     enable = true;
     alsa.enable = true;
     pulse.enable = true;
@@ -55,6 +86,13 @@
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
   };
+  
+  systemd.tmpfiles.rules = [
+	"d /mnt/ 0755 root root"
+	"d /mnt/usb/ 0755 root root"
+	"d /home/seb/Music 0755 seb users"
+	"d /home/seb/Git 0755 seb users"
+	];
 
   nixpkgs.config.allowUnfree = true;
 
@@ -72,10 +110,10 @@
        #[PROGRAMMING]
 	cargo rustc lua powershell
 	python3
-	python38Packages.python
-	python38Packages.numpy
-	python38Packages.matplotlib
-	python38Packages.pip
+	python39Packages.python
+	python39Packages.numpy
+	python39Packages.matplotlib
+	python39Packages.pip
 	(let
 	  my-python-packages = python-packages: with python-packages; [
  	  	pandas
@@ -85,6 +123,7 @@
 		seaborn
 		scikit-learn
 		plotly
+		pyperclip
   	];
   	python-with-my-packages = python3.withPackages my-python-packages;
 	in
@@ -97,7 +136,8 @@
        #[TOOLS]
 	apparix
 	bc
-	curl
+	brightnessctl
+        curl
 	dos2unix
 	feh
 	flameshot
@@ -105,14 +145,21 @@
 	htop
 	iotop
 	imagemagick
+	iwd
 	lsd
 	multilockscreen
 	neofetch
+	peek
+	psmisc
 	rofi
 	scrot
 	stow
 	wget
+	xclip
+	#xorg.xbacklight
 	zettlr
+       #[DEPENDENCIES]
+
   ];
 
   programs.bash = {
@@ -147,7 +194,6 @@
       nerdfonts
     ] ++ lib.filter lib.isDerivation (lib.attrValues lohit-fonts);
   };
-
   system.stateVersion = "21.11";
 }
 
