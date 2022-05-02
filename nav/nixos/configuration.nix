@@ -22,13 +22,13 @@
   #boot.loader.grub.device = "/dev/nvme0n1p3"; # or "nodev" for efi only
 
   time.timeZone = "Europe/London";
-  networking ={
-     hostName = "Vakare"; # Define your hostname.  Lithuanian Goddess of the evening star
-     useDHCP = false;
-     interfaces.wlan0.useDHCP = true;
-     firewall.enable = false;
-     wireless.iwd.enable = true;
-     networkmanager.wifi.backend = "iwd";
+    networking ={
+		   hostName = "Vakare"; # Define your hostname.  Lithuanian Goddess of the evening star
+		   useDHCP = false;
+		   interfaces.wlan0.useDHCP = true;
+		   firewall.enable = false;
+		   wireless.iwd.enable = true;
+		   networkmanager.wifi.backend = "iwd";
   };
 
   i18n.defaultLocale = "en_GB.UTF-8";
@@ -57,7 +57,14 @@
   
   displayManager ={
     defaultSession = "none+i3"; 
-    lightdm.enable = true;
+    #lightdm.enable;
+    sddm.enable = true; 
+    sddm.theme = "${(pkgs.fetchFromGitHub {
+        owner = "3ximus";
+        repo = "aerial-sddm-theme";
+        rev = "6beb74994935743e0fae9413160d3ee936d4bf2";
+        sha256 = "089r3wxhz2khhmbflvscbnk7mllnv2w04gc6lfzw7zgp36rmhxyp";
+    })}";
   };
 
   windowManager.i3 = {
@@ -71,9 +78,9 @@
   nixpkgs.config =  {
  	packageOverrides = pkgs: rec {
 	  polybar = pkgs.polybar.override {
-		i3Support = true;
+				i3Support = true;
+			};
 		};
-	};
   };
   services.pipewire= {
     enable = true;
@@ -84,7 +91,7 @@
 
   users.users.seb = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "sudo" "video" "audio" "netdev" "networkmanager" ]; # Enable ‘sudo’ for the user.
   };
   
   systemd.tmpfiles.rules = [
@@ -95,19 +102,21 @@
 	];
 
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnsupportedSystem = true;
 
   environment.systemPackages = with pkgs; [
-       #[EDITORS]
+  #[EDITORS]
 	vim nano vscodium
-       #[INTERNET]
+  #[INTERNET]
 	brave speedtest-cli nmap
-       #[OTHER]
+  #[OTHER]
 	spotify
 	flavours
-       #[PHD]
+	teamviewer
+  #[PHD]
 	jupyter
 	zettlr
-       #[PROGRAMMING]
+  #[PROGRAMMING]
 	cargo rustc lua powershell
 	python3
 	python39Packages.python
@@ -117,27 +126,27 @@
 	(let
 	  my-python-packages = python-packages: with python-packages; [
  	  	pandas
-    		requests
-		scipy
-		matplotlib
-		seaborn
-		scikit-learn
-		plotly
-		pyperclip
+   		requests
+			scipy
+			matplotlib
+			seaborn
+			scikit-learn
+			plotly
+			pyperclip
   	];
   	python-with-my-packages = python3.withPackages my-python-packages;
 	in
 	python-with-my-packages)
-       #[SOCIAL]
+  #[SOCIAL]
 	discord signal-desktop teams
-       #[Terminal]
+  #[Terminal]
 	alacritty
 	starship
-       #[TOOLS]
+  #[TOOLS]
 	apparix
 	bc
 	brightnessctl
-        curl
+  curl
 	dos2unix
 	feh
 	flameshot
@@ -151,29 +160,46 @@
 	neofetch
 	peek
 	psmisc
+	qt5.qtquickcontrols
+	qt5.qtquickcontrols2	
+	qt5.qtgraphicaleffects
+	qt5.qtmultimedia
 	rofi
 	scrot
+	sddm
 	stow
 	wget
 	xclip
 	#xorg.xbacklight
 	zettlr
-       #[DEPENDENCIES]
-
+  #[NIXOS-TOOLS]
+	nix-prefetch-github
   ];
 
-  programs.bash = {
-    enableCompletion = true;
-    enableLsColors = true;
-    promptInit = ''
-      eval "$(${pkgs.starship}/bin/starship init bash)"
-    '';
-    shellAliases = {
-      config = "sudo nano /etc/nixos/configuration.nix";
-      ls = "lsd";	
-      ll = "lsd -l";
-       l = "lsd -lah";
-    };
+  programs ={
+		bash = {
+		    enableCompletion = true;
+		    enableLsColors = true;
+		    promptInit = ''
+		      eval "$(${pkgs.starship}/bin/starship init bash)"
+		    '';
+		    shellAliases = {
+		      config = "sudo nano /etc/nixos/configuration.nix";
+		      ls = "lsd";	
+		      ll = "lsd -l";
+		       l = "lsd -lah";
+		    };
+		};
+		nano = {
+	    syntaxHighlight = true;
+	    nanorc = ''
+				set autoindent
+				set nowrap
+				set tabsize 2
+				set linenumbers
+				set nonewlines
+				'';
+			};
   };
 
   fonts = {
@@ -196,4 +222,3 @@
   };
   system.stateVersion = "21.11";
 }
-
