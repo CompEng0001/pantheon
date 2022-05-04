@@ -49,23 +49,6 @@ alias stnix="TERM=xterm ssh sb1501@stnix.canterbury.ac.uk"
 alias scan="iwctl station wlan0 scan && iwctl station wlan0 get-networks"
 alias wifi="~/.config/scripts/bash/wifi.sh"
 
-# Reboot directly to Windows
-# Inspired by http://askubuntu.com/questions/18170/how-to-reboot-into-windows-from-ubuntu
-reboot_to_windows ()
-{
-    windows_title=$(grep -i windows /boot/grub/grub.cfg | cut -d "'" -f 2)
-    sudo grub-reboot "$windows_title" && sudo reboot
-}
-
-#HOTSWAP BOOT
-#alias windows='reboot_to_windows'
-#reboot_to_mx ()
-#{
-#    mx_title=$(grep -w -m 1 "\bMX 19.4 patito feo\b" /boot/grub/grub.cfg | cut -d "'" -f 2)
-#    sudo grub-reboot "$mx_title" && sudo reboot
-#}
-#alias mx='reboot_to_mx'
-
 #DOCKER
 #alias docker_clean="docker volume rm ; docker rm   ;  docker rmi "
 #alias docker_ps="docker ps -a --format "{{,ID}\t{{.Names}}}""
