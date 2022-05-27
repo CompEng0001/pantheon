@@ -8,6 +8,7 @@
 SCREENMODEFILE=~/.config/polybar/modules/screens/screens_mode.env
 SCREENMODE=$(cat ${SCREENMODEFILE} | awk '{print$1}')
 DIRECTION=$(cat ${SCREENMODEFILE} | awk '{print$2}')
+RESOLUTION=$(cat ${SCREENMODEFILE} | awk '{print$3}')
 MONITORS=$(xrandr -q | grep -w connected | awk '{print$1}')
 PRIMARYMONITOR=$(echo ${MONITORS} | awk '{print$1}')
 SECONDMONITOR=$(echo ${MONITORS} | awk '{print$2}')
@@ -35,11 +36,11 @@ if [[ ${SCREENMODE} == "SINGLE" ]];then
 	# reset monitor
 	xrandr -s -0
 	MONITOR1=${PRIMARYMONITOR} polybar --reload eDP1-top -c ~/.config/polybar/config &
-       	MONITOR1=${PRIMARYMONITOR} polybar --reload eDP1-bottom -c ~/.config/polybar/config &
+ 	MONITOR1=${PRIMARYMONITOR} polybar --reload eDP1-bottom -c ~/.config/polybar/config &
 	feh --bg-center --image-bg "#0000000" --no-xinerama ~/Pictures/Wallpaper/${WALLPAPER}
 elif [[ ${SCREENMODE} == "DUPLICATE" ]]; then
 	#xrandr -s -0
-	xrandr --output "${SECONDMONITOR}" --mode 1920x1080 "${DIRECTION}" "${PRIMARYMONITOR}"
+	xrandr --output "${SECONDMONITOR}" --mode ${RESOLUTION} "${DIRECTION}" "${PRIMARYMONITOR}"
 	for M in ${OUTPUTS}; do
 		if [ ${M} == $1 ];then
         		MONITOR1=${M} polybar --reload eDP1-top -c ~/.config/polybar/config &
@@ -60,8 +61,8 @@ elif [[ ${SCREENMODE} == "EXTENDED" ]];then
 		fi
 	done
 	feh --bg-center --image-bg "#0000000" --no-xinerama ~/Pictures/Wallpaper/portal.jpg
-
 fi
+
 for m in ${OUTPUTS}; do
 	export MONITOR1=$1
 	export MONITOR2=$2

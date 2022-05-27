@@ -1,5 +1,5 @@
 { config, pkgs, ... }:
-with import <nixpkgs> {};
+with import <nixpkgs> { };
 with builtins;
 with lib;
 let
@@ -12,11 +12,11 @@ in
 
   home-manager.users.seb = {
     /* Here goes your home-manager config, eg home.packages = [ pkgs.foo ]; */
-		programs.home-manager.enable = true;
+    programs.home-manager.enable = true;
     programs.git = {
-    	enable = true;
-    	userName  = "CompEng0001";
-    	userEmail = "sb1501@canterbury.ac.uk";
-    }; 	
+      enable = true;
+      userName = "CompEng0001";
+      userEmail = "sb1501@canterbury.ac.uk";
+    };
   };
 }
