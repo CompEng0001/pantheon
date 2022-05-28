@@ -15,7 +15,7 @@ alias submoduleUpdate='bash $HOME/PhD/scripts/UtilityScripts/SubmoduleUpdate.sh'
 alias signal="(signal-desktop &) && (sleep 6 && exit)"
 alias brave="(brave &) && (sleep 3 && exit)"
 alias spotify="(snap run spotify &) && (sleep 3 && exit)"
-alias capture="(echo '5 seconds till caputure...') && (sleep 5) && (flameshot gui)"
+alias capture="(echo '3 seconds till caputure...') && (sleep 3) && (flameshot gui)"
 
 alias meetingTemplate="bash $HOME/PhD/scripts/UtilityScripts/meetingTemplate.sh"
 
@@ -23,8 +23,8 @@ alias meetingTemplate="bash $HOME/PhD/scripts/UtilityScripts/meetingTemplate.sh"
 alias aliases="nano ~/.bash_aliases"
 alias bashrc="nano ~/.bashrc"
 alias passcode="$HOME/.OTP/passcodes.py"
-alias stowth="stow -vSt ~ $1"
-alias unstow="stow -vDt ~ $1"
+alias stowth="stow -vSt $1 $2"
+alias unstow="stow -vDt $1 $2"
 alias digital="bash University/CCCU/CCCUTeaching/21-22/FCC/Digital.sh"
 
 #SYSTEMSTUFF
@@ -33,7 +33,7 @@ alias layout="~/.config/i3/layouts/layout.sh"
 alias off="sudo shutdown -h now"
 alias cat="bat -p"
 alias cccu="cd ~/Universities/CCCU/"
-#alias neofetch="neofetch --ascii /home/seb/Documents/ascii/throuple-ascii-art.txt"
+
 historyStat()
 {
    history | awk '{a[$2]++}END{for(i in a){print a[i] " " i}}' | sort -rn | head
@@ -43,11 +43,6 @@ historyStat()
 alias nox="TERM=xterm ssh pi@192.168.1.87"
 alias nott="TERM=xterm ssh pi@192.168.1.174"
 alias nisha="TERM=xterm ssh -p 443 pi@10.150.200.120"
-alias stnix="TERM=xterm ssh sb1501@stnix.canterbury.ac.uk"
-
-#WIFI
-alias scan="iwctl station wlan0 scan && iwctl station wlan0 get-networks"
-alias wifi="~/.config/scripts/bash/wifi.sh"
 
 #DOCKER
 #alias docker_clean="docker volume rm ; docker rm   ;  docker rmi "
