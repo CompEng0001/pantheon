@@ -1,0 +1,11 @@
+shell = "bash -c '{}'"
+
+[[items]]
+file = "~/.config/alacritty/alacritty.yml"
+template = "alacritty"
+
+[[items]]
+file = "~/.config/rofi/colors.rasi"
+template = "rofi"
+subtemplate = "colors"
+rewrite = true
