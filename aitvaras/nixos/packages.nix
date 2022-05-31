@@ -45,6 +45,7 @@
     brightnessctl
     calc
 		check-uptime
+    cryptsetup
     curl
     dos2unix
     feh

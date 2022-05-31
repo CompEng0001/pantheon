@@ -48,9 +48,9 @@
       sddm.enable = true;
       sddm.theme = "${(pkgs.fetchFromGitHub {
         owner = "CompEng0001";
-        repo = "aerial-sddm-theme";
-        rev = "f3a4840e08699161f61a82f104d9f7df2d29a1fe";
-        sha256 = "11r74r1liib30h35gyfa8jxil5czm5gcffhfvr4cwq5nx9wbvqfq";
+        repo = "my-sddm-theme";
+				rev = "30fbf93746e8069c6d714c6c491c99abd0cf995e";
+				sha256 =  "1ga4qvrqqj68lyx6sqbl0wz64vb20xbv2fl2879v0k3kv3h60wa4";
       })}";
     };
 
