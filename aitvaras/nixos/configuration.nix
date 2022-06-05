@@ -144,5 +144,5 @@
       nerdfonts
     ] ++ lib.filter lib.isDerivation (lib.attrValues lohit-fonts);
   };
-  system.stateVersion = "21.11";
+  system.stateVersion = "22.11";
 }
