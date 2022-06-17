@@ -42,7 +42,7 @@ alert = #bd2c40
 [bar/DP1-top]
 monitor = DP-1
 modules-left = i3
-modules-center = fs-primary fs-secondary
+modules-center = fs-primary fs-secondary fs-networkStorage
 modules-right =  lan monitors bluetooth date powermenu
 bottom = false
 width = 100%
@@ -102,12 +102,17 @@ label-mounted = %mountpoint%: %percentage_used%%
 [module/fs-primary]
 inherit = fs-base
 mount-0 = /
-label-mounted = [  ext4: %percentage_used%% ]
+label-mounted = [  pri: %percentage_used%% ]
 
 [module/fs-secondary]
 inherit = fs-base
 mount-0 = /mnt/storage
-label-mounted =  [ ntfs: %percentage_used%% ] 
+label-mounted =  [ sec: %percentage_used%% ] 
+
+[module/fs-networkStorage]
+inherit = fs-base
+mount-0 = /mnt/networkStorage
+label-mounted = [ net: %percentage_used%% ]
 
 [module/i3]
 type = internal/i3
