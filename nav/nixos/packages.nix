@@ -67,6 +67,7 @@
     stow
     wget
     xclip
+    zathura
     zettlr
     #[NIXOS-TOOLS]
     nix-prefetch-github

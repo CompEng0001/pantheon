@@ -28,6 +28,11 @@
 		fsType = "ntfs";
   };
 
+  fileSystems."/mnt/networkStorage" =
+  { device = "/dev/disk/by-uuid/29A61A514C7234B2";
+	  fsType = "ntfs";
+  };
+
   swapDevices = [ ];
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";

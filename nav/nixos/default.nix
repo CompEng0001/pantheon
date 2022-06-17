@@ -5,25 +5,30 @@
 { config, pkgs, ... }:
 
 {
-  imports = [
+#  imports = [
     # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-    ./packages.nix
-    ./home.nix
-  ];
+#    ./hardware-configuration.nix
+#    ./packages.nix
+#    ./home.nix
+ # ];
 
   boot = {
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
     # kernelPackages = pkgs.linuxPackages_lastest;
   };
+  # Use the GRUB 2 boot loader.
+  #boot.loader.grub.enable = true;
+  #boot.loader.grub.version = 2;
+  #boot.loader.grub.device = "/dev/nvme0n1p3"; # or "nodev" for efi only
 
   time.timeZone = "Europe/London";
   networking = {
-    hostName = "aitvaras"; # Define your hostname.  Lithuanian spirit
+    hostName = "vakare"; # Define your hostname.  Lithuanian Goddess of the evening star
     useDHCP = false;
-    interfaces.enp0s31f6.useDHCP = true;
+    interfaces.wlan0.useDHCP = true;
     firewall.enable = false;
+    wireless.iwd.enable = true;
   };
 
   i18n.defaultLocale = "en_GB.UTF-8";
@@ -32,6 +37,14 @@
     keyMap = "uk";
   };
 
+  services.udev.extraRules = ''
+    ACTION=="add", 
+    SUBSYSTEM=="backlight", 
+    KERNEL=="intel_backlight", 
+    MODE="0666", 
+    RUN+="${pkgs.coreutils}/bin/chmod a+w /sys/class/backlight/intel_backlight/brightness"
+  '';
+  
   services.xserver = {
     enable = true;
     layout = "gb";
@@ -49,8 +62,8 @@
       sddm.theme = "${(pkgs.fetchFromGitHub {
         owner = "CompEng0001";
         repo = "my-sddm-theme";
-				rev = "30fbf93746e8069c6d714c6c491c99abd0cf995e";
-				sha256 =  "1ga4qvrqqj68lyx6sqbl0wz64vb20xbv2fl2879v0k3kv3h60wa4";
+        rev = "30fbf93746e8069c6d714c6c491c99abd0cf995e";
+        sha256 = "1ga4qvrqqj68lyx6sqbl0wz64vb20xbv2fl2879v0k3kv3h60wa4";
       })}";
     };
 
@@ -92,9 +105,13 @@
 
   systemd.tmpfiles.rules = [
     "d /mnt/ 0755 root root"
+    "d /mnt/usb-right1/ 0755 root root"
+    "d /mnt/usb-right2/ 0755 root root"
+    "d /mnt/usb-left/ 0755 root root"
+    "d /mnt/usbc/ 0755 root root"
+    "d /mnt/microSD/ 0755 root root"
     "d /home/seb/Music 0755 seb users"
     "d /home/seb/Git 0755 seb users"
-    "d /home/seb/Documnets 0755 seb users"
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -144,5 +161,5 @@
       nerdfonts
     ] ++ lib.filter lib.isDerivation (lib.attrValues lohit-fonts);
   };
-  system.stateVersion = "22.11";
+  system.stateVersion = "21.11";
 }
