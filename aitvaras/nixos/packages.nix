@@ -3,7 +3,18 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { pkgs, ... }:
-{  
+{
+ nixpkgs.config = {
+
+    virtualbox = {
+     host.enableExtensionPack = true;
+    };
+
+    mpv = {
+      youtubeSupport = true;
+    };
+  };
+  
   environment.systemPackages = with pkgs; [
 
     #[EDITORS]
@@ -19,6 +30,8 @@
     spotify-tui
     flavours
     teamviewer
+    virt-viewer
+    virtmanager
     #[PHD]
     jupyter
     zathura
@@ -57,6 +70,7 @@
     imagemagick
     lsd
     multilockscreen
+		mpv
     neofetch
     pavucontrol
     peek
@@ -73,6 +87,7 @@
     usbutils
     wget
     xclip
+		zathura
     zettlr
     #[NIXOS-TOOLS]
     nix-prefetch-github

@@ -5,12 +5,6 @@
 { config, pkgs, ... }:
 
 {
-  imports = [
-    # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-    ./packages.nix
-    ./home.nix
-  ];
 
   boot = {
     loader.systemd-boot.enable = true;
@@ -32,41 +26,6 @@
     keyMap = "uk";
   };
 
-  services.xserver = {
-    enable = true;
-    layout = "gb";
-    libinput = {
-      enable = true;
-      touchpad.naturalScrolling = true;
-      touchpad.middleEmulation = true;
-      touchpad.tapping = true;
-    };
-
-    displayManager = {
-      defaultSession = "none+i3";
-      #lightdm.enable;
-      sddm.enable = true;
-      sddm.theme = "${(pkgs.fetchFromGitHub {
-        owner = "CompEng0001";
-        repo = "my-sddm-theme";
-				rev = "30fbf93746e8069c6d714c6c491c99abd0cf995e";
-				sha256 =  "1ga4qvrqqj68lyx6sqbl0wz64vb20xbv2fl2879v0k3kv3h60wa4";
-      })}";
-    };
-
-    windowManager.i3 = {
-      enable = true;
-      package = pkgs.i3-gaps;
-      extraPackages = with pkgs; [
-        betterlockscreen
-        i3-gaps
-        i3lock
-        i3lock-color
-        polybar
-      ];
-    };
-  };
-
   nixpkgs.config = {
     packageOverrides = pkgs: rec {
       polybar = pkgs.polybar.override {
@@ -78,13 +37,6 @@
     };
   };
   
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    pulse.enable = true;
-    socketActivation = true;
-  };
-
   users.users.seb = {
     isNormalUser = true;
     extraGroups = [ "wheel" "sudo" "video" "audio" "netdev" "pulse" "pulse-access" ];
@@ -144,4 +96,5 @@
       nerdfonts
     ] ++ lib.filter lib.isDerivation (lib.attrValues lohit-fonts);
   };
-  system.stateVersion = "22.11";
+  system.stateVersion = "22.05";
+}
