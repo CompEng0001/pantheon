@@ -254,5 +254,4 @@ for_window [class="Microsoft Teams - Preview"] move to workspace $ws5;
 for_window [class="Signal"] move to workspace $ws5
 for_window [class="zoom"] move to workspace $ws5
 for_window [class="TeamViewer"] move to workspace $ws6; split h; layout stack
-for_window [class="Spotify"] move to workspace $ws10 
-
+for_window [class="Spotify"] move to workspace $ws10
