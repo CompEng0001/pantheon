@@ -115,6 +115,7 @@ bindsym $mod+a focus parent
 
 # lockscreen
 bindsym $mod+Shift+l exec ${HOME}/.config/scripts/bash/lockscreen.sh
+bindsym $mod+Shift+h exec ${HOME}/.config/scripts/bash/hibernate.sh
 
 ##############################################################################
 # 
