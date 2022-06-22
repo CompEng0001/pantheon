@@ -46,6 +46,7 @@
     dos2unix
     feh
     flameshot
+		fwupd
     git
     htop
     iotop

@@ -5,7 +5,8 @@
 { config, pkgs, lib,  ... }:
 
 {
-
+	services.fwupd.enable = true;
+	
   services.udev.extraRules = ''
     ACTION=="add", 
     SUBSYSTEM=="backlight", 
