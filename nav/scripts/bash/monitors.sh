@@ -12,7 +12,7 @@ RESOLUTION=$(cat ${SCREENMODEFILE} | awk '{print$3}')
 MONITORS=$(xrandr -q | grep -w connected | awk '{print$1}')
 PRIMARYMONITOR=$(echo ${MONITORS} | awk '{print$1}')
 SECONDMONITOR=$(echo ${MONITORS} | awk '{print$2}')
-WALLPAPER="orbital_dance.jpg"
+WALLPAPER="wallpaper.jpg"
 
 pkill polybar > /dev/null
 
