@@ -33,7 +33,10 @@
       }
     ];
 
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+  powerManagement = {
+  	cpuFreqGovernor = lib.mkDefault "powersave";
+    powertop.enable = true;
+  };
   #hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   hardware = {

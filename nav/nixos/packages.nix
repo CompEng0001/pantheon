@@ -56,6 +56,7 @@
     neofetch
     peek
     psmisc
+		powertop
     pulseaudioFull
     qt5.qtquickcontrols
     qt5.qtquickcontrols2
