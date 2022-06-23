@@ -5,7 +5,7 @@
 { config, pkgs, lib,  ... }:
 
 {
-	services.fwupd.enable = true;
+  services.fwupd.enable = true;
 	
   services.udev.extraRules = ''
     ACTION=="add", 

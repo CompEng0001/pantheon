@@ -37,6 +37,12 @@ alias layout="~/.config/i3/layouts/layout.sh"
 alias off="sudo shutdown -h now"
 alias cat="bat -p"
 alias cccu="cd ~/Universities/CCCU/"
+
+hibernate()
+{
+	./.config/scripts/bash/hibernate.sh $1
+}
+
 #alias neofetch="neofetch --ascii /home/seb/Documents/ascii/throuple-ascii-art.txt"
 historyStat()
 {

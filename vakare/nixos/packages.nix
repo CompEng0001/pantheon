@@ -13,6 +13,7 @@
     arduino
     #[INTERNET]
     brave
+		chromium
     speedtest-cli
     nmap
     #[OTHER]
