@@ -6,7 +6,7 @@ WALLPAPERD0=".lockscreenEDP1.png"
 WALLPAPERD1=".lockscreenHMDI1.png"
 WALLPAPERD2=".lockscreenDP1.png"
 #Check for multimonitor setup
-SCREEN_MODE=$(cat ~/.config/polybar/modules/screens/screens_mode.env)
+SCREEN_MODE=$(cat ~/.config/polybar/modules/screens/screens_mode.env | awk '{print$1}')
 
 if [[ ${SCREEN_MODE} == "SINGLE" ]];then
    scrot -D :0 "${WALLPAPERPATH}${WALLPAPERD0}"
@@ -26,7 +26,7 @@ elif [[ ${SCREEN_MODE} == "TRI-EXTENDED" ]]; then
    scrot -a $( xrandr | grep '\Wconnected\W' | grep -Po "\d+x\d+\+\d+\+\d+" | sed 's/x/+/' | awk -F "+" '{print $3","$4","$1","$2}' | head -n 2 | tail -n 1) "${WALLPAPERPATH}${WALLPAPERD1}"
    scrot -a $( xrandr | grep '\Wconnected\W' | grep -Po "\d+x\d+\+\d+\+\d+" | sed 's/x/+/' | awk -F "+" '{print $3","$4","$1","$2}' | head -n 3 | tail -n 1) "${WALLPAPERPATH}${WALLPAPERD2}"
 
-   multilockscreen -u "${WALLPAPERPATH}${WALLPAPERD0}" -u "${WALLPAPERPATH}${WALLPAPERD1}" -u "{WALLPAPERPATH}${WALLPAPERD2}" --fx blur --display 1 2 3
+   multilockscreen -u "${WALLPAPERPATH}${WALLPAPERD0}" -u "${WALLPAPERPATH}${WALLPAPERD1}" -u "${WALLPAPERPATH}${WALLPAPERD2}" --fx blur --display 1 2 3
    multilockscreen -l blur
    rm "${WALLPAPERPATH}${WALLPAPERD0}" "${WALLPAPERPATH}${WALLPAPERD1}" "${WALLPAPERPATH}${WALLPAPERD2}"
 fi
