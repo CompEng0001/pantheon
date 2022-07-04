@@ -21,12 +21,12 @@ elif [[ ${SCREEN_MODE} == "EXTENDED" ]] || [[ ${SCREEN_MODE} == "DUPLICATE" ]];t
    multilockscreen -u "${WALLPAPERPATH}${WALLPAPERD0}" -u "${WALLPAPERPATH}${WALLPAPERD1}" --fx blur --display 1 2
    multilockscreen -l blur
    rm "${WALLPAPERPATH}${WALLPAPERD0}" "${WALLPAPERPATH}${WALLPAPERD1}"
-else 
+elif [[ ${SCREEN_MODE} == "TRI-EXTENDED" ]]; then
    scrot -a $( xrandr | grep '\Wconnected\W' | grep -Po "\d+x\d+\+\d+\+\d+" | sed 's/x/+/' | awk -F "+" '{print $3","$4","$1","$2}' | head -n 1 | tail -n 1) "${WALLPAPERPATH}${WALLPAPERD0}"
    scrot -a $( xrandr | grep '\Wconnected\W' | grep -Po "\d+x\d+\+\d+\+\d+" | sed 's/x/+/' | awk -F "+" '{print $3","$4","$1","$2}' | head -n 2 | tail -n 1) "${WALLPAPERPATH}${WALLPAPERD1}"
    scrot -a $( xrandr | grep '\Wconnected\W' | grep -Po "\d+x\d+\+\d+\+\d+" | sed 's/x/+/' | awk -F "+" '{print $3","$4","$1","$2}' | head -n 3 | tail -n 1) "${WALLPAPERPATH}${WALLPAPERD2}"
 
-   multilockscreen -u "${WALLPAPERPATH}${WALLPAPERD0}" -u "${WALLPAPERPATH}${WALLPAPERD1}" -u "{WALLPAPERPATH}${WALLPAPERD2}" --fx blur --display 1 2
+   multilockscreen -u "${WALLPAPERPATH}${WALLPAPERD0}" -u "${WALLPAPERPATH}${WALLPAPERD1}" -u "{WALLPAPERPATH}${WALLPAPERD2}" --fx blur --display 1 2 3
    multilockscreen -l blur
    rm "${WALLPAPERPATH}${WALLPAPERD0}" "${WALLPAPERPATH}${WALLPAPERD1}" "${WALLPAPERPATH}${WALLPAPERD2}"
 fi

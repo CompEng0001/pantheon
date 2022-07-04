@@ -79,8 +79,8 @@ elif [[ ${SCREENMODE} == "TRI-EXTENDED" ]];then
 				MONITOR2=${M} polybar --reload HDMI1-top -c ~/.config/polybar/config &
 				MONITOR2=${M} polybar --reload HDMI1-bottom -c ~/.config/polybar/config &
 		elif [ ${M} == $3 ];then
-				MONITOR3=${M} polybar --reload DP1-top -c ~/.config/polybar &
-				MONITOR3=${M} polybar --reload DP1-bottom -c ~/.config/polybar &
+				MONITOR3=${M} polybar --reload DP1-top -c ~/.config/polybar/config &
+				MONITOR3=${M} polybar --reload DP1-bottom -c ~/.config/polybar/config &
 		fi
 	done
 	feh --bg-scale ~/Pictures/Wallpaper/orbital_dance.jpg --bg-scale ~/Pictures/Wallpaper/wallpaper.jpg --bg-scale ~/Pictures/Wallpaper/terminal_wallpaper.png
