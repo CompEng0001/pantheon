@@ -40,7 +40,7 @@ alias cccu="cd ~/Universities/CCCU/"
 
 hibernate()
 {
-	./.config/scripts/bash/hibernate.sh $1
+	~/.config/scripts/bash/hibernate.sh $1
 }
 
 #alias neofetch="neofetch --ascii /home/seb/Documents/ascii/throuple-ascii-art.txt"
