@@ -9,7 +9,7 @@
     #[EDITORS]
     vim
     nano
-    vscodium
+    vscode
     arduino
     #[INTERNET]
     brave
