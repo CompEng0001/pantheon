@@ -3,6 +3,7 @@ divider="---------"
 MONITORS=$(xrandr -q | grep -w connected | awk '{print$1}' | cut -d" " -f1)
 PRIMARYMONITOR=$(echo ${MONITORS} | awk '{print$1}')
 SECONDARYMONITOR=$(echo ${MONITORS} | awk '{print$2}')
+TERTIARYMONITOR=$(echo ${MONITORS} | awk '{print$3}')
 SCREENMODEFILE=~/.config/polybar/modules/screens/screens_mode.env
 SCREENMODE=$(cat ${SCREENMODEFILE} | awk '{print$1}')
 DIRECTION=$(cat ${SCREENMODEFILE} | awk '{print$2}')
@@ -25,16 +26,25 @@ extend_main_monitor(){
     i3-msg restart
 }
 
+tri_extend_main_monitor(){
+		RESOLUTION=$(xrandr -q | grep -A1 'HDMI-1' | awk 'NR%3==2 {print$1}')
+    echo "TRI-EXTENDED $1 ${RESOLUTION}" > ${SCREENMODEFILE}
+    i3-msg restart
+}
+
 
 show_menu(){
 	local main="${PRIMARYMONITOR} only =  "
 	local duplicate="${PRIMARYMONITOR} dup ${SECONDARYMONITOR} =  "
 	local extendLeft="${PRIMARYMONITOR} ext ${SECONDARYMONITOR} =  <- "
   local extendRight="${PRIMARYMONITOR} ext ${SECONDARYMONITOR} =  ->  "
+  local triExtend="${TERTIARYMONITOR} ext ${PRIMARYMONITOR} ext ${SECONDARYMONITOR} =  <-  -> "
 	if [ -z ${SECONDARYMONITOR} ];then
 		options="Dectected monitors: ${MONITORS}\n${divider}\n${main}\nExit"
-	else
+	elif [ -z ${TERTIARYMONITOR} ];then
 		options="Dectected monitors:${MONITORS}\n${divider}\n${main}\n${duplicate}\n${extendLeft}\n${extendRight}\nExit"
+	else
+		options="Dectected monitors:${MONITORS}\n${divider}\n${main}\n${duplicate}\n${extendLeft}\n${extendRight}\n${triExtend}\nExit"
 	fi
 	# Open rofi menum read chosen option
 	local chosen="$(echo -e ${options} | $rofi_command "Monitors")"
@@ -54,6 +64,9 @@ show_menu(){
 	    $extendRight)
 	        extend_main_monitor "--right-of"
 	        ;;
+	    $triExtend)
+	    	  tri_extend_main_monitor "--right-of"
+					;;
 	esac
 }
 
@@ -70,6 +83,9 @@ print_status() {
 	elif [[ ${SCREENMODE} == "DUPLICATE" ]];then
 	   # Duplicate MODE
      echo ""
+  elif [[ ${SCREENMODE} == "TRI-EXTENDED" ]]; then
+	   # TRI-EXTENDED MODE
+     echo "  <-  -> "
 	fi
 }
 
