@@ -28,7 +28,18 @@
     rustc
     lua
     powershell
-    python3
+    python39
+    (let 
+  	  my-python-packages = python-packages: with python-packages; [ 
+        pandas
+        requests
+				numpy
+				markdown
+				matplotlib
+      ];
+      python-with-my-packages = python3.withPackages my-python-packages;
+      in
+    python-with-my-packages)
     gcc
     #[SOCIAL]
     discord
