@@ -6,7 +6,7 @@ alias gcm="git commit -m"
 alias gpl="git pull"
 alias gps="git push"
 gc ()
-{
+{ 
   git clone git@github.com:"$1""/""$2"
 }
 alias submoduleUpdate='bash $HOME/PhD/scripts/UtilityScripts/SubmoduleUpdate.sh'

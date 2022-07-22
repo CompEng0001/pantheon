@@ -35,6 +35,7 @@
     virtmanager
     #[PHD]
     jupyter
+		mysql80
     zathura
     zettlr
     #[PROGRAMMING]

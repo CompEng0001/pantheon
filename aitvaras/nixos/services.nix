@@ -54,4 +54,10 @@
       pulse.enable = true;
       socketActivation = true;
     };
+
+    services.mysql = {
+			enable = true;
+			user = "seb";
+			package = pkgs.mysql80;
+    };
  }
