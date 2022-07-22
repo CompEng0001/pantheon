@@ -56,4 +56,18 @@
     pulse.enable = true;
     socketActivation = true;
   };
+
+  services.mysql={
+		enable = true;
+		user = "seb";
+		initialDatabases = [ { name = "testdb"; schema =./testdb.sql; } { name = "empty_testdb"; }];
+		initialScript = pkgs.writeText "mysql-init.sql" ''
+          CREATE USER 'passworduser'@'localhost' IDENTIFIED BY 'password123';
+           '';
+
+#		dataDir = "PhD/database/";
+		package = pkgs.mysql80;
+		#bind-address = 127.0.0.1;
+  	#port = 3336;
+  };
 }

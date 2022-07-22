@@ -23,6 +23,7 @@
     #[PHD]
     jupyter
     zettlr
+    mysql80
     #[PROGRAMMING]
     cargo
     rustc
