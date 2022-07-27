@@ -32,8 +32,9 @@ alias ls="lsd"
 alias layout="~/.config/i3/layouts/layout.sh"
 alias off="sudo shutdown -h now"
 alias cat="bat -p"
-alias cccu="cd ~/Universities/CCCU/"
-
+alias cccu="cd ~/Git/CCCU/"
+alias phd="cd ~/Git/CCCU/PhD"
+alias PhD="cd ~/Git/CCCU/PhD"
 historyStat()
 {
    history | awk '{a[$2]++}END{for(i in a){print a[i] " " i}}' | sort -rn | head

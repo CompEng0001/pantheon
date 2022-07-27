@@ -38,6 +38,7 @@
 		mysql80
     zathura
     zettlr
+		zotero
     #[PROGRAMMING]
     cargo
     rustc
