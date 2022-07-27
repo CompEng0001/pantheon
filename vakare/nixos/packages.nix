@@ -23,6 +23,8 @@
     #[PHD]
     jupyter
     zettlr
+		zathura
+		zotero
     mysql80
     #[PROGRAMMING]
     cargo
