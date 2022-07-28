@@ -2,11 +2,11 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib,  ... }:
+{ config, pkgs, lib, ... }:
 
 {
   services.fwupd.enable = true;
-	
+
   services.udev.extraRules = ''
     ACTION=="add", 
     SUBSYSTEM=="backlight", 
@@ -14,7 +14,7 @@
     MODE="0666", 
     RUN+="${pkgs.coreutils}/bin/chmod a+w /sys/class/backlight/intel_backlight/brightness"
   '';
-  
+
   services.xserver = {
     enable = true;
     layout = "gb";
@@ -57,17 +57,23 @@
     socketActivation = true;
   };
 
-  services.mysql={
-		enable = true;
-		user = "seb";
-		initialDatabases = [ { name = "testdb"; schema =./testdb.sql; } { name = "empty_testdb"; }];
-		initialScript = pkgs.writeText "mysql-init.sql" ''
-          CREATE USER 'passworduser'@'localhost' IDENTIFIED BY 'password123';
-           '';
+  services.mysql = {
+    enable = true;
+    user = "seb";
+    initialDatabases = [
+      {
+        name = "testdb";
+        schema = ./testdb.sql;
+      }
+      { name = "empty_testdb"; }
+    ];
+    initialScript = pkgs.writeText "mysql-init.sql" ''
+      CREATE USER 'passworduser'@'localhost' IDENTIFIED BY 'password123';
+    '';
 
-#		dataDir = "PhD/database/";
-		package = pkgs.mysql80;
-		#bind-address = 127.0.0.1;
-  	#port = 3336;
+    #		dataDir = "PhD/database/";
+    package = pkgs.mysql80;
+    #bind-address = 127.0.0.1;
+    #port = 3336;
   };
 }

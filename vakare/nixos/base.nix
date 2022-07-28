@@ -13,7 +13,8 @@
 
   time.timeZone = "Europe/London";
   networking = {
-    hostName = "vakare"; # Define your hostname.  Lithuanian Goddess of the evening star
+    hostName =
+      "vakare"; # Define your hostname.  Lithuanian Goddess of the evening star
     useDHCP = false;
     interfaces.wlan0.useDHCP = true;
     firewall.enable = false;
@@ -31,15 +32,16 @@
       polybar = pkgs.polybar.override {
         i3GapsSupport = true;
         i3Support = true;
-				githubSupport = true;
+        githubSupport = true;
         pulseSupport = true;
       };
     };
   };
-  
+
   users.users.seb = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "sudo" "video" "audio" "netdev" "pulse" "pulse-access" ];
+    extraGroups =
+      [ "wheel" "sudo" "video" "audio" "netdev" "pulse" "pulse-access" ];
   };
 
   systemd.tmpfiles.rules = [
@@ -88,17 +90,18 @@
       useEmbeddedBitmaps = true;
     };
     enableGhostscriptFonts = true;
-    fonts = with pkgs; [
-      clearlyU
-      fixedsys-excelsior
-      cm_unicode
-      cozette
-      dosemu_fonts
-      freefont_ttf
-      google-fonts
-      junicode
-      nerdfonts
-    ] ++ lib.filter lib.isDerivation (lib.attrValues lohit-fonts);
+    fonts = with pkgs;
+      [
+        clearlyU
+        fixedsys-excelsior
+        cm_unicode
+        cozette
+        dosemu_fonts
+        freefont_ttf
+        google-fonts
+        junicode
+        nerdfonts
+      ] ++ lib.filter lib.isDerivation (lib.attrValues lohit-fonts);
   };
   system.stateVersion = "21.11";
 }

@@ -2,8 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, ... }:
-{  
+{ pkgs, ... }: {
   environment.systemPackages = with pkgs; [
 
     #[EDITORS]
@@ -13,7 +12,7 @@
     arduino
     #[INTERNET]
     brave
-		chromium
+    chromium
     speedtest-cli
     nmap
     #[OTHER]
@@ -23,8 +22,8 @@
     #[PHD]
     jupyter
     zettlr
-		zathura
-		zotero
+    zathura
+    zotero
     mysql80
     #[PROGRAMMING]
     cargo
@@ -32,17 +31,17 @@
     lua
     powershell
     python39
-    (let 
-  	  my-python-packages = python-packages: with python-packages; [ 
-        pandas
-        requests
-				numpy
-				markdown
-				matplotlib
-      ];
+    (let
+      my-python-packages = python-packages:
+        with python-packages; [
+          pandas
+          requests
+          numpy
+          markdown
+          matplotlib
+        ];
       python-with-my-packages = python3.withPackages my-python-packages;
-      in
-    python-with-my-packages)
+    in python-with-my-packages)
     gcc
     #[SOCIAL]
     discord
@@ -52,7 +51,7 @@
     alacritty
     starship
     #[TOOLS]
-		alsa-utils
+    alsa-utils
     apparix
     bc
     brightnessctl
@@ -61,7 +60,7 @@
     dos2unix
     feh
     flameshot
-		fwupd
+    fwupd
     git
     htop
     iotop
@@ -72,7 +71,7 @@
     neofetch
     peek
     psmisc
-		powertop
+    powertop
     pulseaudioFull
     qt5.qtquickcontrols
     qt5.qtquickcontrols2
