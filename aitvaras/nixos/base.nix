@@ -25,21 +25,31 @@
     font = "Lat2-Terminus16";
     keyMap = "uk";
   };
-
+  nix = {
+    settings = {
+      sandbox = true;
+      cores = 0;
+    };
+    extraOptions = ''
+      auto-optimise-store = true
+      experimental-features = nix-command flakes
+    '';
+  };
   nixpkgs.config = {
     packageOverrides = pkgs: rec {
       polybar = pkgs.polybar.override {
         i3GapsSupport = true;
         i3Support = true;
-				githubSupport = true;
+        githubSupport = true;
         pulseSupport = true;
       };
     };
   };
-  
+
   users.users.seb = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "sudo" "video" "audio" "netdev" "pulse" "pulse-access" ];
+    extraGroups =
+      [ "wheel" "sudo" "video" "audio" "netdev" "pulse" "pulse-access" ];
   };
 
   systemd.tmpfiles.rules = [
@@ -84,17 +94,18 @@
       useEmbeddedBitmaps = true;
     };
     enableGhostscriptFonts = true;
-    fonts = with pkgs; [
-      clearlyU
-      fixedsys-excelsior
-      cm_unicode
-      cozette
-      dosemu_fonts
-      freefont_ttf
-      google-fonts
-      junicode
-      nerdfonts
-    ] ++ lib.filter lib.isDerivation (lib.attrValues lohit-fonts);
+    fonts = with pkgs;
+      [
+        clearlyU
+        fixedsys-excelsior
+        cm_unicode
+        cozette
+        dosemu_fonts
+        freefont_ttf
+        google-fonts
+        junicode
+        nerdfonts
+      ] ++ lib.filter lib.isDerivation (lib.attrValues lohit-fonts);
   };
   system.stateVersion = "22.05";
 }

@@ -2,19 +2,14 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, ... }:
-{
- nixpkgs.config = {
+{ pkgs, ... }: {
+  nixpkgs.config = {
 
-    virtualbox = {
-     host.enableExtensionPack = true;
-    };
+    virtualbox = { host.enableExtensionPack = true; };
 
-    mpv = {
-      youtubeSupport = true;
-    };
+    mpv = { youtubeSupport = true; };
   };
-  
+
   environment.systemPackages = with pkgs; [
 
     #[EDITORS]
@@ -35,10 +30,10 @@
     virtmanager
     #[PHD]
     jupyter
-		mysql80
+    mysql80
     zathura
     zettlr
-		zotero
+    zotero
     #[PROGRAMMING]
     cargo
     rustc
@@ -54,13 +49,13 @@
     alacritty
     starship
     #[TOOLS]
-		alsa-utils
+    alsa-utils
     apparix
     bat
     bc
     brightnessctl
     calc
-		check-uptime
+    check-uptime
     cryptsetup
     curl
     dos2unix
@@ -73,7 +68,7 @@
     imagemagick
     lsd
     multilockscreen
-		mpv
+    mpv
     neofetch
     pavucontrol
     peek
@@ -90,7 +85,7 @@
     usbutils
     wget
     xclip
-		zathura
+    zathura
     zettlr
     #[NIXOS-TOOLS]
     nix-prefetch-github
