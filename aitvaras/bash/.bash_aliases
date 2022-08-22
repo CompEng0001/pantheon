@@ -5,6 +5,7 @@ alias gaa="git add ."
 alias gcm="git commit -m"
 alias gpl="git pull"
 alias gps="git push"
+alias gd="git diff"
 gc ()
 { 
   git clone git@github.com:"$1""/""$2"
@@ -26,6 +27,7 @@ alias passcode="$HOME/.OTP/passcodes.py"
 alias stowth="stow -vSt $1 $2"
 alias unstow="stow -vDt $1 $2"
 alias digital="bash University/CCCU/CCCUTeaching/21-22/FCC/Digital.sh"
+alias kanban="xdg-open https://github.com/users/CompEng0001/projects/2"
 
 #SYSTEMSTUFF
 alias ls="lsd"
