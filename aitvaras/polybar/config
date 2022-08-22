@@ -69,7 +69,7 @@ cursor-scroll = ns-resize
 
 [bar/DP1-bottom]
 modules-left = uptime nixos-version
-modules-right =  backlight pulseaudio jobs memory cpu temperature
+modules-right = volumeicon jobs memory cpu temperature
 bottom = true
 width = 100%
 height = 27
@@ -242,6 +242,10 @@ bar-volume-fill-font = 2
 bar-volume-empty = ─
 bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.foreground-alt}
+
+[module/volumeicon]
+type = custom/script
+exec = volumeicon
 
 [module/jobs]
 type = custom/script
