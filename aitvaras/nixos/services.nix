@@ -57,5 +57,9 @@
     enable = true;
     user = "seb";
     package = pkgs.mysql80;
+    settings.mysqld = {
+      port = 1337;
+      secure_file_priv ="";
+    };
   };
 }
