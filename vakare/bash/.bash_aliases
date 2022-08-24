@@ -3,6 +3,7 @@ alias gst="git status"
 alias ga="git add"
 alias gaa="git add ."
 alias gcm="git commit -m"
+alias gd="git diff"
 alias gpl="git pull"
 alias gps="git push"
 gc ()
@@ -36,7 +37,9 @@ alias ls="lsd"
 alias layout="~/.config/i3/layouts/layout.sh"
 alias off="sudo shutdown -h now"
 alias cat="bat -p"
-alias cccu="cd ~/Universities/CCCU/"
+alias cccu="cd ~/Git/CCCU/"
+alias phd="cd ~/Git/CCCU/PhD"
+alias PhD="cd ~/Git/CCCU/PhD"
 
 hibernate()
 {
