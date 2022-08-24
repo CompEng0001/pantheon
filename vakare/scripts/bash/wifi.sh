@@ -3,12 +3,12 @@
 IWDDIR="/var/lib/iwd/"
 declare -A networks
 networks=(["-e"]=eduroam.8021x ["-s"]=Southeastern_WiFi.open ["-p"]=CompEng0001.psk
-["-m"]=makerspace.psk ["-h"]=BT-73CPM3.psk ["-hg"]="BT_Mini_Hub_6352_2.4GHz")
+["-m"]=makerspace.psk ["-h"]=BT-73CPM3.psk ["-n"]="NHS Wi-Fi.open" ["-hg"]="BT_Mini_Hub_6352_2.4GHz")
 
 usage()
 {
    echo -e "wifi:\n\t-e eduroam [--gre || --cccu]"
-   echo -e "\t-s Southeastern_WiFi\n\t-p CompEng0001"
+   echo -e "\t-s Southeastern_WiFi\n\t-p CompEng0001\n\t-n NHS_Medway"
    echo -e "\t-m makerspace\n\t-h BT-73CPM3\n\t-hg BT_Mini_Hub_6352_2.4Hz"
    echo -e "\t--print [-network --print]\n\t--edit [-network --edit]"
    echo -e "\t-r restart iwd.service"
@@ -26,6 +26,8 @@ connection(){
 		iwctl station wlan0 connect $(echo ${networks[-p]} | awk -F '.' '{print$NR}')
 	elif [[ $1 == -m ]]; then
 		iwctl station wlan0 connect $(echo ${networks[-m]} | awk -F '.' '{print$NR}')
+	elif [[ $1 == -n ]]; then
+		iwctl station wlan0 connect "$(echo ${networks[-n]} | awk -F '.' '{print$NR}')"
 	elif [[ $1 == -h ]]; then
 		iwctl station wlan0 connect $(echo ${networks[-h]} | awk -F '.' '{print$NR}'| awk -F '.' '{print$NR}')
 	elif [[ $1 == -hg ]]; then
