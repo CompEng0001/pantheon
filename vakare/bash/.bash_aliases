@@ -27,6 +27,7 @@ alias passcode="$HOME/.OTP/passcodes.py"
 alias stowth="stow -vSt ~ $1"
 alias unstow="stow -vDt ~ $1"
 alias digital="bash University/CCCU/CCCUTeaching/21-22/FCC/Digital.sh"
+alias kanban="xdg-open https://github.com/users/CompEng0001/projects/2 &"
 image()
 {
    nix-shell -p xz &&  xz --decompress --stdout $1 | sudo dd status=progress bs=4M of=$2
