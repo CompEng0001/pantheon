@@ -70,7 +70,7 @@ cursor-scroll = ns-resize
 [bar/eDP1-bottom]
 monitor = ${env:MONITOR1}
 modules-left = uptime nixos-version
-modules-right =  backlight pulseaudio jobs memory cpu battery temperature
+modules-right =  backlight audio jobs memory cpu battery temperature
 bottom = true
 width = 100%
 height = 27
@@ -124,7 +124,7 @@ cursor-scroll = ns-resize
 
 [bar/HDMI1-bottom]
 monitor = ${env:MONITOR2}
-modules-right =  backlight pulseaudio jobs memory cpu battery temperature
+modules-right =  backlight audio jobs memory cpu battery temperature
 bottom = true
 width = 100%
 height = 27
@@ -314,32 +314,9 @@ format-underline = #0a6cf5
 click-left =  ~/.config/polybar/modules/calendar/calendar --popup &
 click-right = ~/.config/polybar/modules/calendar/calendar --format &
 
-[module/pulseaudio]
-type = internal/pulseaudio
-format-volume = <label-volume> <bar-volume>
-label-volume = VOL %percentage%%
-label-volume-foreground = ${root.foreground}
-use-ui-max = true
-click-right = alsamixer
-interval = 5
-label-muted = 婢 muted
-label-muted-foreground = #666
-bar-volume-width = 10
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
-bar-volume-gradient = true
-bar-volume-indicator = |
-bar-volume-indicator-font = 2
-bar-volume-fill = ─
-bar-volume-fill-font = 2
-bar-volume-empty = ─
-bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
+[module/audio]
+type = custom/script
+exec = volumeicon
 
 [module/battery]
 type = internal/battery
