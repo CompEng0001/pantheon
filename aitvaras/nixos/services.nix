@@ -60,6 +60,10 @@
     settings.mysqld = {
       port = 1337;
       secure_file_priv ="";
+      local_infile = 1;
+    };
+    settings.mysql = {
+			local_infile = 1;
     };
   };
 }
