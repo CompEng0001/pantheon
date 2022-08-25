@@ -3,6 +3,7 @@ alias gst="git status"
 alias ga="git add"
 alias gaa="git add ."
 alias gcm="git commit -m"
+alias gd="git diff"
 alias gpl="git pull"
 alias gps="git push"
 gc ()
@@ -26,6 +27,7 @@ alias passcode="$HOME/.OTP/passcodes.py"
 alias stowth="stow -vSt ~ $1"
 alias unstow="stow -vDt ~ $1"
 alias digital="bash University/CCCU/CCCUTeaching/21-22/FCC/Digital.sh"
+alias kanban="xdg-open https://github.com/users/CompEng0001/projects/2 &"
 image()
 {
    nix-shell -p xz &&  xz --decompress --stdout $1 | sudo dd status=progress bs=4M of=$2
@@ -36,7 +38,9 @@ alias ls="lsd"
 alias layout="~/.config/i3/layouts/layout.sh"
 alias off="sudo shutdown -h now"
 alias cat="bat -p"
-alias cccu="cd ~/Universities/CCCU/"
+alias cccu="cd ~/Git/CCCU/"
+alias phd="cd ~/Git/CCCU/PhD"
+alias PhD="cd ~/Git/CCCU/PhD"
 
 hibernate()
 {
