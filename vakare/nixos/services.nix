@@ -57,6 +57,8 @@
     socketActivation = true;
   };
 
+#	services.spotifyd.enable = true;
+
   services.mysql = {
     enable = true;
     user = "seb";
@@ -64,6 +66,11 @@
     settings.mysqld = {
 			port = 1337;
 			secure_file_priv = "";
+			local_infile = 1;
+			autocommit=0;
+    };
+    settings.mysql = {
+			local_infile = 1;
     };
   };
 }

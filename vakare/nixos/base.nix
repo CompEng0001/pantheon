@@ -66,7 +66,6 @@
         eval "$(${pkgs.starship}/bin/starship init bash)"
       '';
       shellAliases = {
-        config = "sudo nano /etc/nixos/configuration.nix";
         ls = "lsd";
         ll = "lsd -l";
         l = "lsd -lah";
@@ -81,6 +80,13 @@
         set linenumbers
         set nonewlines
       '';
+    };
+    starship = {
+			enable = true;
+			settings = {
+				command_timeout = 1000;
+				nix_shell.disabled = false;
+			};
     };
   };
 
@@ -103,5 +109,5 @@
         nerdfonts
       ] ++ lib.filter lib.isDerivation (lib.attrValues lohit-fonts);
   };
-  system.stateVersion = "21.11";
+  system.stateVersion = "22.05";
 }
