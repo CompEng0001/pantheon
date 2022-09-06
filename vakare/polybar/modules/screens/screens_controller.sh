@@ -38,13 +38,14 @@ show_menu(){
 	local duplicate="${PRIMARYMONITOR} dup ${SECONDARYMONITOR} =  "
 	local extendLeft="${PRIMARYMONITOR} ext ${SECONDARYMONITOR} =  <- "
   local extendRight="${PRIMARYMONITOR} ext ${SECONDARYMONITOR} =  ->  "
-  local triExtend="${TERTIARYMONITOR} ext ${PRIMARYMONITOR} ext ${SECONDARYMONITOR} =  <-  -> "
+	local extendAbove="${PRIMARYMONITOR} ext ${SECONDARYMONITOR} =  -^  "
+  local triExtend="${TERTIARYMONITOR} ext ${PRIMARYMONITOR} ext ${SECONDARYMONITOR} =  <-   -> "
 	if [ -z ${SECONDARYMONITOR} ];then
 		options="Dectected monitors: ${MONITORS}\n${divider}\n${main}\nExit"
 	elif [ -z ${TERTIARYMONITOR} ];then
-		options="Dectected monitors:${MONITORS}\n${divider}\n${main}\n${duplicate}\n${extendLeft}\n${extendRight}\nExit"
+		options="Dectected monitors:${MONITORS}\n${divider}\n${main}\n${duplicate}\n${extendLeft}\n${extendRight}\n${extendAbove}\nExit"
 	else
-		options="Dectected monitors:${MONITORS}\n${divider}\n${main}\n${duplicate}\n${extendLeft}\n${extendRight}\n${triExtend}\nExit"
+		options="Dectected monitors:${MONITORS}\n${divider}\n${main}\n${duplicate}\n${extendLeft}\n${extendRight}\n${extendAbove}\n${triExtend}\nExit"
 	fi
 	# Open rofi menum read chosen option
 	local chosen="$(echo -e ${options} | $rofi_command "Monitors")"
@@ -64,6 +65,9 @@ show_menu(){
 	    $extendRight)
 	        extend_main_monitor "--right-of"
 	        ;;
+	    $extendAbove)
+	    		extend_main_monitor "--above"
+	    		;;
 	    $triExtend)
 	    	  tri_extend_main_monitor "--right-of"
 					;;
@@ -76,10 +80,13 @@ print_status() {
 		echo ""
 	elif [[ ${SCREENMODE} == "EXTENDED" ]] && [[ ${DIRECTION} == "--left-of" ]]; then
 	   # EXTENDED MODE
-     echo "  <-  "
+     echo " <-  "
 	elif [[ ${SCREENMODE} == "EXTENDED" ]] && [[ ${DIRECTION} == "--right-of" ]]; then
 	   # EXTENDED MODE
      echo " ->  "
+  elif [[ ${SCREENMODE} == "EXTENDED" ]] && [[ ${DIRECTION} == "--above" ]]; then
+	   # EXTENDED MODE
+     echo " -^  "
 	elif [[ ${SCREENMODE} == "DUPLICATE" ]];then
 	   # Duplicate MODE
      echo ""

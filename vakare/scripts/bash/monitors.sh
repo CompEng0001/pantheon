@@ -38,6 +38,12 @@ fi
 sed -i "138 c \\set $\monitor_secondary \"${SECONDMONITOR}\"" ~/.config/i3/config
 sed -i "140 c \\set $\monitor_tertiary \"${THIRDMONITOR}\"" ~/.config/i3/config
 
+if [[ ${DIRECTION} == "--above" ]]; then
+	sed -i "167 c \\bindsym $\mod+Shift+m move workspace to output up" ~/.config/i3/config
+else
+	sed -i "167 c \\bindsym $\mod+Shift+m move workspace to output right" ~/.config/i3/config
+fi
+
 if [[ ${SCREENMODE} == "SINGLE" ]];then
 	# reset monitor
 	xrandr -s -0
