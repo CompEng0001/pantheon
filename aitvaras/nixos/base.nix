@@ -57,7 +57,7 @@
     "d /mnt/ 0755 root root"
     "d /home/seb/Music 0755 seb users"
     "d /home/seb/Git 0755 seb users"
-    "d /home/seb/Documnets 0755 seb users"
+    "d /home/seb/Documents 0755 seb users"
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -98,29 +98,6 @@
         phd = "cd ~/Git/CCCU/PhD";
       };
     };
-#    bash = {
-#      enableCompletion = true;
-#      enableLsColors = true;
-#      promptInit = ''
-#        eval "$(${pkgs.starship}/bin/starship init bash)"
-#      '';
-#      shellAliases = {
-#        config = "sudo nano /etc/nixos/configuration.nix";
-#        ls = "lsd";
-#        ll = "lsd -l";
-#        l = "lsd -lah";
-#     };
-#   };
-nano = {
-  syntaxHighlight = true;
-  nanorc = ''
-        set autoindent
-        set nowrap
-        set tabsize 2
-        set linenumbers
-        set nonewlines
-  '';
-};
   };
 
   fonts = {
