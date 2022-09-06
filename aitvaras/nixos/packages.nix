@@ -18,24 +18,24 @@
 
     #[EDITORS]
     vim_configurable
-    nano
+#    pkgs.callPackage ./vim.nix{}
     vscode
     arduino
     #[INTERNET]
     brave
     chromium
-    speedtest-cli
     nmap
+    speedtest-cli
     #[OTHER]
-    spotifyd
-    spotify-tui
     flavours
+    spotify-tui
+    spotifyd
     teamviewer
     virt-viewer
     virtmanager
     #[PHD]
-    libreoffice
     jupyter
+    libreoffice
     mysql80
     zathura
     zettlr
@@ -57,8 +57,8 @@
         mlr3       # https://www.rdocumentation.org/packages/mlr3/versions/0.14.0
         rjson      # https://www.rdocumentation.org/packages/rjson/versions/0.2.21
         tidyjson   # https://www.rdocumentation.org/packages/tidyjson/versions/0.3.1
-        tidyverse  # https://www.rdocumentation.org/packages/tidyverse/versions/1.3.2
         tidymodels # https://www.rdocumentation.org/packages/tidymodels/versions/1.0.0
+        tidyverse  # https://www.rdocumentation.org/packages/tidyverse/versions/1.3.2
         xmlconvert # https://www.rdocumentation.org/packages/xmlconvert/versions/0.1.2
         xtable     # https://www.rdocumentation.org/packages/xtable/versions/1.8-4
       ];
@@ -78,8 +78,8 @@
     apparix
     bat
     bc
-    brightnessctl
     bpytop
+    brightnessctl
     calc
     check-uptime
     cryptsetup
@@ -87,25 +87,25 @@
     dos2unix
     easyeffects
     feh
-    fzf
     flameshot
+    fzf
     git
     guvcview
     htop
-    iotop
     imagemagick
+    iotop
     lsd
-    multilockscreen
     mpv
+    multilockscreen
     neofetch
     pavucontrol
     peek
     psmisc
     pulseaudioFull
-    qt5.qtquickcontrols
-    qt5.qtquickcontrols2
     qt5.qtgraphicaleffects
     qt5.qtmultimedia
+    qt5.qtquickcontrols
+    qt5.qtquickcontrols2
     rofi
     scrot
     spotify
