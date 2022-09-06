@@ -124,7 +124,7 @@ cursor-scroll = ns-resize
 
 [bar/HDMI1-bottom]
 monitor = ${env:MONITOR2}
-modules-right =  backlight audio jobs memory cpu battery temperature
+modules-right =  backlight jobs memory cpu battery temperature
 bottom = true
 width = 100%
 height = 27
