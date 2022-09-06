@@ -8,35 +8,35 @@
 
   boot.initrd.availableKernelModules =
     [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+    boot.initrd.kernelModules = [ ];
+    boot.kernelModules = [ "kvm-intel" ];
+    boot.extraModulePackages = [ ];
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/9fd41f7d-7db1-47e7-a11d-2a5331b3df1f";
-    fsType = "ext4";
-  };
+    fileSystems."/" = {
+      device = "/dev/disk/by-uuid/9fd41f7d-7db1-47e7-a11d-2a5331b3df1f";
+      fsType = "ext4";
+    };
 
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/8C65-24B3";
-    fsType = "vfat";
-  };
+    fileSystems."/boot" = {
+      device = "/dev/disk/by-uuid/8C65-24B3";
+      fsType = "vfat";
+    };
 
-  fileSystems."/mnt/storage" = {
-    device = "/dev/disk/by-uuid/01D4F1DD78A199B0";
-    fsType = "ntfs";
-  };
+    fileSystems."/mnt/storage" = {
+      device = "/dev/disk/by-uuid/01D4F1DD78A199B0";
+      fsType = "ntfs";
+    };
 
-  fileSystems."/mnt/networkStorage" = {
-    device = "/dev/disk/by-uuid/29A61A514C7234B2";
-    fsType = "ntfs";
-  };
+    fileSystems."/mnt/networkStorage" = {
+      device = "/dev/disk/by-uuid/29A61A514C7234B2";
+      fsType = "ntfs";
+    };
 
-  swapDevices = [ ];
+    swapDevices = [ ];
 
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+    powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 
-  hardware = {
+    hardware = {
     #cpu.intel.updateMicrocode = true;
     cpu.intel.updateMicrocode =
       lib.mkDefault config.hardware.enableRedistributableFirmware;

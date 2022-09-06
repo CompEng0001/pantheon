@@ -52,7 +52,17 @@
     pulse.enable = true;
     socketActivation = true;
   };
-
+  services.spotifyd = {
+    enable = true;
+    settings ={
+      global = {
+        username = "sb1501@canterbury.ac.uk";
+        password = "Insilico1";
+        device_name = "aitvaras";
+        proxy = "http://localhost:8888";
+      };
+    };
+  };
   services.mysql = {
     enable = true;
     user = "seb";
@@ -63,7 +73,7 @@
       local_infile = 1;
     };
     settings.mysql = {
-			local_infile = 1;
+      local_infile = 1;
     };
   };
 }

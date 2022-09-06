@@ -48,8 +48,9 @@
 
   users.users.seb = {
     isNormalUser = true;
-    extraGroups =
-      [ "wheel" "sudo" "video" "audio" "netdev" "pulse" "pulse-access" ];
+    extraGroups = [ "wheel" "sudo" "video" "audio" "netdev" "pulse" "pulse-access" ];
+    uid = 1000;
+    shell = "${pkgs.zsh}/bin/zsh";
   };
 
   systemd.tmpfiles.rules = [
@@ -63,29 +64,62 @@
   nixpkgs.config.allowUnsupportedSystem = true;
 
   programs = {
-    bash = {
-      enableCompletion = true;
-      enableLsColors = true;
+    zsh = {
+      enable = true;
       promptInit = ''
-        eval "$(${pkgs.starship}/bin/starship init bash)"
+        eval "$(${pkgs.starship}/bin/starship init zsh)"
+        ${pkgs.any-nix-shell}/bin/any-nix-shell zsh --info-right | source /dev/stdin
       '';
+      interactiveShellInit = ''
+        zstyle ':completion:*' menu select
+        source ${pkgs.fzf}/share/fzf/key-bindings.zsh
+      '';
+      setOptions = [
+        "auto_cd"
+        "auto_pushd"
+        "correct"
+        "hist_fcntl_lock"
+        "hist_ignore_dups"
+        "hist_no_store"
+        "hist_reduce_blanks"
+      ];
       shellAliases = {
-        config = "sudo nano /etc/nixos/configuration.nix";
+        gst = "git status";
+        ga = "git add";
+        gaa = "git add .";
+        gcm = "git commit -m";
+        gpl = "git pull";
+        gps = "git push";
+        gd = "git diff";
+        passcode = "~/.OTP/passcodes.py";
         ls = "lsd";
-        ll = "lsd -l";
-        l = "lsd -lah";
+        cat = "bat -p";
+        phd = "cd ~/Git/CCCU/PhD";
       };
     };
-    nano = {
-      syntaxHighlight = true;
-      nanorc = ''
+#    bash = {
+#      enableCompletion = true;
+#      enableLsColors = true;
+#      promptInit = ''
+#        eval "$(${pkgs.starship}/bin/starship init bash)"
+#      '';
+#      shellAliases = {
+#        config = "sudo nano /etc/nixos/configuration.nix";
+#        ls = "lsd";
+#        ll = "lsd -l";
+#        l = "lsd -lah";
+#     };
+#   };
+nano = {
+  syntaxHighlight = true;
+  nanorc = ''
         set autoindent
         set nowrap
         set tabsize 2
         set linenumbers
         set nonewlines
-      '';
-    };
+  '';
+};
   };
 
   fonts = {
@@ -95,17 +129,17 @@
     };
     enableGhostscriptFonts = true;
     fonts = with pkgs;
-      [
-        clearlyU
-        fixedsys-excelsior
-        cm_unicode
-        cozette
-        dosemu_fonts
-        freefont_ttf
-        google-fonts
-        junicode
-        nerdfonts
-      ] ++ lib.filter lib.isDerivation (lib.attrValues lohit-fonts);
+    [
+      clearlyU
+      fixedsys-excelsior
+      cm_unicode
+      cozette
+      dosemu_fonts
+      freefont_ttf
+      google-fonts
+      junicode
+      nerdfonts
+    ] ++ lib.filter lib.isDerivation (lib.attrValues lohit-fonts);
   };
   system.stateVersion = "22.05";
 }
