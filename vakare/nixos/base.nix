@@ -71,6 +71,7 @@
         zstyle ':completion:*' menu select
         source ${pkgs.fzf}/share/fzf/key-bindings.zsh
       '';
+      autosuggestions.enable = true;
       setOptions = [
         "auto_cd"
         "auto_pushd"

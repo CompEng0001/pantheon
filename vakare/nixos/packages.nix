@@ -18,7 +18,7 @@
 
 
     #[EDITORS]
-    vim
+    vim_configurable
     nano
     vscode
     arduino
