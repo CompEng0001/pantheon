@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }:
+{ pkgs ? import <nixpkgs> {} }:
 
 pkgs.vim_configurable.overrideAttrs (drv: {
   vimrc = pkgs.vimUtils.vimrcFile {
