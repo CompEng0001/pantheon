@@ -4,9 +4,6 @@
 
 { pkgs, ... }: {
   nixpkgs.config = {
-
-    virtualbox = { host.enableExtensionPack = true; };
-
     mpv = { youtubeSupport = true; };
   };
 
@@ -16,10 +13,9 @@
 
   environment.systemPackages = with pkgs; [
 
-
     #[EDITORS]
     arduino
-    vim_configurable
+    (pkgs.callPackage ./vim.nix { })
     vscode
     #[INTERNET]
     brave
@@ -47,8 +43,8 @@
     python3
     (let
       RStudio-with-my-packages = rstudioWrapper.override
-      { packages = with rPackages; 
-      [ 
+      { packages = with rPackages;
+      [
         janitor    # https://www.rdocumentation.org/packages/janitor/versions/2.1.0
         knitr      # https://www.rdocumentation.org/packages/knitr/versions/1.39
         lubridate
@@ -63,7 +59,7 @@
       ];
     };
     in
-    RStudio-with-my-packages)    
+    RStudio-with-my-packages)
     rustc
     #[SOCIAL]
     discord
@@ -82,6 +78,7 @@
     check-uptime
     cryptsetup
     curl
+    delta
     dos2unix
     feh
     flameshot

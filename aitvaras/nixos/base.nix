@@ -48,7 +48,7 @@
 
   users.users.seb = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "sudo" "video" "audio" "netdev" "pulse" "pulse-access" ];
+    extraGroups = [ "wheel" "libvirtd" "video" "audio" "netdev" "pulse" "pulse-access" ];
     uid = 1000;
     shell = "${pkgs.zsh}/bin/zsh";
   };
@@ -62,6 +62,14 @@
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnsupportedSystem = true;
+
+  environment = {
+    shellInit = ''
+      export LIBVIRT_DEFAULT_URI=qemu:///system
+      export EDITOR='vim'
+    '';
+    shells = [ pkgs.zsh ];
+  };
 
   programs = {
     zsh = {
@@ -85,13 +93,14 @@
         "hist_reduce_blanks"
       ];
       shellAliases = {
-        gst = "git status";
+        gst = "git status --short";
         ga = "git add";
         gaa = "git add .";
         gcm = "git commit -m";
         gpl = "git pull";
         gps = "git push";
         gd = "git diff";
+        glg = "git log --graph --oneline --decorate --all";
         passcode = "~/.OTP/passcodes.py";
         ls = "lsd";
         cat = "bat -p";
@@ -101,23 +110,31 @@
   };
 
   fonts = {
-    fontconfig = {
-      enable = true;
-      useEmbeddedBitmaps = true;
-    };
-    enableGhostscriptFonts = true;
-    fonts = with pkgs;
-    [
-      clearlyU
-      fixedsys-excelsior
-      cm_unicode
-      cozette
-      dosemu_fonts
-      freefont_ttf
-      google-fonts
-      junicode
-      nerdfonts
-    ] ++ lib.filter lib.isDerivation (lib.attrValues lohit-fonts);
+	fontconfig = {
+	  enable = true;
+	  useEmbeddedBitmaps = true;
+	};
+	enableGhostscriptFonts = true;
+	fonts = with pkgs;
+	[
+	  clearlyU
+	  fixedsys-excelsior
+	  cm_unicode
+	  corefonts
+	  cozette
+	  dosemu_fonts
+	  freefont_ttf
+	  google-fonts
+	  junicode
+	  nerdfonts
+	  siji
+	  tewi-font
+	  tt2020
+	  ultimate-oldschool-pc-font-pack
+	  unifont
+	  vistafonts
+	  wqy_microhei
+	] ++ lib.filter lib.isDerivation (lib.attrValues lohit-fonts);
   };
   system.stateVersion = "22.05";
 }

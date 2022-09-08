@@ -2,13 +2,11 @@
 
 {
   virtualisation = {
-    virtualbox = {
-      host = {
-        enable = true;
-        enableHardening = true;
-      };
+    libvirtd = { 
+      enable = true; 
+      qemu.package = pkgs.qemu_kvm;
     };
-    libvirtd = { enable = true; };
+    podman.enable = true;
   };
 
   services.xserver = {
