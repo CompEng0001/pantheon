@@ -3,78 +3,68 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { pkgs, ... }: {
-  nixpkgs.config = {
-    mpv = { youtubeSupport = true; };
-  };
 
-  nixpkgs.config.permittedInsecurePackages = [
-    "python3.9-mistune-0.8.4"
-  ];
+  nixpkgs.config = {
+    packageOverrides = pkgs: rec {
+      polybar = pkgs.polybar.override {
+        i3GapsSupport = true;
+        i3Support = true;
+        githubSupport = true;
+        pulseSupport = true;
+      };
+    };
+    allowUnfree = true;
+    allowUnsupportedSystem = true;
+    mpv = { youtubeSupport = true; };
+    permittedInsecurePackages = [
+      "python3.9-mistune-0.8.4"
+    ];
+  };
 
   environment.systemPackages = with pkgs; [
 
-    #[EDITORS]
+    # [[EDITORS]]
+    arduino
     (pkgs.callPackage ./vim.nix { })
     vscode
-    arduino
-    #[INTERNET]
+    # [[INTERNET]]
     brave
     chromium
     nmap
     speedtest-cli
-    #[OTHER]
+    # [[OTHER]]
     flavours
     spotify-tui
-    spotifyd
     teamviewer
     virt-viewer
     virtmanager
-    #[PHD]
+    # [[PHD]]
     jupyter
     libreoffice
     mysql80
     zathura
     zettlr
     zotero
-    #[PROGRAMMING]
+    # [[PROGRAMMING]]
     cargo
     gcc
     lua
     powershell
     python3
-    (let
-      RStudio-with-my-packages = rstudioWrapper.override
-      { packages = with rPackages;
-      [
-        janitor    # https://www.rdocumentation.org/packages/janitor/versions/2.1.0
-        knitr      # https://www.rdocumentation.org/packages/knitr/versions/1.39
-        lubridate
-        mlr        # https://www.rdocumentation.org/packages/mlr/versions/2.19.0
-        mlr3       # https://www.rdocumentation.org/packages/mlr3/versions/0.14.0
-        rjson      # https://www.rdocumentation.org/packages/rjson/versions/0.2.21
-        tidyjson   # https://www.rdocumentation.org/packages/tidyjson/versions/0.3.1
-        tidymodels # https://www.rdocumentation.org/packages/tidymodels/versions/1.0.0
-        tidyverse  # https://www.rdocumentation.org/packages/tidyverse/versions/1.3.2
-        xmlconvert # https://www.rdocumentation.org/packages/xmlconvert/versions/0.1.2
-        xtable     # https://www.rdocumentation.org/packages/xtable/versions/1.8-4
-      ];
-    };
-    in
-    RStudio-with-my-packages)
+    (pkgs.callPackage ./rstudio.nix { })
     rustc
-    #[SOCIAL]
+    # [[SOCIAL]]
     discord
     signal-desktop
     teams
-    #[Terminal]
+    # [[Terminal]]
     alacritty
     starship
-    #[TOOLS]
+    # [[TOOLS]]
     alsa-utils
     apparix
     bat
     bc
-    bpytop
     brightnessctl
     calc
     check-uptime
@@ -82,7 +72,6 @@
     curl
     delta
     dos2unix
-    easyeffects
     feh
     flameshot
     fzf
@@ -107,13 +96,15 @@
     scrot
     spotify
     stow
+    tree
     usbutils
     volumeicon
     wget
     xclip
     zathura
     zettlr
-    #[NIXOS-TOOLS]
+    # [[NIXOS-TOOLS]]
+    nixpkgs-fmt
     nix-prefetch-github
   ];
 }

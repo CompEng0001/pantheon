@@ -6,135 +6,131 @@
 
 {
   boot = {
-	loader.systemd-boot.enable = true;
-	loader.efi.canTouchEfiVariables = true;
-	# kernelPackages = pkgs.linuxPackages_lastest;
+    loader.systemd-boot.enable = true;
+    loader.efi.canTouchEfiVariables = true;
+    # kernelPackages = pkgs.linuxPackages_lastest;
   };
 
   time.timeZone = "Europe/London";
   networking = {
-	hostName =
-	  "vakare"; # Define your hostname.  Lithuanian Goddess of the evening star
-	  useDHCP = false;
-	  interfaces.wlan0.useDHCP = true;
-	  firewall.enable = false;
-	  wireless.iwd.enable = true;
-	};
+    hostName =
+      "vakare"; # Define your hostname.  Lithuanian Goddess of the evening star
+    useDHCP = false;
+    interfaces.wlan0.useDHCP = true;
+    firewall.enable = false;
+    wireless.iwd.enable = true;
+  };
 
-	i18n.defaultLocale = "en_GB.UTF-8";
-	console = {
-	  font = "Lat2-Terminus16";
-	  keyMap = "uk";
-	};
+  i18n.defaultLocale = "en_GB.UTF-8";
+  console = {
+    font = "Lat2-Terminus16";
+    keyMap = "uk";
+  };
 
-	nixpkgs.config = {
-	  packageOverrides = pkgs: rec {
-		polybar = pkgs.polybar.override {
-		  i3GapsSupport = true;
-		  i3Support = true;
-		  githubSupport = true;
-		  pulseSupport = true;
-		};
-	  };
-	};
+  users.users.seb = {
+    isNormalUser = true;
+    extraGroups =
+      [ "wheel" "libvirtd" "video" "audio" "netdev" "pulse" "pulse-access" ];
+    uid = 1000;
+    shell = "${pkgs.zsh}/bin/zsh";
+  };
 
-	users.users.seb = {
-	  isNormalUser = true;
-	  extraGroups =
-		[ "wheel" "libvirtd" "video" "audio" "netdev" "pulse" "pulse-access" ];
-		uid= 1000;
-		shell = "${pkgs.zsh}/bin/zsh";
-	  };
+  systemd.tmpfiles.rules = [
+    "d /mnt/ 0755 root root"
+    "d /mnt/usb-right1/ 0755 root root"
+    "d /mnt/usb-right2/ 0755 root root"
+    "d /mnt/usb-left/ 0755 root root"
+    "d /mnt/usbc/ 0755 root root"
+    "d /mnt/microSD/ 0755 root root"
+    "d /home/seb/Music 0755 seb users"
+    "d /home/seb/Git 0755 seb users"
+  ];
 
-	  systemd.tmpfiles.rules = [
-		"d /mnt/ 0755 root root"
-		"d /mnt/usb-right1/ 0755 root root"
-		"d /mnt/usb-right2/ 0755 root root"
-		"d /mnt/usb-left/ 0755 root root"
-		"d /mnt/usbc/ 0755 root root"
-		"d /mnt/microSD/ 0755 root root"
-		"d /home/seb/Music 0755 seb users"
-		"d /home/seb/Git 0755 seb users"
-	  ];
+  nix = {
+    extraOptions = ''
+      experimental-features = nix-command
+    '';
+  };
 
-	  nixpkgs.config.allowUnfree = true;
-	  nixpkgs.config.allowUnsupportedSystem = true;
+  environment = {
+    shellInit = ''
+      export LIBVIRT_DEFAULT_URI=qemu:///system
+      export EDITOR='vim'
+    '';
+    shells = [ pkgs.zsh ];
+  };
 
-	  environment = {
-		shellInit = ''
-			export LIBVIRT_DEFAULT_URI=qemu:///system
-			export EDITOR='vim'
-		'';
-		shells = [ pkgs.zsh ];
-	  };
-	  programs = {
-		zsh = {
-		  enable = true;
-		  promptInit = ''
-			  eval "$(${pkgs.starship}/bin/starship init zsh)"
-			  ${pkgs.any-nix-shell}/bin/any-nix-shell zsh --info-right | source /dev/stdin
-		  '';
+  programs = {
+    zsh = {
+      enable = true;
+      promptInit = ''
+        eval "$(${pkgs.starship}/bin/starship init zsh)"
+        ${pkgs.any-nix-shell}/bin/any-nix-shell zsh --info-right | source /dev/stdin
+      '';
 
-		  interactiveShellInit = ''
-			  zstyle ':completion:*' menu select
-			  source ${pkgs.fzf}/share/fzf/key-bindings.zsh
-		  '';
+      interactiveShellInit = ''
+        zstyle ':completion:*' menu select
+        source ${pkgs.fzf}/share/fzf/key-bindings.zsh
+      '';
 
-		  autosuggestions.enable = true;
+      autosuggestions.enable = true;
 
-		  setOptions = [
-			"auto_cd"
-			"auto_pushd"
-			"correct"
-			"hist_fcntl_lock"
-			"hist_ignore_dups"
-			"hist_no_store"
-			"hist_reduce_blanks"
-		  ];
+      setOptions = [
+        "auto_cd"
+        "auto_pushd"
+        "correct"
+        "hist_fcntl_lock"
+        "hist_ignore_dups"
+        "hist_no_store"
+        "hist_reduce_blanks"
+      ];
 
-		  shellAliases = {
-			gst = "git status --short";
-			ga = "git add";
-			gaa = "git add .";
-			gcm = "git commit -m";
-			glg = "git log --graph --oneline --decorate --all";
-			gpl = "git pull";
-			gps = "git push";
-			gd = "git diff";
-			passcode = "~/.OTP/passcodes.py";
-			ls = "lsd";
-			cat = "bat -p";
-			phd = "cd ~/Git/CCCU/PhD";
-		  };
-		};
-	  };
+      shellAliases = {
+        # [[GIT]]
+        ga = "git add";
+        gaa = "git add .";
+        gcm = "git commit -m";
+        gd = "git diff";
+        glg = "git log --graph --oneline --decorate --all";
+        gpl = "git pull";
+        gps = "git push";
+        gst = "git status --short";
+        # [[SYSTEM]]
+        cat = "bat -p";
+        ls = "lsd";
+        kanban = "xdg-open https://github.com/users/CompEng0001/projects/2 &&";
+        passcode = "~/.OTP/passcodes.py";
+        phd = "cd ~/Git/CCCU/PhD";
+      };
+    };
+  };
 
-	  fonts = {
-		fontconfig = {
-		  enable = true;
-		  useEmbeddedBitmaps = true;
-		};
-		enableGhostscriptFonts = true;
-		fonts = with pkgs;
-		[
-		  clearlyU
-		  fixedsys-excelsior
-		  cm_unicode
-		  corefonts
-		  cozette
-		  dosemu_fonts
-		  freefont_ttf
-		  google-fonts
-		  junicode
-		  nerdfonts
-		  siji
-		  tewi-font
-		  tt2020
-		  ultimate-oldschool-pc-font-pack
-		  unifont
-		  vistafonts
-		  wqy_microhei
-		] ++ lib.filter lib.isDerivation (lib.attrValues lohit-fonts);
-	  };
-	  system.stateVersion = "22.05";
-	}
+  fonts = {
+    fontconfig = {
+      enable = true;
+      useEmbeddedBitmaps = true;
+    };
+    enableGhostscriptFonts = true;
+    fonts = with pkgs;
+      [
+        clearlyU
+        fixedsys-excelsior
+        cm_unicode
+        corefonts
+        cozette
+        dosemu_fonts
+        freefont_ttf
+        google-fonts
+        junicode
+        nerdfonts
+        siji
+        tewi-font
+        tt2020
+        ultimate-oldschool-pc-font-pack
+        unifont
+        vistafonts
+        wqy_microhei
+      ] ++ lib.filter lib.isDerivation (lib.attrValues lohit-fonts);
+  };
+  system.stateVersion = "22.05";
+}

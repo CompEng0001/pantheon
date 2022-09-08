@@ -35,16 +35,6 @@
       experimental-features = nix-command flakes
     '';
   };
-  nixpkgs.config = {
-    packageOverrides = pkgs: rec {
-      polybar = pkgs.polybar.override {
-        i3GapsSupport = true;
-        i3Support = true;
-        githubSupport = true;
-        pulseSupport = true;
-      };
-    };
-  };
 
   users.users.seb = {
     isNormalUser = true;
@@ -110,31 +100,31 @@
   };
 
   fonts = {
-	fontconfig = {
-	  enable = true;
-	  useEmbeddedBitmaps = true;
-	};
-	enableGhostscriptFonts = true;
-	fonts = with pkgs;
-	[
-	  clearlyU
-	  fixedsys-excelsior
-	  cm_unicode
-	  corefonts
-	  cozette
-	  dosemu_fonts
-	  freefont_ttf
-	  google-fonts
-	  junicode
-	  nerdfonts
-	  siji
-	  tewi-font
-	  tt2020
-	  ultimate-oldschool-pc-font-pack
-	  unifont
-	  vistafonts
-	  wqy_microhei
-	] ++ lib.filter lib.isDerivation (lib.attrValues lohit-fonts);
+    fontconfig = {
+      enable = true;
+      useEmbeddedBitmaps = true;
+    };
+    enableGhostscriptFonts = true;
+    fonts = with pkgs;
+      [
+        clearlyU
+        fixedsys-excelsior
+        cm_unicode
+        corefonts
+        cozette
+        dosemu_fonts
+        freefont_ttf
+        google-fonts
+        junicode
+        nerdfonts
+        siji
+        tewi-font
+        tt2020
+        ultimate-oldschool-pc-font-pack
+        unifont
+        vistafonts
+        wqy_microhei
+      ] ++ lib.filter lib.isDerivation (lib.attrValues lohit-fonts);
   };
   system.stateVersion = "22.05";
 }

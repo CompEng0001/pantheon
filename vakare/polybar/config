@@ -97,7 +97,7 @@ cursor-scroll = ns-resize
 [bar/HDMI1-top]
 monitor = ${env:MONITOR2}
 modules-left = i3
-modules-center = fs-primary 
+modules-center = fs-primary
 modules-right =  wlan monitors bluetooth date
 bottom = false
 width = 100%
@@ -151,7 +151,7 @@ cursor-scroll = ns-resize
 [bar/DP1-top]
 monitor = ${env:MONITOR3}
 modules-left = i3
-modules-center =   
+modules-center =
 modules-right = date
 bottom = false
 width = 100%
@@ -291,7 +291,7 @@ format-connected-background  = ${colors.background}
 format-connected-foreground  = ${colors.foreground}
 format-connected-padding = 1
 format-connected = <label-connected>
-label-connected =  [ %essid% ] [ %local_ip% ] [ %signal% 直 ] [ %downspeed:9% ]  [ %upspeed:9% ] 
+label-connected =  [ %essid% ] [ %local_ip% ] [ %signal% 直 ] [ %downspeed:9% ]  [ %upspeed:9% ]
 format-disconnected-background  = ${colors.background}
 format-disconnected-foreground = ${colors.foreground}
 format-disconnected-padding = 1
@@ -330,7 +330,7 @@ format-discharging-underline = ${self.format-charging-underline}
 format-full-prefix = " "
 format-full-prefix-foreground = ${colors.foreground-alt}
 format-full-underline = ${self.format-charging-underline}
-ramp-capacity-0 = " " 
+ramp-capacity-0 = " "
 ramp-capacity-1 = " "
 ramp-capacity-2 = " "
 ramp-capacity-3 = " "
@@ -369,7 +369,7 @@ label = %temperature-c%
 label-warn = %temperature-c%
 label-warn-foreground = ${colors.secondary}
 ramp-0 =  
-ramp-1 =  
+ramp-1 = 
 ramp-2 =  
 ramp-foreground = ${colors.foreground-alt}
 
@@ -395,7 +395,7 @@ format-foreground = ${colors.foreground}
 format-background = ${colors.background}
 format-prefix = ""
 format-prefix-foreground = #c15d3e
-format-underline = #c15d3e 
+format-underline = #c15d3e
 
 [module/nixos-version]
 type = custom/script
@@ -406,7 +406,7 @@ format-foreground = ${colors.foreground}
 format-background = ${colors.background}
 format-prefix = "   "
 format-prefix-foreground = #f90000
-format-underline = #f90000 
+format-underline = #f90000
 
 [module/monitors]
 type = custom/script

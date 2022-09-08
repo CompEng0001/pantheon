@@ -2,8 +2,8 @@
 
 {
   virtualisation = {
-    libvirtd = { 
-      enable = true; 
+    libvirtd = {
+      enable = true;
       qemu.package = pkgs.qemu_kvm;
     };
     podman.enable = true;
@@ -50,25 +50,16 @@
     pulse.enable = true;
     socketActivation = true;
   };
-  services.spotifyd = {
-    enable = true;
-    settings ={
-      global = {
-        username = "sb1501@canterbury.ac.uk";
-        password = "Insilico1";
-        device_name = "aitvaras";
-        proxy = "http://localhost:8888";
-      };
-    };
-  };
+
   services.mysql = {
     enable = true;
     user = "seb";
     package = pkgs.mysql80;
     settings.mysqld = {
       port = 1337;
-      secure_file_priv ="";
+      secure_file_priv = "";
       local_infile = 1;
+      autocommit =0;
     };
     settings.mysql = {
       local_infile = 1;

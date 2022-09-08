@@ -8,10 +8,10 @@
   services.fwupd.enable = true;
 
   services.udev.extraRules = ''
-    ACTION=="add", 
-    SUBSYSTEM=="backlight", 
-    KERNEL=="intel_backlight", 
-    MODE="0666", 
+    ACTION=="add",
+    SUBSYSTEM=="backlight",
+    KERNEL=="intel_backlight",
+    MODE="0666",
     RUN+="${pkgs.coreutils}/bin/chmod a+w /sys/class/backlight/intel_backlight/brightness"
   '';
 
@@ -57,20 +57,20 @@
     socketActivation = true;
   };
 
-#	services.spotifyd.enable = true;
+  #  services.spotifyd.enable = true;
 
   services.mysql = {
     enable = true;
     user = "seb";
     package = pkgs.mysql80;
     settings.mysqld = {
-			port = 1337;
-			secure_file_priv = "";
-			local_infile = 1;
-			autocommit=0;
+      port = 1337;
+      secure_file_priv = "";
+      local_infile = 1;
+      autocommit = 0;
     };
     settings.mysql = {
-			local_infile = 1;
+      local_infile = 1;
     };
   };
 }
