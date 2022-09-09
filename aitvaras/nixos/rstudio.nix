@@ -7,7 +7,9 @@ let
         [
           janitor # https://www.rdocumentation.org/packages/janitor/versions/2.1.0
           knitr # https://www.rdocumentation.org/packages/knitr/versions/1.39
-          lubridate
+          lubridate # https://www.rdocumentation.org/packages/lubridate/versions/1.8.0
+          RMariaDB # https://www.rdocumentation.org/packages/RMariaDB/versions/1.2.2
+          RMySQL # https://www.rdocumentation.org/packages/RMySQL/versions/0.10.23
           mlr # https://www.rdocumentation.org/packages/mlr/versions/2.19.0
           mlr3 # https://www.rdocumentation.org/packages/mlr3/versions/0.14.0
           rjson # https://www.rdocumentation.org/packages/rjson/versions/0.2.21
