@@ -83,17 +83,21 @@
         "hist_reduce_blanks"
       ];
       shellAliases = {
-        gst = "git status --short";
+        #[GIT]
         ga = "git add";
         gaa = "git add .";
         gcm = "git commit -m";
-        gpl = "git pull";
-        gps = "git push";
         gd = "git diff";
         glg = "git log --graph --oneline --decorate --all";
-        passcode = "~/.OTP/passcodes.py";
-        ls = "lsd";
+        gpl = "git pull";
+        gps = "git push";
+        gst = "git status --short";
+        #[OTHERS]
         cat = "bat -p";
+        kanban = "xdg-open https://www.github.com/CompEng0001/projects2 &";
+        ls = "lsd";
+        panthenon = "cd ~/Git/personal/pantheon";
+        passcode = "~/.OTP/passcodes.py";
         phd = "cd ~/Git/CCCU/PhD";
       };
     };
