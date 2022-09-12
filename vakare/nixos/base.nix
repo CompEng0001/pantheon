@@ -101,6 +101,7 @@
         kanban = "xdg-open https://github.com/users/CompEng0001/projects/2 &&";
         passcode = "~/.OTP/passcodes.py";
         phd = "cd ~/Git/CCCU/PhD";
+        pantheon = "cd ~/Git/personal/pantheon";
       };
     };
   };
