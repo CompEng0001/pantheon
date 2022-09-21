@@ -14,6 +14,7 @@ let
           mlr # https://www.rdocumentation.org/packages/mlr/versions/2.19.0
           mlr3 # https://www.rdocumentation.org/packages/mlr3/versions/0.14.0
           rjson # https://www.rdocumentation.org/packages/rjson/versions/0.2.21
+          padr # https://www.rdocumentation.org/packages/padr/versions/0.6.0
           tidyjson # https://www.rdocumentation.org/packages/tidyjson/versions/0.3.1
           tidymodels # https://www.rdocumentation.org/packages/tidymodels/versions/1.0.0
           tidyverse # https://www.rdocumentation.org/packages/tidyverse/versions/1.3.2
