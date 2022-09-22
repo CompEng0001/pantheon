@@ -102,6 +102,7 @@
         passcode = "~/.OTP/passcodes.py";
         phd = "cd ~/Git/CCCU/PhD";
         pantheon = "cd ~/Git/personal/pantheon";
+        wifi = "~/.config/scripts/bash/wifi.sh";
       };
     };
   };
