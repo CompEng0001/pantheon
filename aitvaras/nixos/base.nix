@@ -96,7 +96,7 @@
         cat = "bat -p";
         kanban = "xdg-open https://www.github.com/CompEng0001/projects2 &";
         ls = "lsd";
-        panthenon = "cd ~/Git/personal/pantheon";
+        pantheon = "cd ~/Git/personal/pantheon";
         passcode = "~/.OTP/passcodes.py";
         phd = "cd ~/Git/CCCU/PhD";
       };
