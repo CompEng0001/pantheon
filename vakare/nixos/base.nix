@@ -91,6 +91,7 @@
         gaa = "git add .";
         gcm = "git commit -m";
         gd = "git diff";
+        gitcheck = "bash ~./config/scripts/bash/gitCheck.sh -l -d ~/Git/";
         glg = "git log --graph --oneline --decorate --all";
         gpl = "git pull";
         gps = "git push";

@@ -88,13 +88,14 @@
         gaa = "git add .";
         gcm = "git commit -m";
         gd = "git diff";
+        gitcheck = "bash ~/.config/scripts/bash/gitCheck.sh -l -d ~/Git/";
         glg = "git log --graph --oneline --decorate --all";
         gpl = "git pull";
         gps = "git push";
         gst = "git status --short";
         #[OTHERS]
         cat = "bat -p";
-        kanban = "xdg-open https://www.github.com/CompEng0001/projects2 &";
+        kanban = "xdg-open https://www.github.com/CompEng0001/projects/2 &";
         ls = "lsd";
         pantheon = "cd ~/Git/personal/pantheon";
         passcode = "~/.OTP/passcodes.py";
