@@ -15,19 +15,19 @@ select_main_monitor(){
 }
 
 duplicate_main_monitor(){
-		RESOLUTION=$(xrandr -q | grep -A1 'HDMI-1' | awk 'NR%3==2 {print$1}')
+    RESOLUTION=$(xrandr -q | grep -A1 'HDMI-1' | awk 'NR%3==2 {print$1}')
     echo "DUPLICATE $1 ${RESOLUTION}" > ${SCREENMODEFILE}
     i3-msg restart
 }
 
 extend_main_monitor(){
-		RESOLUTION=$(xrandr -q | grep -A1 'HDMI-1' | awk 'NR%3==2 {print$1}')
+    RESOLUTION=$(xrandr -q | grep -A1 'HDMI-1' | awk 'NR%3==2 {print$1}')
     echo "EXTENDED $1 ${RESOLUTION}" > ${SCREENMODEFILE}
     i3-msg restart
 }
 
 tri_extend_main_monitor(){
-		RESOLUTION=$(xrandr -q | grep -A1 'HDMI-1' | awk 'NR%3==2 {print$1}')
+    RESOLUTION=$(xrandr -q | grep -A1 'HDMI-1' | awk 'NR%3==2 {print$1}')
     echo "TRI-EXTENDED $1 ${RESOLUTION}" > ${SCREENMODEFILE}
     i3-msg restart
 }
@@ -37,9 +37,9 @@ show_menu(){
 	local main="${PRIMARYMONITOR} only =  "
 	local duplicate="${PRIMARYMONITOR} dup ${SECONDARYMONITOR} =  "
 	local extendLeft="${PRIMARYMONITOR} ext ${SECONDARYMONITOR} =  <- "
-  local extendRight="${PRIMARYMONITOR} ext ${SECONDARYMONITOR} =  ->  "
+	local extendRight="${PRIMARYMONITOR} ext ${SECONDARYMONITOR} =  ->  "
 	local extendAbove="${PRIMARYMONITOR} ext ${SECONDARYMONITOR} =  -^  "
-  local triExtend="${TERTIARYMONITOR} ext ${PRIMARYMONITOR} ext ${SECONDARYMONITOR} =  <-   -> "
+        local triExtend="${TERTIARYMONITOR} ext ${PRIMARYMONITOR} ext ${SECONDARYMONITOR} =   "
 	if [ -z ${SECONDARYMONITOR} ];then
 		options="Dectected monitors: ${MONITORS}\n${divider}\n${main}\nExit"
 	elif [ -z ${TERTIARYMONITOR} ];then
@@ -51,49 +51,49 @@ show_menu(){
 	local chosen="$(echo -e ${options} | $rofi_command "Monitors")"
 	case ${chosen} in
 	    "" | ${divider})
-	    	echo "No option chosen"
-	        ;;
+		echo "No option chosen"
+		;;
 	    $main)
-	        select_main_monitor
-	        ;;
+		select_main_monitor
+		;;
 	    $duplicate)
-	        duplicate_main_monitor "--same-as"
-	        ;;
+		duplicate_main_monitor "--same-as"
+		;;
 	    $extendLeft)
-	        extend_main_monitor "--left-of"
-	        ;;
+		extend_main_monitor "--left-of"
+		;;
 	    $extendRight)
-	        extend_main_monitor "--right-of"
-	        ;;
+		extend_main_monitor "--right-of"
+		;;
 	    $extendAbove)
-	    		extend_main_monitor "--above"
-	    		;;
+		extend_main_monitor "--above"
+		;;
 	    $triExtend)
-	    	  tri_extend_main_monitor "--right-of"
-					;;
+		tri_extend_main_monitor "--right-of"
+		;;
 	esac
 }
 
 print_status() {
-	# get current screen layout
-	if [[ ${SCREENMODE} == "SINGLE" ]];then
-		echo ""
-	elif [[ ${SCREENMODE} == "EXTENDED" ]] && [[ ${DIRECTION} == "--left-of" ]]; then
-	   # EXTENDED MODE
-     echo " <-  "
-	elif [[ ${SCREENMODE} == "EXTENDED" ]] && [[ ${DIRECTION} == "--right-of" ]]; then
-	   # EXTENDED MODE
-     echo " ->  "
-  elif [[ ${SCREENMODE} == "EXTENDED" ]] && [[ ${DIRECTION} == "--above" ]]; then
-	   # EXTENDED MODE
-     echo " -^  "
-	elif [[ ${SCREENMODE} == "DUPLICATE" ]];then
-	   # Duplicate MODE
-     echo ""
-  elif [[ ${SCREENMODE} == "TRI-EXTENDED" ]]; then
-	   # TRI-EXTENDED MODE
-     echo "  <-  -> "
-	fi
+    # get current screen layout
+    if [[ ${SCREENMODE} == "SINGLE" ]];then
+	echo ""
+    elif [[ ${SCREENMODE} == "EXTENDED" ]] && [[ ${DIRECTION} == "--left-of" ]]; then
+	# EXTENDED MODE
+	echo " <-  "
+    elif [[ ${SCREENMODE} == "EXTENDED" ]] && [[ ${DIRECTION} == "--right-of" ]]; then
+	# EXTENDED MODE
+	echo " ->  "
+    elif [[ ${SCREENMODE} == "EXTENDED" ]] && [[ ${DIRECTION} == "--above" ]]; then
+	# EXTENDED MODE
+	echo " -^  "
+    elif [[ ${SCREENMODE} == "DUPLICATE" ]];then
+	# Duplicate MODE
+	echo ""
+    elif [[ ${SCREENMODE} == "TRI-EXTENDED" ]]; then
+	# TRI-EXTENDED MODE
+	echo "  <-  -> "
+    fi
 }
 
 
