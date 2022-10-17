@@ -12,6 +12,7 @@ let
           mlr3 # https://www.rdocumentation.org/packages/mlr3/versions/0.14.0
           moments # https://www/rdocumentation.org/packages/moments/versions/0.14.1
           padr # https://www.rdocumentation.org/packages/padr/versions/0.6.0
+          pheatmap # https://www.rdocumentation.org/packages/pheatmap/versions/1.0.12
           rjson # https://www.rdocumentation.org/packages/rjson/versions/0.2.21
           RMariaDB # https://www.rdocumentation.org/packages/RMariaDB/versions/1.2.2
           RMySQL # https://www.rdocumentation.org/packages/RMySQL/versions/0.10.23
