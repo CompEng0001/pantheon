@@ -89,7 +89,7 @@ elif [[ ${SCREENMODE} == "TRI-EXTENDED" ]];then
 				MONITOR3=${M} polybar --reload DP1-bottom -c ~/.config/polybar/config &
 		fi
 	done
-	feh --bg-scale ~/Pictures/Wallpaper/orbital_dance.jpg --bg-scale ~/Pictures/Wallpaper/wallpaper.jpg --bg-scale ~/Pictures/Wallpaper/terminal_wallpaper.png
+	feh --bg-scale ~/Pictures/Wallpaper/orbital_dance.jpg --bg-scale ~/Pictures/Wallpaper/wallpaper.jpg --bg-scale ~/Pictures/Wallpaper/terminal_wallpaper.jpg
 fi
 
 for m in ${OUTPUTS}; do
