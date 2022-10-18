@@ -48,15 +48,16 @@ if [[ ${SCREENMODE} == "SINGLE" ]];then
 	# reset monitor
 	xrandr -s -0
 	MONITOR1=${PRIMARYMONITOR} polybar --reload eDP1-top -c ~/.config/polybar/config &
- 	MONITOR1=${PRIMARYMONITOR} polybar --reload eDP1-bottom -c ~/.config/polybar/config &
+	MONITOR1=${PRIMARYMONITOR} polybar --reload eDP1-bottom -c ~/.config/polybar/config &
 	feh --bg-center --image-bg "#0000000" --no-xinerama ~/Pictures/Wallpaper/${WALLPAPER}
+
 elif [[ ${SCREENMODE} == "DUPLICATE" ]]; then
 	#xrandr -s -0
 	xrandr --output "${SECONDMONITOR}" --mode ${RESOLUTION} "${DIRECTION}" "${PRIMARYMONITOR}"
 	for M in ${OUTPUTS}; do
 		if [ ${M} == $1 ];then
-    		MONITOR1=${M} polybar --reload eDP1-top -c ~/.config/polybar/config &
-      	MONITOR1=${M} polybar --reload eDP1-bottom -c ~/.config/polybar/config &
+			MONITOR1=${M} polybar --reload eDP1-top -c ~/.config/polybar/config &
+			MONITOR1=${M} polybar --reload eDP1-bottom -c ~/.config/polybar/config &
 		fi
 	done
 	feh --bg-center --image-bg "#0000000" --no-xinerama ~/Pictures/Wallpaper/${WALLPAPER}
@@ -65,38 +66,38 @@ elif [[ ${SCREENMODE} == "EXTENDED" ]];then
 	xrandr --output "${SECONDMONITOR}" --mode 1920x1080 "${DIRECTION}" "${PRIMARYMONITOR}"
 	for M in ${OUTPUTS}; do
 		if [ ${M} == $1 ];then
-    		MONITOR1=${M} polybar --reload eDP1-top -c ~/.config/polybar/config &
-      	MONITOR1=${M} polybar --reload eDP1-bottom -c ~/.config/polybar/config &
+			MONITOR1=${M} polybar --reload eDP1-top -c ~/.config/polybar/config &
+			MONITOR1=${M} polybar --reload eDP1-bottom -c ~/.config/polybar/config &
 		elif [ ${M} == $2 ];then
-				MONITOR2=${M} polybar --reload HDMI1-top -c ~/.config/polybar/config &
-				MONITOR2=${M} polybar --reload HDMI1-bottom -c ~/.config/polybar/config &
+			MONITOR2=${M} polybar --reload HDMI1-top -c ~/.config/polybar/config &
+			MONITOR2=${M} polybar --reload HDMI1-bottom -c ~/.config/polybar/config &
 		fi
 	done
-	feh --bg-center --image-bg "#0000000" --no-xinerama ~/Pictures/Wallpaper/portal.jpg
+	feh --bg-center --image-bg "#0000000" --no-xinerama ~/Pictures/Wallpaper/wallpaper.jpg
 
 elif [[ ${SCREENMODE} == "TRI-EXTENDED" ]];then
 	xrandr --output "${SECONDMONITOR}" --mode 1920x1080  --right-of "${PRIMARYMONITOR}"
 	xrandr --output "${THIRDMONITOR}" --mode 1920x1080 --left-of "${PRIMARYMONITOR}" --rotate left
 	for M in ${OUTPUTS}; do
 		if [ ${M} == $1 ];then
-    		MONITOR1=${M} polybar --reload eDP1-top -c ~/.config/polybar/config &
-      	MONITOR1=${M} polybar --reload eDP1-bottom -c ~/.config/polybar/config &
+			MONITOR1=${M} polybar --reload eDP1-top -c ~/.config/polybar/config &
+			MONITOR1=${M} polybar --reload eDP1-bottom -c ~/.config/polybar/config &
 		elif [ ${M} == $2 ];then
-				MONITOR2=${M} polybar --reload HDMI1-top -c ~/.config/polybar/config &
-				MONITOR2=${M} polybar --reload HDMI1-bottom -c ~/.config/polybar/config &
+			MONITOR2=${M} polybar --reload HDMI1-top -c ~/.config/polybar/config &
+			MONITOR2=${M} polybar --reload HDMI1-bottom -c ~/.config/polybar/config &
 		elif [ ${M} == $3 ];then
-				MONITOR3=${M} polybar --reload DP1-top -c ~/.config/polybar/config &
-				MONITOR3=${M} polybar --reload DP1-bottom -c ~/.config/polybar/config &
+			MONITOR3=${M} polybar --reload DP1-top -c ~/.config/polybar/config &
+			MONITOR3=${M} polybar --reload DP1-bottom -c ~/.config/polybar/config &
 		fi
 	done
-	feh --bg-scale ~/Pictures/Wallpaper/orbital_dance.jpg --bg-scale ~/Pictures/Wallpaper/wallpaper.jpg --bg-scale ~/Pictures/Wallpaper/terminal_wallpaper.jpg
+	feh --bg-scale ~/Pictures/Wallpaper/terminal_wallpaper.jpg --bg-center --image-bg "#0000000" --no-xinerama ~/Pictures/Wallpaper/${WALLPAPER}
 fi
 
 for m in ${OUTPUTS}; do
 	export MONITOR1=$1
 	export MONITOR2=$2
 	export MONITOR3=$3
-        if [[ $m == $tray_output ]]; then
-        	TRAY_POSITION=right
-        fi
+	if [[ $m == $tray_output ]]; then
+		TRAY_POSITION=right
+	fi
 done
