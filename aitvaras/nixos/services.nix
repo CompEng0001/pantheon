@@ -21,6 +21,12 @@
 
     displayManager = {
       defaultSession = "none+i3";
+      setupCommands = ''
+      MAIN='DP-1'
+      VERTICAL='HDMI-2'
+      ${pkgs.xorg.xrandr}/bin/xrandr --output $VERTICAL --mode 1920x1080 --right-of $MAIN --rotate left
+      '';
+
       #lightdm.enable;
       sddm.enable = true;
       sddm.theme = "${(pkgs.fetchFromGitHub {

@@ -118,7 +118,7 @@ bindsym $mod+Shift+l exec ${HOME}/.config/scripts/bash/lockscreen.sh
 bindsym $mod+Shift+h exec ${HOME}/.config/scripts/bash/hibernate.sh
 
 ##############################################################################
-# 
+#
 # MONITORS and STATUS BAR
 #
 ##############################################################################
@@ -172,7 +172,7 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
-
+bindsym $mod+Shift+m move workspace to output right
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -186,7 +186,7 @@ mode "resize" {
 
         # Pressing left will shrink the window’s width.
         # Pressing right will grow the window’s width.
-        
+
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
         bindsym j resize shrink width 10 px or 10 ppt
@@ -237,16 +237,16 @@ new_window none
 
 # Wallpaper
 
-exec_always feh --bg-scale ~/Pictures/Wallpaper/orbital_dance.jpg
-exec --no-startup-id $HOME/.config/i3/layouts/initialise-workspace1.sh
+#exec_always feh --bg-scale ~/Pictures/Wallpaper/orbital_dance.jpg
+#exec --no-startup-id $HOME/.config/i3/layouts/initialise-workspace1.sh
 
 for_window [class="^.*"] border pixel 0
 
-exec spotify
-exec Zettlr
-exec brave
+#exec spotify
+#exec Zettlr
+#exec brave
 
-for_window [class="Brave-browser"] move to workspace $ws2 layout stacking 
+#for_window [class="Brave-browser"] move to workspace $ws2 layout stacking
 for_window [class="Zettlr"] move to workspace $ws3
 for_window [class="Zathura"] move to workspace $ws3
 for_window [class="Zotero"] move to workspace $ws3
@@ -255,5 +255,5 @@ for_window [class="discord"] move to workspace $ws5
 for_window [class="Microsoft Teams - Preview"] move to workspace $ws5;
 for_window [class="Signal"] move to workspace $ws5
 for_window [class="zoom"] move to workspace $ws5
-for_window [class="TeamViewer"] move to workspace $ws6; split h; layout stack
+#for_window [class="TeamViewer"] move to workspace $ws6; split h; layout stack
 for_window [class="Spotify"] move to workspace $ws10
