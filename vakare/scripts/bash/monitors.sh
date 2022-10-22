@@ -14,7 +14,7 @@ PRIMARYMONITOR=$(echo ${MONITORS} | awk '{print$1}')
 SECONDMONITOR=$(echo ${MONITORS} | awk '{print$2}')
 TERTIARY=$(echo ${MONITORS} | awk '{print$3}')
 WALLPAPER="wallpaper.jpg"
-
+TERMINALWALLPAPER="terminal_wallpaper.jpg"
 pkill polybar > /dev/null
 
 while pgrep -u $UID -x polybar > /dev/null; do sleep 1; done
@@ -90,7 +90,7 @@ elif [[ ${SCREENMODE} == "TRI-EXTENDED" ]];then
 			MONITOR3=${M} polybar --reload DP1-bottom -c ~/.config/polybar/config &
 		fi
 	done
-	feh --bg-scale ~/Pictures/Wallpaper/terminal_wallpaper.jpg --bg-center --image-bg "#0000000" --no-xinerama ~/Pictures/Wallpaper/${WALLPAPER}
+	feh --bg-center ~/Pictures/Wallpaper/${WALLPAPER} --bg-center ~/Pictures/Wallaper/${WALLPAPER} --bg-center ~/Pictures/Wallpaper/${WALLPAPER}
 fi
 
 for m in ${OUTPUTS}; do
