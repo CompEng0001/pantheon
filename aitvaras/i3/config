@@ -135,6 +135,7 @@ exec_always $HOME/.config/scripts/bash/monitors.sh
 #use the port number :)
 
 set $monitor_main "DP-1"
+set $monitor_terminal "HDMI-2"
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1"
@@ -178,7 +179,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart && exec $HOME/.config/scripts/bash/monitors.sh
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -234,17 +235,7 @@ new_window none
 #				EXEC APPLICATIONS
 #
 ###############################################################################
-
-# Wallpaper
-
-#exec_always feh --bg-scale ~/Pictures/Wallpaper/orbital_dance.jpg
-#exec --no-startup-id $HOME/.config/i3/layouts/initialise-workspace1.sh
-
 for_window [class="^.*"] border pixel 0
-
-#exec spotify
-#exec Zettlr
-#exec brave
 
 #for_window [class="Brave-browser"] move to workspace $ws2 layout stacking
 for_window [class="Zettlr"] move to workspace $ws3
@@ -256,4 +247,4 @@ for_window [class="Microsoft Teams - Preview"] move to workspace $ws5;
 for_window [class="Signal"] move to workspace $ws5
 for_window [class="zoom"] move to workspace $ws5
 #for_window [class="TeamViewer"] move to workspace $ws6; split h; layout stack
-for_window [class="Spotify"] move to workspace $ws10
+for_window [class="Spotify"] move to workspace $ws10 output HDMI-2
