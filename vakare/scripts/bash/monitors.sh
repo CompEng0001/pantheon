@@ -35,13 +35,13 @@ fi
 
 # change the line number to match the i3 config line.
 
-sed -i "134 c \\set $\monitor_secondary \"${SECONDMONITOR}\"" ~/.config/i3/config
-sed -i "135 c \\set $\monitor_tertiary \"${THIRDMONITOR}\"" ~/.config/i3/config
+sed -i "135 c \\set $\monitor_secondary \"${SECONDMONITOR}\"" ~/.config/i3/config
+sed -i "136 c \\set $\monitor_tertiary \"${THIRDMONITOR}\"" ~/.config/i3/config
 
 if [[ ${DIRECTION} == "--above" ]]; then
-	sed -i "187 c \\bindsym $\mod+Shift+m move workspace to output up" ~/.config/i3/config
+	sed -i "164 c \\bindsym $\mod+Shift+m move workspace to output up" ~/.config/i3/config
 else
-	sed -i "187 c \\bindsym $\mod+Shift+m move workspace to output right" ~/.config/i3/config
+	sed -i "164 c \\bindsym $\mod+Shift+m move workspace to output right" ~/.config/i3/config
 fi
 
 if [[ ${SCREENMODE} == "SINGLE" ]];then

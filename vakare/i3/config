@@ -35,10 +35,10 @@ font pango:DejaVu Sans Mono 8
 exec --no-startup-id xss-lock --transfer-sleep-lock -- ${HOME}/.config/scripts/bash/lockscreen.sh
 
 # Use pactl to adjust volume in PulseAudio.
-set $refresh_i3status killall -SIGUSR1 i3status 
+set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id  pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status 
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status 
+bindsym XF86AudioLowerVolume exec --no-startup-id  pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # backlight and keyboard lights
@@ -46,7 +46,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 bindsym XF86MonBrightnessUp exec brightnessctl s +10%
 # decrease screen brightness
 bindsym XF86MonBrightnessDown exec brightnessctl s 10%-
- 
+
 # screenshot
 bindsym --release Print exec flameshot gui
 
@@ -117,7 +117,7 @@ bindsym $mod+Shift+l exec ${HOME}/.config/scripts/bash/lockscreen.sh
 
 
 ##############################################################################
-# 
+#
 # MONITORS and STATUS BAR
 #
 ##############################################################################
@@ -131,11 +131,10 @@ exec_always $HOME/.config/scripts/bash/monitors.sh
 #
 ##################################################################################
 
-#use the port number :)
-
-
 set $monitor_main "eDP1"
 set $monitor_secondary "eDP-1"
+set $monitor_tertiary "eDP-1"
+
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1"
@@ -149,7 +148,7 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
-# set defualt monitor for workspace 
+# set defualt monitor for workspace
 
 workspace $ws1 output $monitor_main
 workspace $ws2 output $monitor_secondary
@@ -202,7 +201,7 @@ mode "resize" {
 
         # Pressing left will shrink the window’s width.
         # Pressing right will grow the window’s width.
-        
+
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
         bindsym j resize shrink width 10 px or 10 ppt
@@ -258,19 +257,19 @@ exec --no-startup-id $HOME/.config/i3/layouts/initialise-workspace1.sh
 
 for_window [class="^.*"] border pixel 0
 
-exec spotify
-exec Zettlr
-exec brave
+#exec spotify
+#exec Zettlr
+#exec brave
 
-for_window [class="Brave-browser"] move to workspace $ws2 layout stacking 
-for_window [class="Zettlr"] move to workspace $ws3
-for_window [class="Zathura"] move to workspace $ws4
-for_window [class="Code"] move to workspace $ws4
-for_window [class="processing-app-Base"] move to workspace $ws4
-for_window [class="discord"] move to workspace $ws5
-for_window [class="Microsoft Teams - Preview"] move to workspace $ws5
-for_window [class="Signal"] move to workspace $ws5
-for_window [class="zoom"] move to workspace $ws5
-for_window [class="TeamViewer"] move to workspace $ws6; split h; layout stack
-for_window [class="Spotify"] move to workspace $ws10 
-for_window [instance="crx_lcfmpofpooibidoiphbglkdcanggjmep"] move workspace $ws9
+#for_window [class="Brave-browser"] move to workspace $ws2 layout stacking
+#for_window [class="Zettlr"] move to workspace $ws3
+#for_window [class="Zathura"] move to workspace $ws4
+#for_window [class="Code"] move to workspace $ws4
+#for_window [class="processing-app-Base"] move to workspace $ws4
+#for_window [class="discord"] move to workspace $ws5
+#for_window [class="Microsoft Teams - Preview"] move to workspace $ws5
+#for_window [class="Signal"] move to workspace $ws5
+#for_window [class="zoom"] move to workspace $ws5
+#for_window [class="TeamViewer"] move to workspace $ws6; split h; layout stack
+#for_window [class="Spotify"] move to workspace $ws10
+#for_window [instance="crx_lcfmpofpooibidoiphbglkdcanggjmep"] move workspace $ws9
