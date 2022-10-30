@@ -97,6 +97,7 @@
         cat = "bat -p";
         kanban = "xdg-open https://www.github.com/CompEng0001/projects/2 &";
         ls = "lsd";
+        mdbook-uni="mdbook serve . -p 8000 -n 127.0.0.1";
         pantheon = "cd ~/Git/personal/pantheon";
         passcode = "~/.OTP/passcodes.py";
         phd = "cd ~/Git/CCCU/PhD";

@@ -81,6 +81,7 @@
     imagemagick
     iotop
     lsd
+    mdbook
     mpv
     multilockscreen
     neofetch

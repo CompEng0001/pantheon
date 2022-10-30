@@ -83,6 +83,7 @@
     lsd
     mpv
     multilockscreen
+    mdbook
     neofetch
     pavucontrol
     peek
