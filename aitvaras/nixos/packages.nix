@@ -81,12 +81,14 @@
     imagemagick
     iotop
     lsd
+    jq
     mpv
     multilockscreen
     mdbook
     neofetch
     pavucontrol
     peek
+    pkgs.nodePackages.npm
     psmisc
     pulseaudioFull
     qt5.qtgraphicaleffects
