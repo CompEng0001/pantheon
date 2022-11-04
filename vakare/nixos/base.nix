@@ -96,11 +96,12 @@
         gpl = "git pull";
         gps = "git push";
         gst = "git status --short";
+        gf = "git fetch";
         # [[SYSTEM]]
         cat = "bat -p";
         ls = "lsd";
-        kanban = "xdg-open https://github.com/users/CompEng0001/projects/2 &&";
-        mdbook-uni = "mdbook serve . -p 8000 12.0.0.1"
+        kanban = "xdg-open https://github.com/users/CompEng0001/projects/2 &";
+        mdbook-pwd = "mdbook serve . -p 8000 -n 127.0.0.1";
         passcode = "~/.OTP/passcodes.py";
         phd = "cd ~/Git/CCCU/PhD";
         pantheon = "cd ~/Git/personal/pantheon";

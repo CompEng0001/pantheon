@@ -80,11 +80,13 @@
     htop
     imagemagick
     iotop
+    jq
     lsd
     mdbook
     mpv
     multilockscreen
     neofetch
+    netcat
     pavucontrol
     peek
     psmisc

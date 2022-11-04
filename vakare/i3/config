@@ -222,7 +222,7 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
-
+bindsym XF86Display exec ${HOME}/.config/polybar/modules/screens/screens_controller.sh
 ###############################################################################
 #
 #				    i3 GAPS
@@ -252,8 +252,8 @@ new_window none
 
 # Wallpaper
 
-exec_always feh --bg-scale ~/Pictures/Wallpaper/orbital_dance.jpg
-exec --no-startup-id $HOME/.config/i3/layouts/initialise-workspace1.sh
+#exec_always feh --bg-scale ~/Pictures/Wallpaper/orbital_dance.jpg
+#exec --no-startup-id $HOME/.config/i3/layouts/initialise-workspace1.sh
 
 for_window [class="^.*"] border pixel 0
 

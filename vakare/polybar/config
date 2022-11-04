@@ -43,7 +43,7 @@ alert = #bd2c40
 monitor = ${env:MONITOR1}
 modules-left = i3
 modules-center = fs-primary
-modules-right =  wlan monitors bluetooth  date
+modules-right =  wlan monitors bluetooth date
 bottom = false
 width = 100%
 height = 27
@@ -71,6 +71,7 @@ cursor-scroll = ns-resize
 monitor = ${env:MONITOR1}
 modules-left = uptime nixos-version
 modules-right =  backlight audio jobs memory cpu battery temperature
+modules-center = weather
 bottom = true
 width = 100%
 height = 27
@@ -98,7 +99,7 @@ cursor-scroll = ns-resize
 monitor = ${env:MONITOR2}
 modules-left = i3
 modules-center = fs-primary
-modules-right =  wlan monitors bluetooth date
+modules-right =  wlan monitors bluetooth weather date
 bottom = false
 width = 100%
 height = 27
@@ -313,6 +314,12 @@ format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #0a6cf5
 click-left =  ~/.config/polybar/modules/calendar/calendar --popup &
 click-right = ~/.config/polybar/modules/calendar/calendar --format &
+
+[module/weather]
+type = custom/script
+exec = ~/.config/polybar/modules/weather/weather.sh --status
+click-left = ~/.config/polybar/modules/weather/weather.sh &
+interval = 600
 
 [module/audio]
 type = custom/script
