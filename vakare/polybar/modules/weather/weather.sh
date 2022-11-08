@@ -8,7 +8,7 @@ CITY=$(cat ~/.config/polybar/modules/weather/city)
 COUNTRY=",GB"
 UNITS="METRIC"
 SYMBOL="°"
-
+CACHE=$(cat ~/.config/polybar/modules/weather/cache)
 get_icon() {
     case $1 in
         # Icons for weather-icons
@@ -42,35 +42,49 @@ show_menu(){
     local london="London"
     local other="other"
 
-    local options="Locations: Current Location[${CITY}]\n${divider}\n${canterbury}\n${gillingham}\n${faversham}\n${london}\n${other}"
+    local options="Current Location [${CITY}]\n${divider}\n${canterbury}\n${gillingham}\n${faversham}\n${london}\n${other}"
 
     local chosen="$(echo -e ${options} | ${rofi_command} "Locations")"
     case ${chosen} in
         "" | ${divider})
-            print_status
+            callAPI
             ;;
         $canterbury)
             CITY="CANTERBURY"
-            print_status
+            callAPI
             ;;
         $faversham)
             CITY="FAVERSHAM"
-            print_status
+            callAPI
             ;;
         $gillingham)
             CITY="GILLINGHAM"
-            print_status
+            callAPI
             ;;
         $london)
             CITY="LONDON"
-            print_status
+            callAPI
             ;;
         $other)
             ;;
     esac
 }
 
-print_status() {
+cache(){
+
+    NOW=$(date +%s)
+    local cache_time=$(awk '{print $1}' <<< $CACHE)
+    if (( $NOW - $cache_time > 500 )) ;then
+        callAPI
+        exit 0
+    else
+        local weather=$(awk '{$1=""; print $0}' <<<  $CACHE )
+        echo $weather
+        exit 0
+    fi
+}
+
+callAPI() {
     if [ -n "$CITY" ]; then
         if [ "$CITY" -eq "$CITY" ] 2>/dev/null; then
             CITY_PARAM="id=$CITY$COUNTRY"
@@ -78,8 +92,10 @@ print_status() {
             CITY_PARAM="q=$CITY$COUNTRY"
         fi
 
-        weather=$(curl -sf "$API/weather?appid=$KEY&$CITY_PARAM&units=$UNITS")
+        weather=$(curl -sf "$API/weather?appid=$KEY&$CITY_PARAM&units=$UNITS")i
+
     else
+
         location=$(curl -sf "https://location.services.mozilla.com/v1/geolocate?key=geoclue")
 
         if [ -n "$location" ]; then
@@ -96,7 +112,11 @@ print_status() {
         weather_icon=$(echo "$weather" | jq -r ".weather[0].icon")
         weather_city_name=$(echo "$weather" |jq -r ".name")
         echo $weather_city_name > ~/.config/polybar/modules/weather/city
-        echo "$weather_city_name, " "$(get_icon "$weather_icon")" "  $weather_desc", "$weather_temp$SYMBOL"
+        NOW=$(date +%s)
+        echo "$weather_city_name, " "$(get_icon "$weather_icon") " "  $weather_desc", "$weather_temp$SYMBOL"
+        echo $NOW "$weather_city_name, " "$(get_icon "$weather_icon") " "  $weather_desc", "$weather_temp$SYMBOL" > ~/.config/polybar/modules/weather/cache
+
+
     fi
 }
 
@@ -104,7 +124,7 @@ rofi_command="rofi -dmenu -no-fixed-num-lines -yoffset -100 -i -p"
 
 case "$1" in
     --status)
-        print_status
+        cache
         ;;
     *)
         show_menu

@@ -19,6 +19,13 @@
     interfaces.wlan0.useDHCP = true;
     firewall.enable = false;
     wireless.iwd.enable = true;
+    interfaces.enp2s0 ={ 
+      useDHCP = false;
+      ipv4.addresses = [{
+        address = "192.168.0.210";
+        prefixLength = 24;
+      }];
+    };
   };
 
   i18n.defaultLocale = "en_GB.UTF-8";

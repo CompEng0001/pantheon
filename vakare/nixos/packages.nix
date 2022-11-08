@@ -27,6 +27,7 @@
     arduino
     (pkgs.callPackage ./vim.nix { })
     vscode
+    jetbrains.idea-community
     # [[INTERNET]]
     brave
     chromium
@@ -53,6 +54,7 @@
     python3
     (pkgs.callPackage ./rstudio.nix { })
     rustc
+    jdk
     # [[SOCIAL]]
     discord
     signal-desktop
