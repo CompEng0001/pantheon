@@ -121,10 +121,11 @@ bindsym $mod+Shift+l exec ${HOME}/.config/scripts/bash/lockscreen.sh
 # MONITORS and STATUS BAR
 #
 ##############################################################################
-
 exec_always $HOME/.config/scripts/bash/monitors.sh
 #exec_always --no-startup-id exec i3-workspace-names-daemon
 
+exec_always brave
+exec_always pavucontrol
 ##################################################################################
 #
 #				        WORKSPACES
