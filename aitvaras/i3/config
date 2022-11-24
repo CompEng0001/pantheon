@@ -224,8 +224,8 @@ smart_gaps on
 # Only enable outer gaps when there is exactly one container
 smart_gaps inverse_outer
 # Examples
-gaps inner 6
-gaps outer 6
+gaps inner 3
+gaps outer 3
 hide_edge_borders smart
 new_window none
 #bindsym $mod+d exec "dmenu_run -nf '#F8F8F2' -nb '#282A36' -sb '#6272A4' -sf '#F8F8F2' -fn 'monospace-10' -p 'dmenu%'"

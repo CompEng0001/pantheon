@@ -27,6 +27,7 @@
     arduino
     (pkgs.callPackage ./vim.nix { })
     vscode
+    jetbrains.idea-community
     # [[INTERNET]]
     brave
     chromium
@@ -48,6 +49,7 @@
     # [[PROGRAMMING]]
     cargo
     gcc
+    jetbrains.jdk
     lua
     powershell
     python3
@@ -86,6 +88,7 @@
     multilockscreen
     mdbook
     neofetch
+    onefetch
     pavucontrol
     peek
     pkgs.nodePackages.npm

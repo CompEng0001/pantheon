@@ -44,7 +44,7 @@ font-3 = Weather Icons:size=12;1
 monitor = DP-1
 modules-left = i3
 modules-center = fs-primary fs-secondary fs-networkStorage
-modules-right =  lan monitors bluetooth weather date
+modules-right =  lan monitors bluetooth date
 bottom = false
 width = 100%
 height = 27
@@ -71,7 +71,8 @@ cursor-scroll = ns-resize
 [bar/DP1-bottom]
 monitor = DP-1
 modules-left = uptime nixos-version
-modules-right = volumeicon jobs memory cpu temperature
+modules-right = jobs memory cpu temperature
+modules-center = weather
 bottom = true
 width = 100%
 height = 27
@@ -98,7 +99,7 @@ cursor-scroll = ns-resize
 [bar/HDMI-2-top]
 monitor = HDMI-2
 modules-left = i3
-modules-right = weather date
+modules-right = date
 bottom = false
 width = 100%
 height = 27
