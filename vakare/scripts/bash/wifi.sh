@@ -34,7 +34,7 @@ connection(){
 	elif [[ $1 == -hg ]]; then
 		iwctl station wlan0 connect ${networks[-hg]}
 	elif [[ $1 == -f ]]; then
-		iwctl station wlan0 connenct ${networks[-f]}
+		iwctl station wlan0 connect $(echo ${networks[-f]} | awk -F '.' '{print$NR}')
 	elif [[ $1 == -r ]]; then
 		sudo systemctl restart iwd.service
 	fi

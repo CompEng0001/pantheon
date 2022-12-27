@@ -1,0 +1,163 @@
+[
+    {
+        "layer": "top",
+        "position": "top",
+        "modules-left": [ "sway/workspaces", "sway/mode" ],
+        "modules-center": [ "tray" ],
+        "modules-right": [ "network#wifi", "network#wg", "idle_inhibitor", "battery", "clock" ],
+
+        "tray": {
+            "icon-size": 15
+        },
+        "sway/mode": {
+        },
+        "network#eth": {
+            "interface": "en*",
+            "format": " {ifname}",
+            "format-linked": " {ifname} [No IP]",
+            "format-ethernet": " {ifname} @ {ipaddr}/{cidr} on {gwaddr} [ {bandwidthUpBytes}] [ {bandwidthDownBytes}]",
+            "format-disconnected": " disconnected",
+            "format-disabled": " disabled",
+            "interval": 2,
+            "tooltip": false
+        },
+        "network#wifi": {
+            "interface": "wlan0",
+            "format": "  {ifname}",
+            "format-linked": "  {ifname} [No IP]",
+            "format-wifi": "  {essid} @ {ipaddr}/{cidr} [{signalStrength:3}% @ {frequency}GHz] [ {bandwidthUpBytes}] [ {bandwidthDownBytes}]",
+            "format-disconnected": "  disconnected",
+            "format-disabled": "  disabled",
+            "interval": 2,
+            "tooltip": false
+        },
+        "network#wg": {
+            "interface": "AZ-*",
+            "format": "[wg: {ifname} active]",
+            "format-disconnected": "",
+            "interval": 2,
+            "tooltip": false
+        },
+        "battery": {
+            "tooltip": false,
+            "states": {
+                "good": 95,
+                "warning": 30,
+                "critical": 10
+            },
+            "interval": 5,
+            "format": "{capacity:3}% [{time}] {icon}",
+            "full-at": 98,
+            "format-time": "{H:02}:{M:02}",
+            "format-charging": "[] {capacity:3}% [{time}]",
+            "format-plugged": "{capacity:3}% ",
+            "format-alt": "{time} {icon}",
+            "format-full": " [fully charged]",
+            "format-icons": [" ", " ", " ", " ", " "]
+        },
+        "idle_inhibitor": {
+            "tooltip": false,
+            "format": "{icon}",
+            "format-icons": {
+                "activated": "",
+                "deactivated": ""
+            }
+        },
+        "clock": {
+            "interval": 1,
+            "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+            "format": "{:%A, %F [%V] %H:%M:%S} "
+        }
+    },
+
+    {
+        "layer": "bottom",
+        "position": "bottom",
+        "modules-right": [ "backlight", "memory", "cpu", "temperature#cpu", "temperature#gpu", "temperature#wifi", "temperature#nvme" ],
+        "modules-center": [ "disk#boot", "disk#root" ],
+        "modules-left": ["custom/uptime" ,"custom/wttr"  ],
+
+        "custom/wttr": {
+            "tooltip": false,
+            "format": "{}",
+            "exec": "curl -sf 'http://wttr.in/?format=%l:+%C+%t'",
+            "interval": 600
+        },
+        "temperature#gpu": {
+            "tooltip": false,
+            "hwmon-path": "/sys/class/hwmon/hwmon0/temp1_input",
+            "critical-threshold": 80,
+            "format-critical": "G: {temperatureC}°C",
+            "format": "G: {temperatureC}°C"
+        },
+        "temperature#wifi": {
+            "tooltip": false,
+            "hwmon-path": "/sys/class/hwmon/hwmon5/temp1_input",
+            "critical-threshold": 80,
+            "format-critical": "W: {temperatureC}°C",
+            "format": "W: {temperatureC}°C"
+        },
+        "temperature#nvme": {
+            "tooltip": false,
+            "hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
+            "critical-threshold": 80,
+            "format-critical": "D: {temperatureC}°C",
+            "format": "D: {temperatureC}°C"
+        },
+        "temperature#cpu": {
+            "tooltip": false,
+            "hwmon-path": "/sys/class/hwmon/hwmon5/temp2_input",
+            "critical-threshold": 80,
+            "format-critical": "C: {temperatureC}°C",
+            "format": "C: {temperatureC}°C"
+        },
+        "disk#boot": {
+            "interval": 30,
+            "states": {
+                "warning": 80,
+                "critical": 90
+            },
+            "format": "[ {path} :: {percentage_used:3}% ]",
+            "path": "/boot"
+        },
+        "disk#root": {
+            "interval": 30,
+            "states": {
+                "warning": 80,
+                "critical": 90
+            },
+            "format": "[ {path} :: {percentage_used:3}% ]",
+            "path": "/"
+        },
+        "memory": {
+            "tooltip": false,
+            "interval": 10,
+            "format": "{used:0.1f}G [ {percentage:3}% ] "
+        },
+        "custom/uptime":{
+            "tooltip":false,
+            "interval":60,
+            "format": "Uptime: {} ",
+            "exec": "check_uptime | grep -o -P '(?<=(: )).*(?=\\|)'"
+        },
+        "cpu": {
+            "tooltip": false,
+            "interval": 1,
+            "format": "{icon0} {icon1} {icon2} {icon3} [ {usage:3}% ] ﬙",
+            "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
+        },
+        "wireplumber": {
+            "tooltip": false,
+            "format": "{node_name}: {volume:3}%",
+            "format-muted": "{node_name}: ﱝ",
+            "format-icons": ["", "", ""]
+        },
+        "backlight": {
+            "tooltip": false,
+            "format": "{percent:3}% {icon}",
+            "format-icons": ["", "", "", "", "", "", "", "", ""]
+        }
+    }
+]
+
+// vim:ft=jsonc

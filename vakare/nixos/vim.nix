@@ -8,13 +8,13 @@ pkgs.vim_configurable.overrideAttrs (drv: {
         awesome-vim-colorschemes
         delimitMate
         goyo-vim
-        i3config-vim
         indentLine
         lightline-vim
         limelight-vim
         minimap-vim
         sleuth
         tabular
+        swayconfig-vim
         #        vim-clap
         vim-illuminate
         vim-better-whitespace

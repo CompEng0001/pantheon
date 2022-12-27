@@ -1,0 +1,181 @@
+@import "./colors.css";
+
+* {
+  transition: none;
+  box-shadow: none;
+  font-family: Caskaydia Cove Nerd Font, unifont, siji;
+  font-size: 11px;
+  min-height: 0;
+}
+
+#waybar {
+  color: @base04;
+  background: @base01;
+}
+
+#workspaces {
+  margin: 0 4px;
+}
+
+#workspaces button {
+  margin: 4px 0;
+  padding: 0 6px;
+  color: @base05;
+}
+
+#workspaces button.visible {
+}
+
+#workspaces button.focused {
+  border-radius: 4px;
+  color: @base00;
+  background-color: @base0D;
+}
+
+#workspaces button.urgent {
+  color: @base00;
+  background-color: @base08;
+}
+
+#tray {
+  margin: 4px 16px 4px 4px;
+  border-radius: 4px;
+  background-color: @base02;
+}
+
+#tray * {
+  padding: 0 6px;
+  border-left: 1px solid @base00;
+}
+
+#tray *:first-child {
+  border-left: none;
+}
+
+#backlight,
+#battery,
+#clock,
+#cpu,
+#custom-uptime,
+#custom-mail,
+#custom-wttr,
+#custom-hydra,
+#disk,
+#idle_inhibitor,
+#language,
+#memory,
+#mode,
+#network,
+#pulseaudio,
+#temperature,
+#wireplumber {
+  margin: 4px 2px;
+  padding: 0 6px;
+  background-color: @base02;
+  border-radius: 4px;
+  min-width: 20px;
+}
+
+#wireplumber.muted {
+  color: @base00;
+  background-color: @base08;
+}
+
+#disk.warning {
+  color: @base00;
+  background-color: @base0A;
+}
+
+#disk.critical {
+  color: @base00;
+  background-color: @base08;
+}
+
+
+#mode {
+  color: @base00;
+  background-color: @base0A;
+}
+
+#network.disabled {
+  color: @base00;
+  background-color: @base08;
+}
+
+#network.linked {
+  color: @base00;
+  background-color: @base0A;
+}
+
+#idle_inhibitor.activated {
+  color: @base00;
+  background-color: @base0A;
+}
+
+#battery.charging {
+  color: @base00;
+  background-color: @base0B;
+}
+
+@keyframes blink {
+  to {
+    color: @base00;
+    background-color: @base07;
+  }
+}
+
+@keyframes charging {
+  0%   { background-color: @base0C; }
+  50%  { background-color: @base0D}
+  100% { background-color: @base0B; }
+}
+
+#battery.critical:not(.charging) {
+  color: @base00;
+  background-color: @base08;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#battery.warning:not(.charging) {
+  color: @base00;
+  background-color: @base0A;
+}
+
+#battery.charging {
+  color: @base00;
+  background-color: @base0C;
+  animation-name: charging;
+  animation-duration: 3s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#battery.full {
+  color: @base00;
+  background-color: @base0B;
+}
+
+#battery.plugged {
+  color: @base00;
+  background-color: @base0D;
+}
+
+#pulseaudio.muted {
+  color: @base00;
+  background-color: @base08;
+}
+
+#pulseaudio.bluetooth {
+  color: @base0C;
+}
+
+#temperature.critical {
+  background-color: @base0F;
+}
+
+

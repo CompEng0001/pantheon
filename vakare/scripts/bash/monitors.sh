@@ -46,6 +46,7 @@ fi
 
 if [[ ${SCREENMODE} == "SINGLE" ]];then
 	# reset monitor
+	xrandr --dpi 96 --output ${PRIMARYMONITOR}
 	xrandr -s -0
 	MONITOR1=${PRIMARYMONITOR} polybar --reload eDP1-top -c ~/.config/polybar/config &
 	MONITOR1=${PRIMARYMONITOR} polybar --reload eDP1-bottom -c ~/.config/polybar/config &

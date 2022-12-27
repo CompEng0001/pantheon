@@ -35,7 +35,6 @@
     speedtest-cli
     # [[OTHER]]
     flavours
-    spotify-tui
     teamviewer
     virt-viewer
     virtmanager
@@ -86,9 +85,11 @@
     lsd
     mdbook
     mpv
+    mosquitto
     multilockscreen
     neofetch
     netcat
+    onefetch
     pavucontrol
     peek
     psmisc
@@ -103,6 +104,7 @@
     stow
     tree
     usbutils
+    vivid
     volumeicon
     wget
     xclip
@@ -111,5 +113,6 @@
     # [[NIXOS-TOOLS]]
     nixpkgs-fmt
     nix-prefetch-github
+    nix-output-monitor
   ];
 }

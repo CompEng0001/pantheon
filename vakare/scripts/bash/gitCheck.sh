@@ -113,6 +113,7 @@ git_summary() {
             summarize_one_git_repo $f "$template" "$local_only" "$quiet" >&1  # sequential - sorted stdout
         fi
         (( repo_count+=1 ))
+        sleep 1
     done
     wait
 

@@ -4,11 +4,11 @@ divider="--------"
 API="https://api.openweathermap.org/data/2.5"
 
 KEY="ca6ce1b61437d92805727403f7a1d6db"
-CITY=$(cat ~/.config/polybar/modules/weather/city)
+CITY=$(cat /home/seb/.config/polybar/modules/weather/city)
 COUNTRY=",GB"
 UNITS="METRIC"
 SYMBOL="°"
-CACHE=$(cat ~/.config/polybar/modules/weather/cache)
+CACHE="/home/seb/.config/polybar/modules/weather/cache"
 get_icon() {
     case $1 in
         # Icons for weather-icons
@@ -73,12 +73,12 @@ show_menu(){
 cache(){
 
     NOW=$(date +%s)
-    local cache_time=$(awk '{print $1}' <<< $CACHE)
+    local cache_time=$(cat $CACHE | awk '{print $1}')
     if (( $NOW - $cache_time > 500 )) ;then
         callAPI
         exit 0
     else
-        local weather=$(awk '{$1=""; print $0}' <<<  $CACHE )
+        local weather=$(cat $CACHE | awk '{$1=""; print $0}')
         echo $weather
         exit 0
     fi
@@ -92,18 +92,7 @@ callAPI() {
             CITY_PARAM="q=$CITY$COUNTRY"
         fi
 
-        weather=$(curl -sf "$API/weather?appid=$KEY&$CITY_PARAM&units=$UNITS")i
-
-    else
-
-        location=$(curl -sf "https://location.services.mozilla.com/v1/geolocate?key=geoclue")
-
-        if [ -n "$location" ]; then
-            location_lat="$(echo "$location" | jq '.location.lat')"
-            location_lon="$(echo "$location" | jq '.location.lng')"
-
-            weather=$(curl -sf "$API/weather?appid=$KEY&lat=$location_lat&lon=$location_lon&units=$UNITS")
-        fi
+        weather=$(curl -sf "$API/weather?appid=$KEY&$CITY_PARAM&units=$UNITS")
     fi
 
     if [ -n "$weather" ]; then

@@ -19,7 +19,7 @@
     interfaces.wlan0.useDHCP = true;
     firewall.enable = false;
     wireless.iwd.enable = true;
-    interfaces.enp2s0 ={ 
+    interfaces.enp2s0 = {
       useDHCP = false;
       ipv4.addresses = [{
         address = "192.168.0.210";
@@ -60,12 +60,39 @@
   };
 
   environment = {
+    sessionVariables = {
+      XDG_SESSION_TYPE = "wayland";
+      XDG_CURRENT_DESKTOP = "sway";
+      MOZ_ENABLE_WAYLAND = "1";
+      MOZ_USE_XINPUT2 = "1";
+      SDL_VIDEODRIVER = "wayland";
+      QT_QPA_PLATFORM = "wayland-egl";
+      QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+      XKB_DEFAULT_LAYOUT = "gb";
+    };
+
     shellInit = ''
+      export GPG_AGENT_INFO=$HOME/.gnupg/S.gpg-agent
       export LIBVIRT_DEFAULT_URI=qemu:///system
+      export LS_COLORS="$(vivid generate snazzy)"
+      export LESS_TERMCAP_mb=$'\E[1;31m'
+      export LESS_TERMCAP_md=$'\E[1;36m'
+      export LESS_TERMCAP_me=$'\E[0m'
+      export LESS_TERMCAP_so=$'\E[01;33m'
+      export LESS_TERMCAP_se=$'\E[0m'
+      export LESS_TERMCAP_us=$'\E[1;32m'
+      export LESS_TERMCAP_ue=$'\E[0m'
       export EDITOR='vim'
     '';
     shells = [ pkgs.zsh ];
   };
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [ xdg-desktop-portal-wlr xdg-desktop-portal-gtk ];
+  };
+
+
 
   programs = {
     zsh = {
@@ -112,6 +139,8 @@
         passcode = "~/.OTP/passcodes.py";
         phd = "cd ~/Git/CCCU/PhD";
         pantheon = "cd ~/Git/personal/pantheon";
+        upgrade = "sudo nixos-rebuild switch -Q -k --upgrade |& nom";
+        rebuild = "sudo nixos-rebuild switch -Q -k |& nom";
         wifi = "~/.config/scripts/bash/wifi.sh";
       };
     };
@@ -144,5 +173,5 @@
         wqy_microhei
       ] ++ lib.filter lib.isDerivation (lib.attrValues lohit-fonts);
   };
-  system.stateVersion = "22.05";
+  system.stateVersion = "22.11";
 }
