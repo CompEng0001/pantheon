@@ -49,6 +49,7 @@
     # [[PROGRAMMING]]
     cargo
     gcc
+    jdk
     jetbrains.jdk
     lua
     powershell
@@ -59,6 +60,7 @@
     discord
     signal-desktop
     teams
+    whatsapp-for-linux
     # [[Terminal]]
     alacritty
     starship
@@ -103,6 +105,7 @@
     spotify
     stow
     tree
+    vivid
     usbutils
     volumeicon
     wget
@@ -112,5 +115,6 @@
     # [[NIXOS-TOOLS]]
     nixpkgs-fmt
     nix-prefetch-github
+    nix-output-monitor
   ];
 }

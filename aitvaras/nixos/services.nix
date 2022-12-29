@@ -9,51 +9,42 @@
     podman.enable = true;
   };
 
-  services.xserver = {
+  programs.sway = {
     enable = true;
-    layout = "gb";
-    libinput = {
-      enable = true;
-      touchpad.naturalScrolling = true;
-      touchpad.middleEmulation = true;
-      touchpad.tapping = true;
-    };
+    wrapperFeatures.gtk = true;
+    extraPackages = with pkgs; [
+      rofi-wayland
+      alacritty
+      waybar
+      i3status-rust
+      swayidle
+      swaylock-effects
+      wl-clipboard
+      swaybg
+    ];
+  };
 
-    displayManager = {
-      defaultSession = "none+i3";
-      setupCommands = ''
-      MAIN='DP-1'
-      VERTICAL='HDMI-2'
-      ${pkgs.xorg.xrandr}/bin/xrandr --output $VERTICAL --mode 1920x1080 --right-of $MAIN --rotate right
-      '';
-
-      #lightdm.enable;
-      sddm.enable = true;
-      sddm.theme = "${(pkgs.fetchFromGitHub {
-        owner = "CompEng0001";
-        repo = "my-sddm-theme";
-        rev = "30fbf93746e8069c6d714c6c491c99abd0cf995e";
-        sha256 = "1ga4qvrqqj68lyx6sqbl0wz64vb20xbv2fl2879v0k3kv3h60wa4";
-      })}";
-    };
-
-    windowManager.i3 = {
-      enable = true;
-      package = pkgs.i3-gaps;
-      extraPackages = with pkgs; [
-        betterlockscreen
-        i3-gaps
-        i3lock
-        i3lock-color
-        polybar
-      ];
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
+        user = "greeter";
+        vt = 3;
+      };
     };
   };
 
+  services.dbus.packages = [ pkgs.mako ];
+
+
   services.pipewire = {
     enable = true;
+    audio.enable = true;
     alsa.enable = true;
     pulse.enable = true;
+    jack.enable = true;
+    wireplumber.enable = true;
     socketActivation = true;
   };
 
@@ -61,12 +52,14 @@
     enable = true;
     user = "seb";
     package = pkgs.mysql80;
+
     settings.mysqld = {
       port = 1337;
       secure_file_priv = "";
       local_infile = 1;
-      autocommit =0;
+      autocommit = 0;
     };
+
     settings.mysql = {
       local_infile = 1;
     };

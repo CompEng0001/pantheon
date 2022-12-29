@@ -14,6 +14,7 @@ pkgs.vim_configurable.overrideAttrs (drv: {
         limelight-vim
         minimap-vim
         sleuth
+        swayconfig-vim
         tabular
         #        vim-clap
         vim-illuminate
