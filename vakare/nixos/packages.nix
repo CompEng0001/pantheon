@@ -24,6 +24,7 @@
   environment.systemPackages = with pkgs; [
 
     # [[EDITORS]]
+    android-studio
     arduino
     (pkgs.callPackage ./vim.nix { })
     vscode
@@ -57,7 +58,6 @@
     # [[SOCIAL]]
     discord
     signal-desktop
-    teams
     # [[Terminal]]
     alacritty
     starship
@@ -80,8 +80,11 @@
     guvcview
     htop
     imagemagick
+    imv
     iotop
+    kanshi
     jq
+    kanshi
     lsd
     mdbook
     mpv
@@ -103,13 +106,17 @@
     spotify
     stow
     tree
+    unzip
     usbutils
+    v8
     vivid
     volumeicon
+    wf-recorder
     wget
     xclip
     zathura
     zettlr
+    zip
     # [[NIXOS-TOOLS]]
     nixpkgs-fmt
     nix-prefetch-github
