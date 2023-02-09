@@ -35,7 +35,7 @@ textbox {
 listview {
 	fixed-height: 		0;
 	border:       		1px 0px 1px ;
-	border-color: 		@red;
+	border-color: 		@purple;
 	spacing:      		1px ;
 	scrollbar:    		false;
 	padding:      		2px 0px 0px ;
@@ -132,7 +132,7 @@ entry {
 
 prompt {
 	spacing:    		0;
-	text-color: 		@red;
+	text-color: 		@purple;
 }
 
 inputbar {
@@ -143,7 +143,7 @@ textbox-prompt-colon {
 	expand:     		false;
 	str:        		"::";
 	margin:     		0px 0.3em 0em 0em ;
-	text-color: 		@red;
+	text-color: 		@purple;
 }
 
 @import "~/.config/rofi/colors.rasi"
