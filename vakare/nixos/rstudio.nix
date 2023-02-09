@@ -5,6 +5,7 @@ let
     {
       packages = with rPackages;
         [
+          gtsummary # https://www.rdocumentation.org/packages/gtsummary/versions/1.6.3
           janitor # https://www.rdocumentation.org/packages/janitor/versions/2.1.0
           knitr # https://www.rdocumentation.org/packages/knitr/versions/1.39
           lubridate # https://www.rdocumentation.org/packages/lubridate/versions/1.8.0
