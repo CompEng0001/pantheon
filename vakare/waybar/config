@@ -4,7 +4,7 @@
         "position": "top",
         "modules-left": [ "sway/workspaces", "sway/mode" ],
         "modules-center": [ "tray" ],
-        "modules-right": [ "network#wifi", "network#wg", "idle_inhibitor", "battery", "clock" ],
+        "modules-right": [ "network#wifi", "network#wg", "idle_inhibitor", "clock" ],
 
         "tray": {
             "icon-size": 15
@@ -38,23 +38,6 @@
             "interval": 2,
             "tooltip": false
         },
-        "battery": {
-            "tooltip": false,
-            "states": {
-                "good": 95,
-                "warning": 30,
-                "critical": 10
-            },
-            "interval": 5,
-            "format": "{capacity:3}% [{time}] {icon}",
-            "full-at": 98,
-            "format-time": "{H:02}:{M:02}",
-            "format-charging": "[] {capacity:3}% [{time}]",
-            "format-plugged": "{capacity:3}% ",
-            "format-alt": "{time} {icon}",
-            "format-full": " [fully charged]",
-            "format-icons": [" ", " ", " ", " ", " "]
-        },
         "idle_inhibitor": {
             "tooltip": false,
             "format": "{icon}",
@@ -73,22 +56,39 @@
     {
         "layer": "bottom",
         "position": "bottom",
-        "modules-right": [ "backlight", "memory", "cpu", "temperature#cpu", "temperature#gpu", "temperature#wifi", "temperature#nvme" ],
+        "modules-right": [ "backlight", "memory", "cpu", "temperature#cpu", "temperature#nvme", "temperature#wifi", "battery" ],
         "modules-center": [ "disk#boot", "disk#root" ],
         "modules-left": ["custom/uptime" ,"custom/wttr"  ],
 
+        "battery": {
+            "tooltip": false,
+            "states": {
+                "good": 95,
+                "warning": 30,
+                "critical": 10
+            },
+            "interval": 5,
+            "format": "{capacity:3}% [{time}] {icon}",
+            "full-at": 98,
+            "format-time": "{H:02}:{M:02}",
+            "format-charging": "[] {capacity:3}% [{time}]",
+            "format-plugged": "{capacity:3}% ",
+            "format-alt": "{time} {icon}",
+            "format-full": " [fully charged]",
+            "format-icons": [" ", " ", " ", " ", " "]
+        },
         "custom/wttr": {
             "tooltip": false,
             "format": "{}",
-            "exec": "curl -sf 'http://wttr.in/?format=%l:+%C+%t'",
+            "exec": "~/.config/waybar/weather.sh",
             "interval": 600
         },
-        "temperature#gpu": {
+        "temperature#nvme": {
             "tooltip": false,
             "hwmon-path": "/sys/class/hwmon/hwmon0/temp1_input",
             "critical-threshold": 80,
-            "format-critical": "G: {temperatureC}°C",
-            "format": "G: {temperatureC}°C"
+            "format-critical": "D: {temperatureC}°C",
+            "format": "D: {temperatureC}°C"
         },
         "temperature#wifi": {
             "tooltip": false,
@@ -97,16 +97,9 @@
             "format-critical": "W: {temperatureC}°C",
             "format": "W: {temperatureC}°C"
         },
-        "temperature#nvme": {
-            "tooltip": false,
-            "hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
-            "critical-threshold": 80,
-            "format-critical": "D: {temperatureC}°C",
-            "format": "D: {temperatureC}°C"
-        },
         "temperature#cpu": {
             "tooltip": false,
-            "hwmon-path": "/sys/class/hwmon/hwmon5/temp2_input",
+            "hwmon-path": "/sys/class/hwmon/hwmon4/temp2_input",
             "critical-threshold": 80,
             "format-critical": "C: {temperatureC}°C",
             "format": "C: {temperatureC}°C"
@@ -143,7 +136,7 @@
         "cpu": {
             "tooltip": false,
             "interval": 1,
-            "format": "{icon0} {icon1} {icon2} {icon3} [ {usage:3}% ] ﬙",
+            "format": "{icon0} {icon1} {icon2} {icon3} {icon4} {icon5} {icon6} {icon7} [ {usage:3}% ] ﬙",
             "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
         },
         "wireplumber": {
