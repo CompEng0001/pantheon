@@ -19,10 +19,12 @@
     enable = true;
     wrapperFeatures.gtk = true;
     extraPackages = with pkgs; [
+      grim
+      kooha
+      slurp
       rofi-wayland
       alacritty
       waybar
-      i3status-rust
       swayidle
       swaylock-effects
       wl-clipboard
@@ -36,41 +38,20 @@
       default_session = {
         command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
         user = "greeter";
-        vt = 3;
+        vt = 1;
       };
     };
   };
 
+  systemd.user.services.kanshi = {
+    description = "kanshi daemon";
+    enable = true;
+    serviceConfig = {
+      ExecStart = ''${pkgs.kanshi}/bin/kanshi -c /home/seb/.config/kanshi/config'';
+    };
+  };
+
   services.dbus.packages = [ pkgs.mako ];
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   services.pipewire = {
     enable = true;
