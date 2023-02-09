@@ -15,7 +15,7 @@
   networking = {
     hostName =
       "vakare"; # Define your hostname.  Lithuanian Goddess of the evening star
-    useDHCP = false;
+    useNetworkd = true;
     interfaces.wlan0.useDHCP = true;
     firewall.enable = false;
     wireless.iwd.enable = true;
@@ -85,6 +85,7 @@
       export EDITOR='vim'
     '';
     shells = [ pkgs.zsh ];
+
   };
 
   xdg.portal = {
