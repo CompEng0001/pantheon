@@ -9,3 +9,9 @@ file = "~/.config/rofi/colors.rasi"
 template = "rofi"
 subtemplate = "colors"
 rewrite = true
+
+[[items]]
+file = "~/.config/mako/config"
+template = "mako"
+rewrite = false
+hook = "makoctl reload"
