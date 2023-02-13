@@ -4,23 +4,28 @@
         "position": "top",
         "output": "DP-1",
         "modules-left": ["sway/workspaces" ],
-        "modules-center": [ "disk#storage", "disk#root", "disk#home", "memory", "cpu" ],
+        "modules-center": [ "disk#boot", "disk#home", "disk#storage", "disk#netstorage", "memory", "cpu" ],
         "modules-right": ["idle_inhibitor", "network","clock" ],
 
         "disk#home": {
             "interval": 30,
             "format": "[ {path} :: {percentage_used:3}% ]",
-            "path": "/home"
+            "path": "/"
         },
-        "disk#root": {
+        "disk#boot": {
             "interval": 30,
             "format": "[ {path} :: {percentage_used:3}% ]",
-            "path": "/"
+            "path": "/boot"
         },
         "disk#storage": {
             "interval": 30,
             "format": "[ {path} :: {percentage_used:3}% ]",
-            "path": "/storage"
+            "path": "/mnt/storage"
+        },
+        "disk#netstorage": {
+            "interval": 30,
+            "format": "[ {path} :: {percentage_used:3}% ]",
+            "path": "/mnt/networkStorage"
         },
         "memory": {
             "tooltip": false,
@@ -108,7 +113,7 @@
         "layer": "bottom",
         "output": [ "DP-1" ],
         "position": "bottom",
-        "modules-right": [ "wireplumber", "temperature#tctl", "temperature#tdie", "temperature#gpu" ],
+        "modules-right": [ "wireplumber", "temperature#acpitz", "temperature#asus", "temperature#cpu" ],
         "modules-center": [ "tray" ],
         "modules-left": [ "custom/uptime","custom/wttr" ],
 
@@ -128,31 +133,31 @@
             "exec": "curl -sf 'http://wttr.in/Canterbury?format=%l:+%C+%t'",
             "interval": 600
         },
-        "temperature#gpu": {
+        "temperature#cpu": {
             "tooltip": false,
-            "hwmon-path": "/sys/class/hwmon/hwmon0/temp1_input",
+            "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
             "critical-threshold": 80,
-            "format-critical": "[ GPU :: {temperatureC}°C  ]",
-            "format": "[ GPU :: {temperatureC}°C  ]"
+            "format-critical": "[ CPU :: {temperatureC}°C  ]",
+            "format": "[ CPU :: {temperatureC}°C  ]"
         },
         "clock": {
             "interval": 1,
             "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
             "format": "{:%A, %F [%V] %H:%M:%S} "
         },
-        "temperature#tctl": {
+        "temperature#asus": {
             "tooltip": false,
             "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
             "critical-threshold": 80,
             "format-critical": "[ TCTL :: {temperatureC}°C  ]",
             "format": "[ TCTL :: {temperatureC}°C  ]"
         },
-        "temperature#tdie": {
+        "temperature#acpitz": {
             "tooltip": false,
-            "hwmon-path": "/sys/class/hwmon/hwmon2/temp2_input",
+            "hwmon-path": "/sys/class/hwmon/hwmon0/temp2_input",
             "critical-threshold": 80,
-            "format-critical": "[ TDIE :: {temperatureC}°C  ]",
-            "format": "[ TDIE :: {temperatureC}°C  ]"
+            "format-critical": "[ ACPITZ :: {temperatureC}°C  ]",
+            "format": "[ ACPIZ :: {temperatureC}°C  ]"
         },
         "wireplumber": {
             "tooltip": false,

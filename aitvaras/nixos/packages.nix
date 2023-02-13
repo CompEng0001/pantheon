@@ -81,8 +81,10 @@
     fzf
     git
     guvcview
+    gzip
     htop
     imagemagick
+    imv
     iotop
     lsd
     jq
@@ -107,11 +109,14 @@
     tree
     vivid
     usbutils
+    unzip
     volumeicon
     wget
+    wf-recorder
     xclip
     zathura
     zettlr
+    zip
     # [[NIXOS-TOOLS]]
     nixpkgs-fmt
     nix-prefetch-github

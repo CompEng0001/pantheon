@@ -16,8 +16,8 @@ output $monitorR position 3840 0 transform 90
 
 ### Assign Workspaces
 
-assign [app_id="firefox"] workspace number 3
-assign [class="firefox"] workspace number 3
+#assign [app_id="brave-browser"] workspace number 2
+#assign [class="brave-browser"] workspace number 2
 
 ### Workarounds
 #
@@ -114,8 +114,11 @@ input type:keyboard {
 
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+Shift+p exec grim -t png -g "$(slurp)" ~/screenshots/$(date +%Y-%m-%d_%H-%m-%s).png
+	bindsym $mod+Shift+r exec wf-recorder -g "$(slurp)" -c gif --file ~/screenrecorder/"$(date +%Y-%m-%d_%H-%M-%s)".gif
+
 #
-# Moving around:
+# Moving around
 #
     # Move your focus around
     bindsym $mod+Down focus down

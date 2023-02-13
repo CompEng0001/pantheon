@@ -28,7 +28,6 @@
     arduino
     (pkgs.callPackage ./vim.nix { })
     vscode
-    jetbrains.idea-community
     # [[INTERNET]]
     brave
     chromium
@@ -36,6 +35,7 @@
     speedtest-cli
     # [[OTHER]]
     flavours
+    spotify-tui
     teamviewer
     virt-viewer
     virtmanager
@@ -54,7 +54,6 @@
     python3
     (pkgs.callPackage ./rstudio.nix { })
     rustc
-    jdk
     # [[SOCIAL]]
     discord
     signal-desktop
@@ -82,17 +81,12 @@
     imagemagick
     imv
     iotop
-    kanshi
     jq
     kanshi
     lsd
-    mdbook
     mpv
-    mosquitto
     multilockscreen
     neofetch
-    netcat
-    onefetch
     pavucontrol
     peek
     psmisc
@@ -120,6 +114,5 @@
     # [[NIXOS-TOOLS]]
     nixpkgs-fmt
     nix-prefetch-github
-    nix-output-monitor
   ];
 }

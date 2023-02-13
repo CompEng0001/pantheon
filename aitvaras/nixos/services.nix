@@ -13,14 +13,16 @@
     enable = true;
     wrapperFeatures.gtk = true;
     extraPackages = with pkgs; [
-      rofi-wayland
       alacritty
-      waybar
-      i3status-rust
+      grim
+      kooha
+      rofi-wayland
+      slurp
+      swaybg
       swayidle
       swaylock-effects
+      waybar
       wl-clipboard
-      swaybg
     ];
   };
 
