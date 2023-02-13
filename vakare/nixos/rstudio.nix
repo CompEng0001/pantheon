@@ -19,9 +19,11 @@ let
           RMySQL # https://www.rdocumentation.org/packages/RMySQL/versions/0.10.23
           scater # https://www.rdocumentation.org/packages/scater/vesions/1.0.4
           stringdist # https://rdocumentation.org/packages/stringdist/versions/0.9.9
+          TSstudio # https://www.rdocumentation.org/packages/TSstudio/versions/0.1.6
           tidyjson # https://www.rdocumentation.org/packages/tidyjson/versions/0.3.1
           tidymodels # https://www.rdocumentation.org/packages/tidymodels/versions/1.0.0
           tidyverse # https://www.rdocumentation.org/packages/tidyverse/versions/1.3.2
+          timeSeries # https://www.rdocumentation.org/packages/timeSeries/versions/4021.105
           xmlconvert # https://www.rdocumentation.org/packages/xmlconvert/versions/0.1.2
           xtable # https://www.rdocumentation.org/packages/xtable/versions/1.8-4
         ];
