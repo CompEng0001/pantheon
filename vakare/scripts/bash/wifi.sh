@@ -2,17 +2,16 @@
 
 IWDDIR="/var/lib/iwd/"
 declare -A networks
-networks=(["-e"]=eduroam.8021x ["-s"]=Southeastern_WiFi.open ["-p"]=CompEng0001.psk
-	["-m"]=makerspace.psk ["-h"]=BT-73CPM3.psk ["-n"]="NHS Wi-Fi.open" ["-hg"]="BT_Mini_Hub_6352_2.4GHz" ["-f"]=HometelecomD2MZ5G.psk)
+networks=(["-e"]=eduroam.8021x ["-s"]=Southeastern_WiFi.open ["-p"]=CompEng0001.psk ["-N"]=TNCAP52FC59.psk
+	["-m"]=makerspace.psk ["-n"]="NHS Wi-Fi.open" ["-f"]=HometelecomD2MZ5G.psk ["-r"]=BT-FNASJ9.psk)
 
 usage()
 {
    echo -e "wifi:\n\t-e eduroam [--gre || --cccu]"
    echo -e "\t-s Southeastern_WiFi\n\t-p CompEng0001\n\t-n NHS_Medway"
-   echo -e "\t-m makerspace\n\t-h BT-73CPM3\n\t-hg BT_Mini_Hub_6352_2.4Hz"
-   echo -e "\t-f flat\n"
+   echo -e "\t-m makerspace\n\t-f flat\n\t-r parents\n\t-N Naomi's"
    echo -e "\t--print [-network --print]\n\t--edit [-network --edit]"
-   echo -e "\t-r restart iwd.service"
+   echo -e "\t-R restart iwd.service"
    echo -e "\tNOTE   *check /var/lib/iwd/ or use iwctl*"
 }
 
@@ -29,13 +28,13 @@ connection(){
 		iwctl station wlan0 connect $(echo ${networks[-m]} | awk -F '.' '{print$NR}')
 	elif [[ $1 == -n ]]; then
 		iwctl station wlan0 connect "$(echo ${networks[-n]} | awk -F '.' '{print$NR}')"
-	elif [[ $1 == -h ]]; then
-		iwctl station wlan0 connect $(echo ${networks[-h]} | awk -F '.' '{print$NR}'| awk -F '.' '{print$NR}')
-	elif [[ $1 == -hg ]]; then
-		iwctl station wlan0 connect ${networks[-hg]}
 	elif [[ $1 == -f ]]; then
 		iwctl station wlan0 connect $(echo ${networks[-f]} | awk -F '.' '{print$NR}')
+	elif [[ $1 == -N ]]; then
+		iwctl station wlan0 connect $(echo ${networks[-N]} | awk -F '.' '{print$NR}')
 	elif [[ $1 == -r ]]; then
+		iwctl station wlan0 connect $(echo ${networks[-r]} | awk -F '.' '{print$NR}')
+	elif [[ $1 == -R ]]; then
 		sudo systemctl restart iwd.service
 	fi
 }
