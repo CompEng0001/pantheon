@@ -73,6 +73,7 @@
     delta
     dos2unix
     feh
+    file
     flameshot
     fzf
     git
@@ -84,6 +85,7 @@
     jq
     kanshi
     lsd
+    mdbook
     mpv
     multilockscreen
     neofetch
@@ -97,6 +99,7 @@
     qt5.qtquickcontrols2
     rofi
     scrot
+    sshpass
     spotify
     stow
     tree
@@ -110,9 +113,11 @@
     xclip
     zathura
     zettlr
+    zellij
     zip
     # [[NIXOS-TOOLS]]
     nixpkgs-fmt
+    nix-output-monitor
     nix-prefetch-github
   ];
 }
