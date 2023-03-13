@@ -85,6 +85,7 @@
     jq
     kanshi
     lsd
+    lz4
     mdbook
     mpv
     multilockscreen
@@ -97,6 +98,7 @@
     qt5.qtmultimedia
     qt5.qtquickcontrols
     qt5.qtquickcontrols2
+    restream
     rofi
     scrot
     sshpass

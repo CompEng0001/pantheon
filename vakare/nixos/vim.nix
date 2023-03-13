@@ -15,7 +15,6 @@ pkgs.vim_configurable.overrideAttrs (drv: {
         sleuth
         tabular
         swayconfig-vim
-        #        vim-clap
         vim-illuminate
         vim-better-whitespace
         vim-lastplace

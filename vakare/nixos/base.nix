@@ -14,7 +14,7 @@
   time.timeZone = "Europe/London";
   networking = {
     hostName =
-      "vakare"; # Define your hostname.  Lithuanian Goddess of the evening star
+      "vakare"; # Lithuanian Goddess of the evening star
     useNetworkd = true;
     interfaces.wlan0.useDHCP = true;
     firewall.enable = false;
@@ -142,6 +142,8 @@
         pantheon = "cd ~/Git/personal/pantheon";
         upgrade = "sudo nixos-rebuild switch -Q -k --upgrade |& nom";
         rebuild = "sudo nixos-rebuild switch -Q -k |& nom";
+        remarkableHome ="restream -p -s remarkable-Home";
+        remarkablePhone ="restream -p -s remarkable-Phone";
         wifi = "~/.config/scripts/bash/wifi.sh";
       };
     };
