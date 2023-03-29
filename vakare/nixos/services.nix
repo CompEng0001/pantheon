@@ -44,10 +44,17 @@
   };
 
   systemd.user.services.kanshi = {
-    description = "kanshi daemon";
-    enable = true;
+    description = "Kanshi output autoconfig ";
+    wantedBy = [ "graphical-session.target" ];
+    partOf = [ "graphical-session.target" ];
     serviceConfig = {
-      ExecStart = ''${pkgs.kanshi}/bin/kanshi -c /home/seb/.config/kanshi/config'';
+      # kanshi doesn't have an option to specifiy config file yet, so it looks
+      # at .config/kanshi/config
+      ExecStart = ''
+        ${pkgs.kanshi}/bin/kanshi -c /home/seb/.config/kanshi/config
+      '';
+      RestartSec = 5;
+      Restart = "always";
     };
   };
 
