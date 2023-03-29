@@ -9,12 +9,13 @@ include colorscheme
 ### Assign Workspaces
 #
 
+#exec sleep 5; systemctl --user restart kanshi.service
 ### Workarounds
 #
 # Without this it takes forever to load applications
 exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 
-exec sleep 3; /home/seb/.config/kanshi/./runner
+exec_always kanshi
 #
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
@@ -227,7 +228,9 @@ bindsym --locked XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ to
 bar {
     swaybar_command waybar
 }
+
 #bar {
+
 #    position top
 #
 #    # When the status_command prints a new line to stdout, swaybar updates.
