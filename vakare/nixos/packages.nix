@@ -90,16 +90,21 @@
     mpv
     multilockscreen
     neofetch
+    nodejs
+    ntfs3g
     pavucontrol
     peek
     psmisc
     pulseaudioFull
+    ptouch-print
+    qemu_full
     qt5.qtgraphicaleffects
     qt5.qtmultimedia
     qt5.qtquickcontrols
     qt5.qtquickcontrols2
     restream
     rofi
+    rsync
     scrot
     sshpass
     spotify
@@ -109,7 +114,10 @@
     usbutils
     v8
     vivid
+    virt-manager
+    vlc
     volumeicon
+    yarn
     wf-recorder
     wget
     xclip
