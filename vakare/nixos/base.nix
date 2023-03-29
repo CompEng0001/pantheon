@@ -142,8 +142,8 @@
         pantheon = "cd ~/Git/personal/pantheon";
         upgrade = "sudo nixos-rebuild switch -Q -k --upgrade |& nom";
         rebuild = "sudo nixos-rebuild switch -Q -k |& nom";
-        remarkableHome ="restream -p -s remarkable-Home";
-        remarkablePhone ="restream -p -s remarkable-Phone";
+        remarkableHome = "restream -p -s remarkable-Home";
+        remarkablePhone = "restream -p -s remarkable-Phone";
         wifi = "~/.config/scripts/bash/wifi.sh";
       };
     };
