@@ -18,7 +18,7 @@ indicator-x-position=80
 indicator-y-position=1000
 
 effect-vignette=0.6:0.3
-effect-blur=4x2
+effect-blur=5x7
 
 text-color=b3deef
 inside-color=282828
