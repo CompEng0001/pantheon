@@ -56,7 +56,7 @@
     {
         "layer": "bottom",
         "position": "bottom",
-        "modules-right": [ "backlight", "memory", "cpu", "temperature#cpu", "temperature#nvme", "temperature#wifi", "battery" ],
+        "modules-right": [ "backlight", "memory", "cpu", "temperature#cpu", "custom/temp-nvme", "custom/temp-wifi", "battery" ],
         "modules-center": [ "disk#boot", "disk#root" ],
         "modules-left": ["custom/uptime" ,"custom/wttr"  ],
 
@@ -83,28 +83,27 @@
             "exec": "~/.config/waybar/weather.sh",
             "interval": 600
         },
-        "temperature#nvme": {
+        "custom/temp-nvme": {
             "tooltip": false,
             "critical-threshold":70,
             "exec": "~/.config/waybar/scripts/temperature.sh nvme",
-            "format-critical": "D: {temperatureC}°C",
-            "format": "D: {temperatureC}°C"
+            "format-critical": "D:{}°C ",
+            "format": " D:{}°C "
         },
         "temperature#cpu": {
             "tooltip": false,
-            "exec": "~/.config/waybar/scripts/temperature.sh coretemp",
-            "format-critical": "D: {temperatureC}°C",
-            "critical-threshold": 70,
-            "format-critical": "C: {temperatureC}°C",
-            "format": "C: {temperatureC}°C"
+            "thermal-zone": 0,
+            "critical-threshold": 80,
+            "format-critical": "C:{temperatureC}°C",
+            "format": " C:{}°C"
         },
-        "temperature#wifi": {
+        "custom/temp-wifi": {
             "tooltip": false,
             "exec": "~/.config/waybar/scripts/temperature.sh iwlwifi_1",
-            "format-critical": "D: {temperatureC}°C",
+            "format-critical": "C: {}°C",
             "critical-threshold": 70,
-            "format-critical": "W: {temperatureC}°C",
-            "format": "W: {temperatureC}°C"
+            "format-critical": "W:{}°C",
+            "format": " W:{}°C "
         },
         "disk#boot": {
             "interval": 30,
