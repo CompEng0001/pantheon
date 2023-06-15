@@ -55,8 +55,9 @@
 
     {
         "layer": "bottom",
+        "output": [ "eDP-1" ],
         "position": "bottom",
-        "modules-right": [ "backlight", "memory", "cpu", "temperature#cpu", "custom/temp-nvme", "custom/temp-wifi", "battery" ],
+        "modules-right": [ "backlight", "memory", "cpu", "temperature#cpu", "custom/tempNvme", "custom/tempWifi", "battery" ],
         "modules-center": [ "disk#boot", "disk#root" ],
         "modules-left": ["custom/uptime" ,"custom/wttr"  ],
 
@@ -83,7 +84,7 @@
             "exec": "~/.config/waybar/weather.sh",
             "interval": 600
         },
-        "custom/temp-nvme": {
+        "custom/tempNvme": {
             "tooltip": false,
             "critical-threshold":70,
             "exec": "~/.config/waybar/scripts/temperature.sh nvme",
@@ -97,7 +98,7 @@
             "format-critical": "C:{temperatureC}°C",
             "format": " C:{}°C"
         },
-        "custom/temp-wifi": {
+        "custom/tempWifi": {
             "tooltip": false,
             "exec": "~/.config/waybar/scripts/temperature.sh iwlwifi_1",
             "format-critical": "C: {}°C",
@@ -122,6 +123,88 @@
             },
             "format": "[ {path} :: {percentage_used:3}% ]",
             "path": "/"
+        },
+        "memory": {
+            "tooltip": false,
+            "interval": 10,
+            "format": "{used:0.1f}G [ {percentage:3}% ] "
+        },
+        "custom/uptime":{
+            "tooltip":false,
+            "interval":60,
+            "format": "Uptime: {} ",
+            "exec": "check_uptime | grep -o -P '(?<=(: )).*(?=\\|)'"
+        },
+        "cpu": {
+            "tooltip": false,
+            "interval": 1,
+            "format": "{icon0} {icon1} {icon2} {icon3} {icon4} {icon5} {icon6} {icon7} [ {usage:3}% ] ﬙",
+            "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
+        },
+        "wireplumber": {
+            "tooltip": false,
+            "format": "{node_name}: {volume:3}%",
+            "format-muted": "{node_name}: ﱝ",
+            "format-icons": ["", "", ""]
+        },
+        "backlight": {
+            "tooltip": false,
+            "format": "{percent:3}% {icon}",
+            "format-icons": ["", "", "", "", "", "", "", "", ""]
+        }
+    },
+
+    {
+        "layer": "bottom",
+        "output": [ "DP-1" , "HDMI-A-1" ],
+        "position": "bottom",
+        "modules-right": [ "backlight", "memory", "cpu", "temperature#cpu", "custom/tempNvme", "custom/tempWifi", "battery" ],
+        "modules-left": ["custom/uptime" ,"custom/wttr"  ],
+
+        "battery": {
+            "tooltip": false,
+            "states": {
+                "good": 95,
+                "warning": 30,
+                "critical": 10
+            },
+            "interval": 5,
+            "format": "{capacity:3}% [{time}] {icon}",
+            "full-at": 98,
+            "format-time": "{H:02}:{M:02}",
+            "format-charging": "[] {capacity:3}% [{time}]",
+            "format-plugged": "{capacity:3}% ",
+            "format-alt": "{time} {icon}",
+            "format-full": " [fully charged]",
+            "format-icons": [" ", " ", " ", " ", " "]
+        },
+        "custom/wttr": {
+            "tooltip": false,
+            "format": "{}",
+            "exec": "~/.config/waybar/weather.sh",
+            "interval": 600
+        },
+        "custom/tempNvme": {
+            "tooltip": false,
+            "critical-threshold":70,
+            "exec": "~/.config/waybar/scripts/temperature.sh nvme",
+            "format-critical": "D:{}°C ",
+            "format": " D:{}°C "
+        },
+        "temperature#cpu": {
+            "tooltip": false,
+            "thermal-zone": 0,
+            "critical-threshold": 80,
+            "format-critical": "C:{temperatureC}°C",
+            "format": " C:{}°C"
+        },
+        "custom/tempWifi": {
+            "tooltip": false,
+            "exec": "~/.config/waybar/scripts/temperature.sh iwlwifi_1",
+            "format-critical": "C: {}°C",
+            "critical-threshold": 70,
+            "format-critical": "W:{}°C",
+            "format": " W:{}°C "
         },
         "memory": {
             "tooltip": false,
