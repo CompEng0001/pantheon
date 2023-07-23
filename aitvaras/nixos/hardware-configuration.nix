@@ -41,14 +41,31 @@
     cpu.intel.updateMicrocode =
       lib.mkDefault config.hardware.enableRedistributableFirmware;
     # high-resolution display
-    video.hidpi.enable = lib.mkDefault true;
+    #video.hidpi.enable = lib.mkDefault true;
     enableAllFirmware = true;
     opengl = {
       enable = true;
-      extraPackages = with pkgs; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];
+      extraPackages = with pkgs; [ vaapiIntel libvdpau-va-gl vaapiVdpau nvidia-vaapi-driver ];
     };
 
+
     bluetooth.enable = true;
+
+    nvidia = {
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
+      modesetting = {
+        enable = true;
+      };
+      powerManagement = {
+        enable = true;
+      };
+      nvidiaSettings = {
+        enable = true;
+      };
+      nvidiaPersistenced = {
+        enable = true;
+      };
+    };
   };
 
 }

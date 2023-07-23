@@ -23,6 +23,7 @@
       swaylock-effects
       waybar
       wl-clipboard
+      wlr-randr
     ];
   };
 
@@ -32,7 +33,7 @@
       default_session = {
         command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
         user = "greeter";
-        vt = 3;
+        vt = 1;
       };
     };
   };

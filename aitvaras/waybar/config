@@ -2,7 +2,7 @@
     {
         "layer": "top",
         "position": "top",
-        "output": "DP-1",
+        "output": [ "DP-4"],
         "modules-left": ["sway/workspaces" ],
         "modules-center": [ "disk#boot", "disk#home", "disk#storage", "disk#netstorage", "memory", "cpu" ],
         "modules-right": ["idle_inhibitor", "network","clock" ],
@@ -111,9 +111,9 @@
     },
     {
         "layer": "bottom",
-        "output": [ "DP-1" ],
+        "output": [ "DP-4" ],
         "position": "bottom",
-        "modules-right": [ "wireplumber", "temperature#acpitz", "temperature#asus", "temperature#cpu" ],
+        "modules-right": [ "wireplumber", "temperature#acpitz", "temperature#asus", "temperature#cpu", "custom/temperatureGPU", "custom/fanGPU" ],
         "modules-center": [ "tray" ],
         "modules-left": [ "custom/uptime","custom/wttr" ],
 
@@ -159,11 +159,73 @@
             "format-critical": "[ ACPITZ :: {temperatureC}°C  ]",
             "format": "[ ACPIZ :: {temperatureC}°C  ]"
         },
+        "custom/temperatureGPU": {
+            "tooltip": false,
+            "exec": "~/.config/waybar/scripts/nvidia.sh t",
+            "format-critical": "[ GPU :: {}°C ]",
+            "critical-threshold": 70,
+            "format": "[ GPU :: {}°C ]"
+        },
+        "custom/fanGPU": {
+            "tooltip": false,
+            "exec": "~/.config/waybar/scripts/nvidia.sh f",
+            "format-critical": "[ GPU Fan :: {} RPM ]",
+            "critical-threshold": 3000,
+            "format": "[ GPU Fan :: {} RPM ]"
+        },
         "wireplumber": {
             "tooltip": false,
             "format": "{node_name}: {volume:3}%",
             "format-muted": "{node_name}: ﱝ",
             "format-icons": ["", "", ""]
+        }
+    },
+
+    {
+        "layer": "top",
+        "position": "top",
+        "output": "DP-3",
+        "modules-left": ["sway/workspaces"],
+        "modules-right": ["clock"],
+        "clock": {
+            "interval": 1,
+            "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+            "format": "{:%A, %F [%V] %H:%M:%S} "
+        },
+        "idle_inhibitor": {
+            "format": "{icon}",
+            "format-icons": {
+                "activated": "",
+                "deactivated": ""
+            }
+        }
+    },
+
+    {
+        "layer": "bottom",
+        "output": [ "DP-3" ],
+        "position": "bottom",
+        "modules-right": [],
+        "modules-left": [ "custom/uptime", "custom/wttr"],
+
+        "sway/mode": {
+        },
+
+        "custom/uptime": {
+            "format": "uptime: {}",
+            "exec": "check_uptime | grep -o -P '(?<=(: )).*(?=\\|)'",
+            "interval": 60
+        },
+
+        "custom/wttr": {
+            "tooltip": false,
+            "format": "{}",
+            "exec": "curl -sf 'http://wttr.in/Canterbury?format=%l:+%C+%t'",
+            "interval": 600
+        },
+        "sway/language": {
+            "tooltip": false,
+            "format": "{short} {variant} "
         }
     }
 ]

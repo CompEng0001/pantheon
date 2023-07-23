@@ -91,6 +91,7 @@
         pantheon = "cd ~/Git/personal/pantheon";
         passcode = "~/.OTP/passcodes.py";
         phd = "cd ~/Git/CCCU/PhD";
+        stream-remarkable = "restream -s remarkable -p";
       };
     };
   };

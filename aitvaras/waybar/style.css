@@ -53,12 +53,13 @@
 }
 
 #backlight,
-#battery,
 #clock,
 #cpu,
 #custom-mail,
 #custom-wttr,
 #custom-uptime,
+#custom-temperatureGPU,
+#custom-fanGPU,
 #disk,
 #idle_inhibitor,
 #language,
@@ -88,11 +89,6 @@
 #disk.critical {
   color: @base00;
   background-color: @base08;
-}
-
-#custom-hydra {
-  color: @base00;
-  background-color: @base0B;
 }
 
 #mode {
@@ -131,41 +127,6 @@
   0%   { background-color: @base0C; }
   50%  { background-color: @base0D}
   100% { background-color: @base0B; }
-}
-
-#battery.critical:not(.charging) {
-  color: @base00;
-  background-color: @base08;
-  animation-name: blink;
-  animation-duration: 0.5s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-}
-
-#battery.warning:not(.charging) {
-  color: @base00;
-  background-color: @base0A;
-}
-
-#battery.charging {
-  color: @base00;
-  background-color: @base0C;
-  animation-name: charging;
-  animation-duration: 3s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-}
-
-#battery.full {
-  color: @base00;
-  background-color: @base0B;
-}
-
-#battery.plugged {
-  color: @base00;
-  background-color: @base0D;
 }
 
 #pulseaudio.muted {
