@@ -37,10 +37,14 @@
   users.users.seb = {
     isNormalUser = true;
     extraGroups =
-      [ "wheel" "libvirtd" "video" "audio" "netdev" "pulse" "pulse-access" ];
+      [ "wheel" "libvirtd" "video" "audio" "netdev" "pulse" "pulse-access" "adbusers" ];
     uid = 1000;
     shell = "${pkgs.zsh}/bin/zsh";
   };
+
+  programs.adb.enable = true;
+
+  systemd.enableUnifiedCgroupHierarchy = true;
 
   systemd.tmpfiles.rules = [
     "d /mnt/ 0755 root root"

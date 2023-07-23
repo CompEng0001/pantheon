@@ -6,6 +6,7 @@
   users.users.seb.extraGroups = [ "libvirtd" ];
 
   environment.systemPackages = with pkgs; [
+    android-studio
     virt-manager
     virt-viewer
     spice

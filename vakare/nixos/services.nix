@@ -58,6 +58,10 @@
     };
   };
 
+  services.udev.packages = [
+    pkgs.android-udev-rules
+  ];
+
   services.dbus.packages = [ pkgs.mako ];
 
   services.pipewire = {

@@ -30,6 +30,8 @@
     arduino
     (pkgs.callPackage ./vim.nix { })
     vscode
+    jetbrains.idea-community
+
     # [[INTERNET]]
     brave
     chromium
@@ -51,6 +53,7 @@
     # [[PROGRAMMING]]
     cargo
     gcc
+    kotlin
     lua
     powershell
     python3
@@ -93,6 +96,7 @@
     lsd
     lz4
     mdbook
+    mako
     mpv
     multilockscreen
     neofetch

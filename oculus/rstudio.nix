@@ -5,6 +5,7 @@ let
     {
       packages = with rPackages;
         [
+          fuzzywuzzyR #https://www.rdocumentation.org/packages/fuzzywuzzyR/versions/1.0.5
           ggpubr # https://www.rdocumentation.org/packages/ggpubr/versions/0.6.0
           gtsummary # https://www.rdocumentation.org/packages/gtsummary/versions/1.6.3
           janitor # https://www.rdocumentation.org/packages/janitor/versions/2.1.0
