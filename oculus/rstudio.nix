@@ -26,12 +26,9 @@ let
           tidymodels # https://www.rdocumentation.org/packages/tidymodels/versions/1.0.0
           tidyverse # https://www.rdocumentation.org/packages/tidyverse/versions/1.3.2
           timeSeries # https://www.rdocumentation.org/packages/timeSeries/versions/4021.105
-<<<<<<< Updated upstream:oculus/rstudio.nix
           useful # https://www.rdocumentation.org/packages/useful/versions/1.2.6
           validate # https://www.rdocumentation.org/packages/validate/versions/1.1.1
-          validatetools # https://www.rdocumentation.org/packages/validatetools/versions/0.5.0
-=======
->>>>>>> Stashed changes:aitvaras/nixos/rstudio.nix
+          validatetools # https://www.rdocumentation.org/packages/validatetools/versions/0.5
           xmlconvert # https://www.rdocumentation.org/packages/xmlconvert/versions/0.1.2
           xtable # https://www.rdocumentation.org/packages/xtable/versions/1.8-4
         ];
