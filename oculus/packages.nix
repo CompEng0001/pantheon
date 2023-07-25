@@ -27,6 +27,7 @@
 
     # [[EDITORS]]
     android-studio
+    android-tools
     arduino
     (pkgs.callPackage ./vim.nix { })
     vscode
