@@ -7,14 +7,17 @@
 
   environment.systemPackages = with pkgs; [
     android-studio
-    virt-manager
-    virt-viewer
+    bridge-utils
+    gnome.adwaita-icon-theme
+    libvirt
+    qemu_kvm
     spice
     spice-gtk
     spice-protocol
-    win-virtio
+    virt-manager
+    virt-viewer
     win-spice
-    gnome.adwaita-icon-theme
+    win-virtio
   ];
 
   virtualisation = {
