@@ -3,7 +3,7 @@
 IWDDIR="/var/lib/iwd/"
 declare -A networks
 networks=(["-e"]=eduroam.8021x ["-s"]=Southeastern_WiFi.open ["-p"]=CompEng0001.psk ["-N"]=TNCAP52FC59.psk
-	["-m"]=makerspace.psk ["-M"]=MACKNADE-FREE.open ["-n"]="NHS Wi-Fi.open" ["-f"]=HometelecomD2MZ5G.psk ["-r"]=BT-FNASJ9.psk)
+	["-m"]=makerspace.psk ["-M"]=MACKNADE-FREE.open ["-n"]="NHS Wi-Fi.open" ["-f"]=HometelecomD2MZ5G.psk ["-r"]=BT-FNASJ9.psk ["-P"]="Pretty fly for a Wi Fi.psk")
 
 usage()
 {
@@ -24,6 +24,8 @@ connection(){
 		xdg-open https://southeastern.on.icomera.com
 	elif [[ $1 == -p ]];then
 		iwctl station wlan0 connect $(echo ${networks[-p]} | awk -F '.' '{print$NR}')
+	elif [[ $1 == -P ]];then
+		iwctl station wlan0 connect "$(echo ${networks[-P]} | awk -F '.' '{print$NR}')"
 	elif [[ $1 == -m ]]; then
 		iwctl station wlan0 connect $(echo ${networks[-m]} | awk -F '.' '{print$NR}')
 	elif [[ $1 == -M ]]; then
