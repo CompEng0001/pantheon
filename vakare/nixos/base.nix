@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   boot = {
@@ -44,7 +44,7 @@
 
   programs.adb.enable = true;
 
-  systemd.enableUnifiedCgroupHierarchy = true;
+  systemd.enableUnifiedCgroupHierarchy = lib.mkForce true;
 
   systemd.tmpfiles.rules = [
     "d /mnt/ 0755 root root"
@@ -110,6 +110,15 @@
       interactiveShellInit = ''
         zstyle ':completion:*' menu select
         source ${pkgs.fzf}/share/fzf/key-bindings.zsh
+
+
+        function gitcheck {
+            if [ $1 = "" ]; then
+               ~/.config/scripts/python/gitcheck.py -d ~/Git/ -f --recursive -b \'\'
+            else
+               ~/.config/scripts/python/gitcheck.py -f --recursive -b \'\' -d $1
+            fi
+        }
       '';
 
       autosuggestions.enable = true;
@@ -130,12 +139,13 @@
         gaa = "git add .";
         gcm = "git commit -m";
         gd = "git diff";
-        gitcheck = "~/.config/scripts/python/gitcheck.py -d ~/Git/ -f --recursive -b ''";
         glg = "git log --graph --oneline --decorate --all";
         gpl = "git pull";
         gps = "git push";
         gst = "git status --short";
         gf = "git fetch";
+        gw = "~/.config/scripts/bash/gitworkflow.sh";
+
         # [[SYSTEM]]
         cat = "bat -p";
         ls = "lsd";
