@@ -5,6 +5,8 @@
 { config, pkgs, lib, ... }:
 
 {
+  security.polkit.enable = true;
+
   services.fwupd.enable = true;
 
   services.udev.extraRules = ''
