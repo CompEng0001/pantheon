@@ -33,7 +33,7 @@
       default_session = {
         command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
         user = "greeter";
-        vt = 1;
+    #    vt = 1;
       };
     };
   };

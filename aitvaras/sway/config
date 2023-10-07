@@ -9,11 +9,12 @@ include colorscheme
 ### Define outputs
 #
 
-set $monitorL "DP-4"
-set $monitorC "HDMI-A-2"
-set $monitorR "DP-3"
-output $monitorL position 1080 0
-output $monitorC position 0 0 transform 270
+set $monitorC "Samsung Electric Company C43J89x H4ZN800352"
+set $monitorL "Iiyama North America PL2483H 1156281942575"
+set $monitorR "HP Inc. HP E243 CNK8220KVF"
+
+output $monitorL position 0 0 transform 270
+output $monitorC position 1080 0 transform 0
 output $monitorR position 4920 0 transform 90
 
 ### Assign Workspaces
@@ -48,8 +49,8 @@ bindsym $mod+Shift+numbersign exec $lock
 ### Output configuration
 #
 # Default wallpaper
-output $monitorL bg ~/.config/Wallpaper/wallpaper.jpg fill
-output $monitorC bg ~/.config/Wallpaper/wallpaper_1.jpg fill
+output $monitorC bg ~/.config/Wallpaper/wallpaper.jpg fill
+output $monitorL bg ~/.config/Wallpaper/wallpaper_1.jpg fill
 output $monitorR bg ~/.config/Wallpaper/wallpaper.jpg fill
 client.focused "#922EF6" "#922EF6" "#ffffff" "#BA2EF6"
 

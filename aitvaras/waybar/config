@@ -2,7 +2,7 @@
     {
         "layer": "top",
         "position": "top",
-        "output": [ "DP-4"],
+        "output": [ "Samsung Electric Company C43J89x H4ZN800352" ],
         "modules-left": ["sway/workspaces" ],
         "modules-center": [ "disk#boot", "disk#home", "disk#storage", "disk#netstorage", "memory", "cpu" ],
         "modules-right": ["idle_inhibitor", "network","clock" ],
@@ -63,55 +63,8 @@
     },
 
     {
-        "layer": "top",
-        "position": "top",
-        "output": "HDMI-A-2",
-        "modules-left": ["sway/workspaces"],
-        "modules-right": ["clock"],
-        "clock": {
-            "interval": 1,
-            "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-            "format": "{:%A, %F [%V] %H:%M:%S} "
-        },
-        "idle_inhibitor": {
-            "format": "{icon}",
-            "format-icons": {
-                "activated": "",
-                "deactivated": ""
-            }
-        }
-    },
-
-    {
         "layer": "bottom",
-        "output": [ "HDMI-A-2" ],
-        "position": "bottom",
-        "modules-right": [],
-        "modules-left": [ "custom/uptime", "custom/wttr"],
-
-        "sway/mode": {
-        },
-
-        "custom/uptime": {
-            "format": "uptime: {}",
-            "exec": "check_uptime | grep -o -P '(?<=(: )).*(?=\\|)'",
-            "interval": 60
-        },
-
-        "custom/wttr": {
-            "tooltip": false,
-            "format": "{}",
-            "exec": "curl -sf 'http://wttr.in/Canterbury?format=%l:+%C+%t'",
-            "interval": 600
-        },
-        "sway/language": {
-            "tooltip": false,
-            "format": "{short} {variant} "
-        }
-    },
-    {
-        "layer": "bottom",
-        "output": [ "DP-4" ],
+        "output": [ "Samsung Electric Company C43J89x H4ZN800352" ],
         "position": "bottom",
         "modules-right": [ "wireplumber", "temperature#acpitz", "temperature#asus", "temperature#cpu", "custom/temperatureGPU", "custom/fanGPU" ],
         "modules-center": [ "tray" ],
@@ -184,7 +137,7 @@
     {
         "layer": "top",
         "position": "top",
-        "output": "DP-3",
+        "output": [ "Iiyama North America PL2483H 1156281942575", "HP Inc. HP E243 CNK8220KVF" ],
         "modules-left": ["sway/workspaces"],
         "modules-right": ["clock"],
         "clock": {
@@ -203,7 +156,7 @@
 
     {
         "layer": "bottom",
-        "output": [ "DP-3" ],
+        "output": [ "Iiyama North America PL2483H 1156281942575", "HP Inc. HP E243 CNK8220KVF" ],
         "position": "bottom",
         "modules-right": [],
         "modules-left": [ "custom/uptime", "custom/wttr"],
@@ -230,4 +183,4 @@
     }
 ]
 
-// vim:ft=jsonc
+
