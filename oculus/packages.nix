@@ -112,6 +112,8 @@
     qt5.qtmultimedia
     qt5.qtquickcontrols
     qt5.qtquickcontrols2
+    qt5.qtwayland
+    qt6.full
     restream
     rofi
     rsync
