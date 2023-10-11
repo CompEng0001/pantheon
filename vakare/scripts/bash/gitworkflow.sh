@@ -43,9 +43,10 @@ while true; do
         --header 'cache-control: no-cache' \
         "https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/actions/runs" > ${WORKFLOW_FILE}
 
-    STATUS=$(jq -r ".workflow_runs | sort_by( .created_at ) | .[-1] | .status" ${WORKFLOW_FILE})
 
-    WORKFLOW_NAME=$(jq -r ".workflow_runs | sort_by( .name ) | .[-1] | .name" ${WORKFLOW_FILE})
+    STATUS=$(cat ${WORKFLOW_FILE} | grep -w -m 1 "status" | awk -F '[:"]' '{print $5}')
+
+    WORKFLOW_NAME=$(cat ${WORKFLOW_FILE}  | grep -w -m 1 "name" | awk -F '[:"]' '{print $5}')
 
     if [ "${STATUS}" = "in_progress" ]; then
         echo -e "Workflow: ${WORKFLOW_NAME} | state: ${STATUS}"
@@ -53,17 +54,17 @@ while true; do
         echo -e "Workflow: ${WORKFLOW_NAME} | state: ${STATUS}"
     elif [ "${STATUS}" = "completed" ]; then
         echo -e "Workflow: ${WORKFLOW_NAME} | state: ${STATUS}"
-        CONCLUSION=$(jq -r ".workflow_runs | sort_by( .created_at ) | .[-1] | .conclusion" ${WORKFLOW_FILE})
-        START_TIME=$(grep -m 1 created < ${WORKFLOW_FILE} | awk -F '"' '{print $4}')
-        END_TIME=$(grep -m 1 updated < ${WORKFLOW_FILE} | awk -F '"' '{print $4}')
+        CONCLUSION=$(cat ${WORKFLOW_FILE}  | grep -w -m 1 "conclusion" | awk -F '[:"]' '{print $5}')
+        START_TIME=$(cat ${WORKFLOW_FILE} | grep -m 1 created | awk -F '"' '{print $4}')
+        END_TIME=$(cat ${WORKFLOW_FILE} | grep -m 1 updated | awk -F '"' '{print $4}')
         TIME_TAKEN=$((($(date -d ${END_TIME} '+%s') - $(date -d ${START_TIME} '+%s'))))
         echo "Workflow conclusion: ${CONCLUSION} | Time: ${TIME_TAKEN}s"
         break;
     else
         echo -e "Workflow: ${WORKFLOW_NAME} | state: ${STATUS} | ❌"
-        CONCLUSION=$(jq -r ".workflow_runs | sort_by( .created_at ) | .[-1] | .conclusion" ${WORKFLOW_FILE})
-        START_TIME=$(grep -m 1 created < ${WORKFLOW_FILE} | awk -F '"' '{print $4}')
-        END_TIME=$(grep -m 1 updated < ${WORKFLOW_FILE} | awk -F '"' '{print $4}')
+        CONCLUSION=$(cat ${WORKFLOW_FILE}  | grep -w -m 1 "conclusion" | awk -F '[:"]' '{print $5}')
+        START_TIME=$(cat ${WORKFLOW_FILE} | grep -m 1 created  | awk -F '"' '{print $4}')
+        END_TIME=$(cat ${WORKFLOW_FILE} | grep -m 1 updated  | awk -F '"' '{print $4}')
         TIME_TAKEN=$((($(date -d ${END_TIME} '+%s') - $(date -d ${START_TIME} '+%s'))))
         echo "Workflow conclusion: ${CONCLUSION} | Time: ${TIME_TAKEN}s"
         break;
