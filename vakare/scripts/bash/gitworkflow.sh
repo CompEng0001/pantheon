@@ -54,24 +54,20 @@ while true; do
         echo -e "Workflow: ${WORKFLOW_NAME} | state: ${STATUS}"
     elif [ "${STATUS}" = "completed" ]; then
         echo -e "Workflow: ${WORKFLOW_NAME} | state: ${STATUS}"
-        CONCLUSION=$(cat ${WORKFLOW_FILE}  | grep -w -m 1 "conclusion" | awk -F '[:"]' '{print $5}')
-        START_TIME=$(cat ${WORKFLOW_FILE} | grep -m 1 created | awk -F '"' '{print $4}')
-        END_TIME=$(cat ${WORKFLOW_FILE} | grep -m 1 updated | awk -F '"' '{print $4}')
-        TIME_TAKEN=$((($(date -d ${END_TIME} '+%s') - $(date -d ${START_TIME} '+%s'))))
-        echo "Workflow conclusion: ${CONCLUSION} | Time: ${TIME_TAKEN}s"
         break;
     else
         echo -e "Workflow: ${WORKFLOW_NAME} | state: ${STATUS} | ❌"
-        CONCLUSION=$(cat ${WORKFLOW_FILE}  | grep -w -m 1 "conclusion" | awk -F '[:"]' '{print $5}')
-        START_TIME=$(cat ${WORKFLOW_FILE} | grep -m 1 created  | awk -F '"' '{print $4}')
-        END_TIME=$(cat ${WORKFLOW_FILE} | grep -m 1 updated  | awk -F '"' '{print $4}')
-        TIME_TAKEN=$((($(date -d ${END_TIME} '+%s') - $(date -d ${START_TIME} '+%s'))))
-        echo "Workflow conclusion: ${CONCLUSION} | Time: ${TIME_TAKEN}s"
         break;
     fi
 
     sleep ${SLEEP_INTERVAL}
 
 done
+
+CONCLUSION=$(cat ${WORKFLOW_FILE}  | grep -w -m 1 "conclusion" | awk -F '[:"]' '{print $5}')
+START_TIME=$(cat ${WORKFLOW_FILE} | grep -m 1 created | awk -F '"' '{print $4}')
+END_TIME=$(cat ${WORKFLOW_FILE} | grep -m 1 updated | awk -F '"' '{print $4}')
+TIME_TAKEN=$((($(date -d ${END_TIME} '+%s') - $(date -d ${START_TIME} '+%s'))))
+echo "Workflow conclusion: ${CONCLUSION} | Time: ${TIME_TAKEN}s"
 
 rm ${WORKFLOW_FILE} || true
