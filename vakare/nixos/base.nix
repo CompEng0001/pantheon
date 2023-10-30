@@ -70,7 +70,8 @@
       MOZ_ENABLE_WAYLAND = "1";
       MOZ_USE_XINPUT2 = "1";
       SDL_VIDEODRIVER = "wayland";
-      QT_QPA_PLATFORM = "wayland-egl";
+     # QT_QPA_PLATFORM = "wayland-egl"; # NVIDIA
+      QT_QPA_PLATFORM = "xcb"; # Anfroid studio on wayland
       QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
       XKB_DEFAULT_LAYOUT = "gb";
     };
@@ -119,6 +120,12 @@
                ~/.config/scripts/python/gitcheck.py -f --recursive -b \'\' -d $1
             fi
         }
+
+        function pandoc-md-pdf {
+          output=$(awk -F '.' '{print $1}' <<< $1)
+          nix-shell --pure -p pandoc -p texlive.combined.scheme-small --run "pandoc -V geometry:margin=1.2in $1 -o $output.pdf"
+        }
+
       '';
 
       autosuggestions.enable = true;
