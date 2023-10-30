@@ -43,7 +43,6 @@ while true; do
         --header 'cache-control: no-cache' \
         "https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/actions/runs" > ${WORKFLOW_FILE}
 
-
     STATUS=$(cat ${WORKFLOW_FILE} | grep -w -m 1 "status" | awk -F '[:"]' '{print $5}')
 
     WORKFLOW_NAME=$(cat ${WORKFLOW_FILE}  | grep -w -m 1 "name" | awk -F '[:"]' '{print $5}')
@@ -68,6 +67,6 @@ CONCLUSION=$(cat ${WORKFLOW_FILE}  | grep -w -m 1 "conclusion" | awk -F '[:"]' '
 START_TIME=$(cat ${WORKFLOW_FILE} | grep -m 1 created | awk -F '"' '{print $4}')
 END_TIME=$(cat ${WORKFLOW_FILE} | grep -m 1 updated | awk -F '"' '{print $4}')
 TIME_TAKEN=$((($(date -d ${END_TIME} '+%s') - $(date -d ${START_TIME} '+%s'))))
-echo "Workflow conclusion: ${CONCLUSION} | Time: ${TIME_TAKEN}s"
+echo "Workflow conclusion: ${CONCLUSION} | Time: ${TIME_TAKEN}s | DT: ${END_TIME}"
 
 rm ${WORKFLOW_FILE} || true
