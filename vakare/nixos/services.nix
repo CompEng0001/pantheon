@@ -76,9 +76,6 @@
     socketActivation = true;
   };
 
-
-  #  services.spotifyd.enable = true;
-
   services.mosquitto = {
     enable = true;
     listeners = [
