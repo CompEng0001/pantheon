@@ -67,7 +67,7 @@
         "output": [ "Samsung Electric Company C43J89x H4ZN800352" ],
         "position": "bottom",
         "modules-right": [ "wireplumber", "temperature#acpitz", "temperature#asus", "temperature#cpu", "custom/temperatureGPU", "custom/fanGPU" ],
-        "modules-center": [ "tray" ],
+        "modules-center": [ "tray","custom/mp" ],
         "modules-left": [ "custom/uptime","custom/wttr" ],
 
         "tray": {
@@ -131,6 +131,12 @@
             "format": "{node_name}: {volume:3}%",
             "format-muted": "{node_name}: ﱝ",
             "format-icons": ["", "", ""]
+
+        },
+        "custom/mp": {
+            "interval": 1,
+            "exec": "~/.config/waybar/scripts/mediaplayer.sh",
+            "format": "{}"
         }
     },
 
