@@ -35,7 +35,7 @@
 
   users.users.seb = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "libvirtd" "video" "audio" "netdev" "pulse" "pulse-access" ];
+    extraGroups = [ "wheel" "libvirtd" "video" "audio" "netdev" "pulse" "pulse-access" "adbusers" ];
     uid = 1000;
     shell = "${pkgs.zsh}/bin/zsh";
   };
@@ -52,6 +52,8 @@
 
 
   programs = {
+    adb.enable = true;
+
     zsh = {
       enable = true;
       promptInit = ''
@@ -61,6 +63,19 @@
       interactiveShellInit = ''
         zstyle ':completion:*' menu select
         source ${pkgs.fzf}/share/fzf/key-bindings.zsh
+
+        function gitcheck {
+            if [ $1 = ""]; then
+                ~/.config/scripts/python/gitcheck.py -d ~/Git/ -f --recursive -b \'\'
+            else
+                ~/.config/scripts/python/gitcheck.py -d $1 -f --recursive -b \'\'
+            fi
+        }
+
+        function pandoc-md-pdf {
+            output=$(awk -F '.' '{print$1}' <<< $1)
+            nix-shell --pure -p pandoc -p texlive.combined.scheme-small --run "pandoc -V geometry:margin=1.2in $1 -o $output.pdf"
+        }
       '';
       autosuggestions.enable = true;
       setOptions = [
@@ -83,6 +98,7 @@
         gpl = "git pull";
         gps = "git push";
         gst = "git status --short";
+        gw = "~/.config/scripts/bash/gitworkflow.sh";
         #[OTHERS]
         cat = "bat -p";
         kanban = "xdg-open https://www.github.com/CompEng0001/projects/2 &";
@@ -103,7 +119,8 @@
       MOZ_ENABLE_WAYLAND = "1";
       MOZ_USE_XINPUT2 = "1";
       SDL_VIDEODRIVER = "wayland";
-      QT_QPA_PLATFORM = "wayland-egl";
+      #QT_QPA_PLATFORM = "wayland-egl";
+      QT_QPA_PLATFORM = "xcb";
       QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
       XKB_DEFAULT_LAYOUT = "gb";
     };
@@ -134,7 +151,7 @@
       useEmbeddedBitmaps = true;
     };
     enableGhostscriptFonts = true;
-    fonts = with pkgs;
+     packages = with pkgs;
       [
         clearlyU
         fixedsys-excelsior
