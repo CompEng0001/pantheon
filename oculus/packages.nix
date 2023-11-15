@@ -43,14 +43,14 @@
     spotify-tui
     teamviewer
     virt-viewer
-    virtmanager
+    virt-manager
     # [[PHD]]
     jupyter
     libreoffice
     mysql80
     zathura
     zettlr
-    zotero
+    # zotero # https://github.com/NixOS/nixpkgs/pull/262808 insecure CVE vulnerability
     # [[PROGRAMMING]]
     cargo
     gcc
@@ -104,6 +104,7 @@
     nodejs
     ntfs3g
     pavucontrol
+    playerctl
     peek
     psmisc
     pulseaudioFull
