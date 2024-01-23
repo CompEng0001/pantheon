@@ -3,8 +3,8 @@
 }
 
 {
-  output eDP-1 mode 1920x1080@59.993999Hz position 0,0
-  output HDMI-A-1  mode 1920x1080@59.997002Hz position 1920,0
+  output eDP-1 mode 1920x1080@59.993999Hz position 1920,0
+  output HDMI-A-1  mode 1920x1080@59.997002Hz position 0,0
 }
 
 {
