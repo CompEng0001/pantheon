@@ -123,7 +123,7 @@
 
         function pandoc-md-pdf {
           output=$(awk -F '.' '{print $1}' <<< $1)
-          nix-shell --pure -p pandoc -p texlive.combined.scheme-small --run "pandoc -V geometry:margin=1.2in $1 -o $output.pdf"
+          nix-shell --pure -p pandoc -p texlive.combined.scheme-small --run "pandoc -V geometry:margin=1.7cm $1 -o $output.pdf"
         }
 
       '';
@@ -168,7 +168,20 @@
         wifi = "~/.config/scripts/bash/wifi.sh";
       };
     };
+
+    steam = {
+      enable = true;
+      remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+      dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    };
   };
+
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "steam"
+    "steam-original"
+    "steam-run"
+  ];
+
 
   fonts = {
     fontconfig = {
