@@ -44,6 +44,7 @@
     teamviewer
     virt-viewer
     virt-manager
+    vmware-horizon-client
     # [[PHD]]
     jupyter
     libreoffice
@@ -54,6 +55,8 @@
     # [[PROGRAMMING]]
     cargo
     gcc
+    clang-tools_9
+    bear
     kotlin
     lua
     powershell
@@ -95,6 +98,7 @@
     jq
     kanshi
     lsd
+    lutris
     lz4
     mdbook
     mako
@@ -106,6 +110,9 @@
     pavucontrol
     playerctl
     peek
+    playerctl
+    polkit
+    polkit_gnome
     psmisc
     pulseaudioFull
     ptouch-print
@@ -134,6 +141,7 @@
     yarn
     wf-recorder
     wget
+    wineWowPackages.waylandFull
     xclip
     zathura
     zettlr
