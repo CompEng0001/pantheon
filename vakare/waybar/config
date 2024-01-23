@@ -3,7 +3,7 @@
         "layer": "top",
         "position": "top",
         "modules-left": [ "sway/workspaces", "sway/mode" ],
-        "modules-center": [ "tray" ],
+        "modules-center": [ "tray", "disk#boot", "disk#root" ],
         "modules-right": [ "network#wifi", "network#wg", "idle_inhibitor", "clock" ],
 
         "tray": {
@@ -46,6 +46,24 @@
                 "deactivated": ""
             }
         },
+        "disk#boot": {
+            "interval": 30,
+            "states": {
+                "warning": 80,
+                "critical": 90
+            },
+            "format": "[ {path} :: {percentage_used:3}% ]",
+            "path": "/boot"
+        },
+        "disk#root": {
+            "interval": 30,
+            "states": {
+                "warning": 80,
+                "critical": 90
+            },
+            "format": "[ {path} :: {percentage_used:3}% ]",
+            "path": "/"
+        },
         "clock": {
             "interval": 1,
             "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
@@ -58,7 +76,7 @@
         "output": [ "eDP-1" ],
         "position": "bottom",
         "modules-right": [ "backlight", "memory", "cpu", "temperature#cpu", "custom/tempNvme", "custom/tempWifi", "battery" ],
-        "modules-center": [ "disk#boot", "disk#root" ],
+        "modules-center": [ ],
         "modules-left": ["custom/uptime" ,"custom/wttr"  ],
 
         "battery": {
@@ -105,24 +123,6 @@
             "critical-threshold": 70,
             "format-critical": "W:{}°C",
             "format": " W:{}°C "
-        },
-        "disk#boot": {
-            "interval": 30,
-            "states": {
-                "warning": 80,
-                "critical": 90
-            },
-            "format": "[ {path} :: {percentage_used:3}% ]",
-            "path": "/boot"
-        },
-        "disk#root": {
-            "interval": 30,
-            "states": {
-                "warning": 80,
-                "critical": 90
-            },
-            "format": "[ {path} :: {percentage_used:3}% ]",
-            "path": "/"
         },
         "memory": {
             "tooltip": false,
