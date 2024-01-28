@@ -144,6 +144,7 @@
         # [[GIT]]
         ga = "git add";
         gaa = "git add .";
+        gcma = "git commit -am";
         gcm = "git commit -m";
         gd = "git diff";
         glg = "git log --graph --oneline --decorate --all";
@@ -210,5 +211,5 @@
         wqy_microhei
       ] ++ lib.filter lib.isDerivation (lib.attrValues lohit-fonts);
   };
-  system.stateVersion = "23.05";
+  system.stateVersion = "23.11";
 }

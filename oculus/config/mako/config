@@ -1,0 +1,20 @@
+# START FLAVOURS
+## Base16 tender
+# Author: Jacobo Tabernero (https://github/com/jacoborus/tender.vim)
+#
+# You can use these variables anywhere in the mako configuration file.
+
+background-color=#91199F
+text-color=#eeeeee
+border-color=#BA2EF6
+
+[urgency=low]
+background-color=#282828
+text-color=#ffc24b
+border-color=#b3deef
+
+[urgency=high]
+background-color=#282828
+text-color=#f43753
+border-color=#b3deef
+# END FLAVOURS

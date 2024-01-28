@@ -130,6 +130,7 @@
     sshpass
     spotify
     stow
+    swayfx
     tree
     unzip
     usbutils
