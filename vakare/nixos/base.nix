@@ -43,7 +43,7 @@
   };
 
   programs.adb.enable = true;
-
+  nixpkgs.config.allowUnfree = true;
   systemd.enableUnifiedCgroupHierarchy = lib.mkForce true;
 
   systemd.tmpfiles.rules = [
@@ -152,7 +152,8 @@
         gps = "git push";
         gst = "git status --short";
         gf = "git fetch";
-        gw = "~/.config/scripts/bash/gitworkflow.sh";
+        gw = "~/.config/scripts/bash/./gitworkflow.sh";
+        gitStats = "bash ~/.config/scripts/bash/gitStats.sh";
 
         # [[SYSTEM]]
         cat = "bat -p";

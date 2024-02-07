@@ -34,6 +34,11 @@
     ];
   };
 
+  services.geoclue2 = {
+    enable = true;
+    enableWifi = true;
+  };
+
   services.greetd = {
     enable = true;
     settings = {
