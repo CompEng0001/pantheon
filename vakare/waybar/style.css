@@ -113,8 +113,8 @@ window#waybar {
 }
 
 #idle_inhibitor.activated {
-  color: @base00;
-  background-color: @base0A;
+  color: @base06;
+  background-color: rgba (255, 0, 255, 0.4);
 }
 
 #battery.charging {
