@@ -41,6 +41,7 @@ bindsym $mod+Shift+numbersign exec $lock
 
 output * bg ~/.config/Wallpaper/wallpaper.jpg fill
 
+exec_always gammastep -c ~/.config/gammastep/config
 
 client.focused "#922EF6" "#922EF6" "#ffffff" "#BA2EF6"
 # HiDPI
@@ -76,13 +77,13 @@ client.focused "#922EF6" "#922EF6" "#ffffff" "#BA2EF6"
        middle_emulation enabled
    }
 
-titlebar_border_thickness 0
+titlebar_border_thickness 0 
 titlebar_padding 1
 default_border pixel 1
 default_floating_border pixel 2
 smart_gaps on
 gaps inner 10
-gaps outer 15
+gaps outer 10
 
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
