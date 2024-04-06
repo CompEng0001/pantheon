@@ -100,6 +100,8 @@
             "tooltip": false,
             "format": "{}",
             "exec": "~/.config/waybar/weather.sh",
+            "on-click": "~/.config/waybar/weather.sh 1",
+            "exec-on-event": true,
             "interval": 600
         },
         "custom/tempNvme": {
@@ -182,6 +184,8 @@
             "tooltip": false,
             "format": "{}",
             "exec": "~/.config/waybar/weather.sh",
+            "on-click": "~/.config/waybar/weather.sh 1",
+            "exec-on-event": true,
             "interval": 600
         },
         "custom/tempNvme": {

@@ -41,7 +41,7 @@ bindsym $mod+Shift+numbersign exec $lock
 
 output * bg ~/.config/Wallpaper/wallpaper.jpg fill
 
-exec_always gammastep -c ~/.config/gammastep/config
+exec gammastep -l 51.08:1.07 -t 5700:3600 -g 0.8 -m wayland
 
 client.focused "#922EF6" "#922EF6" "#ffffff" "#BA2EF6"
 # HiDPI
