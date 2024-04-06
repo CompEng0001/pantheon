@@ -5,11 +5,21 @@
 { pkgs, ... }: {
 
   environment.systemPackages = with pkgs; [
+    # [[SYSTEM INVESTIGATION TOOLS]]
+    hw-probe
+    dmidecode
+    i2c-tools
+    mcelog
+    acpica-tools
+    mesa-demos
+    nvme-cli
 
     # [[EDITORS]]
     android-studio
     android-tools
     arduino
+    arduino-core
+    arduino-cli
     (pkgs.callPackage ./vim.nix { })
     vscode
     jetbrains.idea-community
