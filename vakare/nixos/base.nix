@@ -58,8 +58,9 @@
   ];
 
   nix = {
+    package = pkgs.nixFlakes;
     extraOptions = ''
-      experimental-features = nix-command
+      experimental-features = nix-command flakes
     '';
   };
 
@@ -125,7 +126,6 @@
           output=$(awk -F '.' '{print $1}' <<< $1)
           nix-shell --pure -p pandoc -p texlive.combined.scheme-small --run "pandoc -V geometry:margin=1.7cm $1 -o $output.pdf"
         }
-
       '';
 
       autosuggestions.enable = true;
@@ -144,7 +144,7 @@
         # [[GIT]]
         ga = "git add";
         gaa = "git add .";
-        gcma = "git commit -am";
+        gcma = "git commit --amend";
         gcm = "git commit -m";
         gd = "git diff";
         glg = "git log --graph --oneline --decorate --all";
@@ -156,6 +156,7 @@
         gitStats = "bash ~/.config/scripts/bash/gitStats.sh";
 
         # [[SYSTEM]]
+        arduinoCli = "bash ~/.config/scripts/bash/arduinoCli.sh";
         cat = "bat -p";
         ls = "lsd";
         kanban = "xdg-open https://github.com/users/CompEng0001/projects/2 &";
