@@ -16,7 +16,7 @@
           /home/seb/Git/personal/pantheon/vakare/nixos/hardware-configuration.nix
           /home/seb/Git/personal/pantheon/vakare/nixos/base.nix
           /home/seb/Git/personal/pantheon/vakare/nixos/services.nix
-          /home/seb/Git/personal/pantheon/oculus/packagees.nix
+          /home/seb/Git/personal/pantheon/oculus/packages.nix
           /home/seb/Git/personal/pantheon/oculus/rstudio.nix
           /home/seb/Git/personal/pantheon/oculus/vim.nix
           /home/seb/Git/personal/pantheon/oculus/vm.nix
