@@ -81,15 +81,15 @@
     socketActivation = true;
   };
 
-  services.mosquitto = {
-    enable = true;
-    listeners = [
-      {
-        port = 1883;
-      }
+#  services.mosquitto = {
+#    enable = true;
+#    listeners = [
+#      {
+#        port = 1883;
+#      }
 
-    ];
-  };
+#   ];
+#  };
 
   services.mysql = {
     enable = true;
