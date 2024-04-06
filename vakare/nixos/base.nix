@@ -192,7 +192,7 @@
       useEmbeddedBitmaps = true;
     };
     enableGhostscriptFonts = true;
-    fonts = with pkgs;
+    packages = with pkgs;
       [
         clearlyU
         fixedsys-excelsior
