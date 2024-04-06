@@ -31,7 +31,6 @@
     speedtest-cli
     # [[OTHER]]
     flavours
-    spotify-tui
     teamviewer
     virt-viewer
     virt-manager
