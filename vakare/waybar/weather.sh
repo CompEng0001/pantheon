@@ -22,6 +22,7 @@ write_location_to_config() {
     echo "$1" > ${CONFIG_FILE}
 }
 
+
 # If no location argument is provided, read from config file or prompt user
 if [ -z "$1" ]; then
     if [ -n ${CONFIG_FILE} ]; then

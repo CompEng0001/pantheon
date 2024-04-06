@@ -77,7 +77,7 @@ client.focused "#922EF6" "#922EF6" "#ffffff" "#BA2EF6"
        middle_emulation enabled
    }
 
-titlebar_border_thickness 0 
+titlebar_border_thickness 0
 titlebar_padding 1
 default_border pixel 1
 default_floating_border pixel 2
