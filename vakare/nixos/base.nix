@@ -144,6 +144,7 @@
         # [[GIT]]
         ga = "git add";
         gaa = "git add .";
+        gbb = "~/.config/scripts/bash/./better-branch.sh";
         gcma = "git commit --amend";
         gcm = "git commit -m";
         gd = "git diff";
