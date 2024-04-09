@@ -165,6 +165,7 @@
         # [[SYSTEM]]
         arduinoCli = "bash ~/.config/scripts/bash/arduinoCli.sh";
         cat = "bat -p";
+        deploy = "sudo nixos-rebuild --flake /home/seb/Git/personal/pantheon/.#vakare switch --impure";
         ls = "lsd";
         kanban = "xdg-open https://github.com/users/CompEng0001/projects/2 &";
         mdbook-pwd = "mdbook serve . -p 8000 -n 127.0.0.1";
