@@ -1,1 +1,0 @@
-../../oculus/vscode-packages.nix

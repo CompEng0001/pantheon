@@ -11,34 +11,25 @@
       vakare = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./vakare/base.nix
-          ./vakare/hardware.nix
-          ./vakare/services.nix
-          ./oculus/packages.nix
-          ./oculus/vm.nix
-          ./oculus/vim.nix
+          ./hosts/vakare
+          ./hardware/vakare
+          ./nexus/modules
         ];
       };
       aitvaras = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./aitvaras/base.nix
-          ./aitvaras/hardware.nix
-          ./aitvaras/services.nix
-          ./oculus/packages.nix
-          ./oculus/vm.nix
-          ./oculus/vim.nix
+          ./hosts/aitvaras
+          ./hardware/aitvaras
+          ./nexus/modules
         ];
       };
       minerva = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./minerva/base.nix
-          ./minerva/hardware.nix
-          ./minerva/services.nix
-          ./oculus/packages.nix
-          ./oculus/vm.nix
-          ./oculus/vim.nix
+          ./hosts/minerva
+          ./hardware/minerva
+          ./nexus/modules
         ];
       };
     };

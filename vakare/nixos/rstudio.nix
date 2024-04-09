@@ -1,1 +1,0 @@
-../../oculus/rstudio.nix
