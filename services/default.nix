@@ -1,9 +1,9 @@
 { config, pkgs, lib, ... }:
 
 {
-  security.polkit.enale = true;
+  security.polkit.enable = true;
 
-  services.fwupd.enale = true;
+  services.fwupd.enable = true;
 
   programs.sway = {
     enable = true;
