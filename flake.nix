@@ -14,6 +14,7 @@
           ./hosts/vakare
           ./hardware/vakare
           ./nexus/modules
+          ./services
         ];
       };
       aitvaras = nixpkgs.lib.nixosSystem {
@@ -22,6 +23,7 @@
           ./hosts/aitvaras
           ./hardware/aitvaras
           ./nexus/modules
+          ./services
         ];
       };
       minerva = nixpkgs.lib.nixosSystem {
@@ -30,6 +32,7 @@
           ./hosts/minerva
           ./hardware/minerva
           ./nexus/modules
+          ./services
         ];
       };
     };

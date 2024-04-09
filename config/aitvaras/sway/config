@@ -10,7 +10,7 @@ include colorscheme
 #
 
 set $monitorC "Samsung Electric Company C43J89x H4ZN800352"
-set $monitorL "Iiyama North America PL2483H 1156281942575"
+set $monitorL "HP Inc. HP E243 CNK91609CN"
 set $monitorR "HP Inc. HP E243 CNK8220KVF"
 
 output $monitorL position 0 0 transform 270
@@ -76,8 +76,8 @@ client.focused "#922EF6" "#922EF6" "#ffffff" "#BA2EF6"
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
 
-titlebar_border_thickness 0
-titlebar_padding 0
+#titlebar_border_thickness 0
+#titlebar_padding 0
 default_border pixel 1
 default_floating_border pixel 2
 smart_gaps on

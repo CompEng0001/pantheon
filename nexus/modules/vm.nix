@@ -28,6 +28,7 @@
         ovmf.enable = true;
         ovmf.packages = [ pkgs.OVMFFull.fd ];
       };
+      podman.enable = true;
     };
     spiceUSBRedirection.enable = true;
 

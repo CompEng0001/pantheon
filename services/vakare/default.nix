@@ -5,10 +5,6 @@
 { config, pkgs, lib, ... }:
 
 {
-  security.polkit.enable = true;
-
-  services.fwupd.enable = true;
-
   services.udev.extraRules = ''
     ACTION=="add",
     SUBSYSTEM=="backlight",
@@ -17,37 +13,9 @@
     RUN+="${pkgs.coreutils}/bin/chmod a+w /sys/class/backlight/intel_backlight/brightness"
   '';
 
-  programs.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true;
-    extraPackages = with pkgs; [
-      grim
-      kooha
-      slurp
-      rofi-wayland
-      alacritty
-      waybar
-      swayidle
-      swaylock-effects
-      wl-clipboard
-      swaybg
-    ];
-  };
-
   services.geoclue2 = {
     enable = true;
     enableWifi = true;
-  };
-
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
-        user = "greeter";
-        vt = 1;
-      };
-    };
   };
 
   systemd.user.services.kanshi = {
@@ -81,28 +49,4 @@
     socketActivation = true;
   };
 
-#  services.mosquitto = {
-#    enable = true;
-#    listeners = [
-#      {
-#        port = 1883;
-#      }
-
-#   ];
-#  };
-
-  services.mysql = {
-    enable = true;
-    user = "seb";
-    package = pkgs.mysql80;
-    settings.mysqld = {
-      port = 1337;
-      secure_file_priv = "";
-      local_infile = 1;
-      autocommit = 0;
-    };
-    settings.mysql = {
-      local_infile = 1;
-    };
-  };
 }

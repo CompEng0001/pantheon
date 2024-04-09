@@ -1,13 +1,9 @@
 { config, pkgs, lib, ... }:
 
 {
-  virtualisation = {
-    libvirtd = {
-      enable = true;
-      qemu.package = pkgs.qemu_kvm;
-    };
-    podman.enable = true;
-  };
+  security.polkit.enale = true;
+
+  services.fwupd.enale = true;
 
   programs.sway = {
     enable = true;
@@ -33,13 +29,16 @@
       default_session = {
         command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
         user = "greeter";
-    #    vt = 1;
+        vt = 1;
       };
     };
   };
 
-  services.dbus.packages = [ pkgs.mako ];
+  services.udev.packages = [
+    pkgs.android-udev-rules
+  ];
 
+  services.dbus.packages = [ pkgs.mako ];
 
   services.pipewire = {
     enable = true;
