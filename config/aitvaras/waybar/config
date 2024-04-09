@@ -143,7 +143,7 @@
     {
         "layer": "top",
         "position": "top",
-        "output": [ "Iiyama North America PL2483H 1156281942575", "HP Inc. HP E243 CNK8220KVF" ],
+        "output": [ "HP Inc. HP E243 CNK91609CN", "HP Inc. HP E243 CNK8220KVF" ],
         "modules-left": ["sway/workspaces"],
         "modules-right": ["clock"],
         "clock": {
@@ -162,7 +162,7 @@
 
     {
         "layer": "bottom",
-        "output": [ "Iiyama North America PL2483H 1156281942575", "HP Inc. HP E243 CNK8220KVF" ],
+        "output": [ "HP Inc. HP E243 CNK91609CN", "HP Inc. HP E243 CNK8220KVF" ],
         "position": "bottom",
         "modules-right": [],
         "modules-left": [ "custom/uptime", "custom/wttr"],
