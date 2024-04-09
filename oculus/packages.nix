@@ -27,7 +27,6 @@
     # [[INTERNET]]
     brave
     chromium
-    firefox
     nmap
     speedtest-cli
     # [[OTHER]]
@@ -60,8 +59,6 @@
     # [[Terminal]]
     alacritty
     starship
-    # [[GAMES]]
-    warzone2100
     # [[TOOLS]]
     alsa-utils
     apparix
