@@ -9,6 +9,7 @@
   imports = [
     ../../hardware/aitvaras
     ../../nexus/modules
+    ../../services/aitvaras
   ];
 
   boot = {
