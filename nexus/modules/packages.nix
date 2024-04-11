@@ -43,6 +43,7 @@
     zettlr
     # zotero # https://github.com/NixOS/nixpkgs/pull/262808 insecure CVE vulnerability
     # [[PROGRAMMING]]
+    bats
     cargo
     gcc
     clang-tools_9
