@@ -156,6 +156,7 @@
         gd = "git diff";
         glg = "git log --graph --oneline --decorate --all";
         gpl = "git pull";
+        gtp = "~/.config/scripts/bash/gitTagging.sh";
         gps = "git push";
         gst = "git status --short";
         gf = "git fetch";
