@@ -1,4 +1,4 @@
-# /home/seb/Git/personal/pantheon/flake.nix
+# /home/dev/Git/personal/pantheon/flake.nix
 {
   description = "NixOS configuration for multiple machines";
 
@@ -8,13 +8,13 @@
 
   outputs = { self, nixpkgs }: {
     nixosConfigurations = {
-      vakare = nixpkgs.lib.nixosSystem {
+      scirocco = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./hosts/vakare
-          ./hardware/vakare
+          ./hosts/scirocco
+          ./hardware/scirocco
+          ./services/scirocco
           ./nexus/modules
-          ./services
         ];
       };
       aitvaras = nixpkgs.lib.nixosSystem {

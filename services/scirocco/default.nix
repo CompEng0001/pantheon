@@ -17,7 +17,11 @@
     enable = true;
     enableWifi = true;
   };
-
+  
+  services.xserver.xkb = {
+	layout = "gb";
+	variant = "";
+  };
   systemd.user.services.kanshi = {
     description = "Kanshi output autoconfig ";
     wantedBy = [ "graphical-session.target" ];

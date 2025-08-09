@@ -6,9 +6,9 @@
 
 {
   imports = [
-    ../../hardware/vakare
-    ../../nexus/modules
-    ../../services/vakare
+    ../hardware/scirocco
+    ../nexus/modules
+    ../services/scirocco
   ];
 
   boot = {
@@ -20,18 +20,11 @@
   time.timeZone = "Europe/London";
   networking = {
     hostName =
-      "vakare"; # Lithuanian Goddess of the evening star
+      "scirocco"; # east wind Mediterranean
     useNetworkd = true;
     interfaces.wlan0.useDHCP = true;
     firewall.enable = false;
     wireless.iwd.enable = true;
-    interfaces.enp2s0 = {
-      useDHCP = false;
-      ipv4.addresses = [{
-        address = "192.168.0.210";
-        prefixLength = 24;
-      }];
-    };
   };
 
   i18n.defaultLocale = "en_GB.UTF-8";
@@ -49,6 +42,9 @@
   };
 
   programs.adb.enable = true;
+  programs.niri.enable = true;
+  programs.git.enable = true;
+  programs.firefox.enable = true;
   nixpkgs.config.allowUnfree = true;
   systemd.enableUnifiedCgroupHierarchy = lib.mkForce true;
 
@@ -59,8 +55,8 @@
     "d /mnt/usb-left/ 0755 root root"
     "d /mnt/usbc/ 0755 root root"
     "d /mnt/microSD/ 0755 root root"
-    "d /home/seb/Music 0755 seb users"
-    "d /home/seb/Git 0755 seb users"
+    "d /home/dev/Music 0755 seb users"
+    "d /home/dev/Git 0755 seb users"
   ];
 
   nix = {
@@ -73,7 +69,6 @@
   environment = {
     sessionVariables = {
       XDG_SESSION_TYPE = "wayland";
-      XDG_CURRENT_DESKTOP = "sway";
       MOZ_ENABLE_WAYLAND = "1";
       MOZ_USE_XINPUT2 = "1";
       SDL_VIDEODRIVER = "wayland";
@@ -118,20 +113,6 @@
       interactiveShellInit = ''
         zstyle ':completion:*' menu select
         source ${pkgs.fzf}/share/fzf/key-bindings.zsh
-
-
-        function gitcheck {
-            if [ $1 = "" ]; then
-               ~/.config/scripts/python/gitcheck.py -d ~/Git/ -f --recursive -b \'\'
-            else
-               ~/.config/scripts/python/gitcheck.py -f --recursive -b \'\' -d $1
-            fi
-        }
-
-        function pandoc-md-pdf {
-          output=$(awk -F '.' '{print $1}' <<< $1)
-          nix-shell --pure -p pandoc -p texlive.combined.scheme-small --run "pandoc -V geometry:margin=1.7cm $1 -o $output.pdf"
-        }
       '';
 
       autosuggestions.enable = true;
@@ -222,5 +203,5 @@
         wqy_microhei
       ] ++ lib.filter lib.isDerivation (lib.attrValues lohit-fonts);
   };
-  system.stateVersion = "23.11";
+  system.stateVersion = "25.05";
 }
