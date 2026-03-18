@@ -1,0 +1,18 @@
+/* === Profile identifier badge (text) === */
+#nav-bar::after{
+  content: "PhD";
+  display: inline-flex;
+  align-items: center;
+
+  margin-inline: 8px 6px;
+  padding: 2px 6px;
+  border-radius: 6px;
+
+  font-size: 11px;
+  font-weight: 600;
+  opacity: 0.9;
+
+  /* uses theme-ish colours */
+  /*background: color-mix(in srgb, currentColor 12%, transparent);*/
+}
+

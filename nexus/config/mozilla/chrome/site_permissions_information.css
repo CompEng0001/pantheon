@@ -1,0 +1,32 @@
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+
+/* =========================================================
+   Force the notification anchor area to behave at bottom URL bar
+   ========================================================= */
+
+#notification-popup-box {
+  position: relative !important;
+  z-index: 2147483647 !important;
+}
+
+/* =========================================================
+   Try to pull the popup upward from its anchor
+   ========================================================= */
+
+panel[type="arrow"],
+#notification-popup,
+.popup-notification-panel {
+  margin-top: -220px !important;
+}
+
+/* Move the arrow panel contents upward too */
+panel[type="arrow"] > .panel-arrowcontainer,
+#notification-popup > .panel-arrowcontainer,
+.popup-notification-panel > .panel-arrowcontainer {
+  margin-top: -220px !important;
+}
+
+/* Optional: hide the arrow if it looks detached after shifting */
+.panel-arrowbox {
+  display: none !important;
+}

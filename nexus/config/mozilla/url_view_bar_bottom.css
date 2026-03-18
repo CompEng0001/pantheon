@@ -1,0 +1,31 @@
+/* Make the urlbar act as the positioning anchor */
+#urlbar {
+  position: relative !important;
+}
+
+/* Place the view ABOVE the urlbar */
+#urlbar[open] .urlbarView {
+  position: absolute !important;
+
+  top: auto !important;
+  bottom: 100% !important;          /* <= key: attach above */
+  left: 0 !important;
+  right: 0 !important;
+
+  width: auto !important;
+  margin: 0 !important;
+
+  border-width: 1px 0 !important;
+  background-color: var(--toolbar-field-focus-background-color, inherit);
+
+  /* Optional: if you want it to “grow upward” visually */
+  display: flex !important;
+  flex-direction: column-reverse !important;
+}
+
+/* Keep inner rows consistent if you reverse */
+#urlbar[open] .urlbarView-body-inner {
+  display: flex !important;
+  flex-direction: column-reverse !important;
+}
+
