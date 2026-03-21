@@ -8,7 +8,7 @@
   environment.systemPackages = with pkgs; [
     android-studio
     bridge-utils
-    gnome.adwaita-icon-theme
+    adwaita-icon-theme
     libvirt
     qemu_kvm
     spice

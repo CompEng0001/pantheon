@@ -6,9 +6,9 @@
 
 {
   imports = [
-    ../hardware/scirocco
-    ../nexus/modules
-    ../services/scirocco
+    ../../hardware/scirocco
+    ../../nexus/modules
+    ../../services/scirocco
   ];
 
   boot = {
@@ -33,7 +33,7 @@
     keyMap = "uk";
   };
 
-  users.users.seb = {
+  users.users.dev = {
     isNormalUser = true;
     extraGroups =
       [ "wheel" "libvirtd" "video" "audio" "netdev" "pulse" "pulse-access" "adbusers" ];
@@ -42,11 +42,26 @@
   };
 
   programs.adb.enable = true;
-  programs.niri.enable = true;
+  programs.sway = {
+    enable = true;
+    wrapperFeatures.gtk = true;
+    extraPackages = with pkgs; [
+      alacritty
+      firefox-devedition
+      grim
+      kanshi
+      rofi-wayland
+      slurp
+      swaybg
+      swayidle
+      swaylock-effects
+      waybar
+      wl-clipboard
+      wlr-randr
+    ];
+  };
   programs.git.enable = true;
-  programs.firefox.enable = true;
   nixpkgs.config.allowUnfree = true;
-  systemd.enableUnifiedCgroupHierarchy = lib.mkForce true;
 
   systemd.tmpfiles.rules = [
     "d /mnt/ 0755 root root"
@@ -59,11 +74,9 @@
     "d /home/dev/Git 0755 seb users"
   ];
 
-  nix = {
-    package = pkgs.nixFlakes;
-    extraOptions = ''
-      experimental-features = nix-command flakes
-    '';
+  nix.settings = {
+      auto-optimise-store = true;
+      experimental-features = [ "nix-command" "flakes" ];
   };
 
   environment = {
@@ -100,22 +113,24 @@
     extraPortals = with pkgs; [ xdg-desktop-portal-wlr xdg-desktop-portal-gtk ];
   };
 
-
-
   programs = {
     zsh = {
       enable = true;
+      autosuggestions.enable = true;
       promptInit = ''
         eval "$(${pkgs.starship}/bin/starship init zsh)"
         ${pkgs.any-nix-shell}/bin/any-nix-shell zsh --info-right | source /dev/stdin
+
+        # Custom Aliases
+        if [ -f ~/.config/zsh/aliases.zsh ]; then
+          source ~/.config/zsh/aliases.zsh
+        fi
       '';
 
       interactiveShellInit = ''
         zstyle ':completion:*' menu select
         source ${pkgs.fzf}/share/fzf/key-bindings.zsh
       '';
-
-      autosuggestions.enable = true;
 
       setOptions = [
         "auto_cd"
@@ -126,40 +141,6 @@
         "hist_no_store"
         "hist_reduce_blanks"
       ];
-
-      shellAliases = {
-        # [[GIT]]
-        ga = "git add";
-        gaa = "git add .";
-        gbb = "~/.config/scripts/bash/./better-branch.sh";
-        gcma = "git commit --amend";
-        gcm = "git commit -m";
-        gd = "git diff";
-        glg = "git log --graph --oneline --decorate --all";
-        gpl = "git pull";
-        gtp = "~/.config/scripts/bash/gitTagging.sh";
-        gps = "git push";
-        gst = "git status --short";
-        gf = "git fetch";
-        gw = "~/.config/scripts/bash/./gitworkflow.sh";
-        gitStats = "bash ~/.config/scripts/bash/gitStats.sh";
-
-        # [[SYSTEM]]
-        arduinoCli = "bash ~/.config/scripts/bash/arduinoCli.sh";
-        cat = "bat -p";
-        deploy = "sudo nixos-rebuild --flake /home/seb/Git/personal/pantheon/.#vakare switch --impure";
-        ls = "lsd";
-        kanban = "xdg-open https://github.com/users/CompEng0001/projects/2 &";
-        mdbook-pwd = "mdbook serve . -p 8000 -n 127.0.0.1";
-        passcode = "~/.OTP/passcodes.py";
-        phd = "cd ~/Git/CCCU/PhD";
-        pantheon = "cd ~/Git/personal/pantheon";
-        upgrade = "sudo nixos-rebuild switch -Q -k --upgrade |& nom";
-        rebuild = "sudo nixos-rebuild switch -Q -k |& nom";
-        remarkableHome = "restream -p -s remarkable-Home";
-        remarkablePhone = "restream -p -s remarkable-Phone";
-        wifi = "~/.config/scripts/bash/wifi.sh";
-      };
     };
 
     steam = {
@@ -174,7 +155,6 @@
     "steam-original"
     "steam-run"
   ];
-
 
   fonts = {
     fontconfig = {
@@ -193,7 +173,6 @@
         freefont_ttf
         google-fonts
         junicode
-        nerdfonts
         siji
         tewi-font
         tt2020
@@ -201,7 +180,7 @@
         unifont
         vistafonts
         wqy_microhei
-      ] ++ lib.filter lib.isDerivation (lib.attrValues lohit-fonts);
+      ] ++ lib.filter lib.isDerivation (lib.attrValues lohit-fonts ++ lib.attrValues nerd-fonts);
   };
   system.stateVersion = "25.05";
 }

@@ -29,26 +29,25 @@
     firefox-devedition
     nmap
     speedtest-cli
-    
     # [[OTHER]]
     flavours
     teamviewer
     virt-viewer
     virt-manager
-    
-    # [[PHD]]
+    #omissa-horizon-client
+
+# [[PHD]]
     jupyter
     libreoffice
     mysql80
     zathura
     zettlr
     # zotero # https://github.com/NixOS/nixpkgs/pull/262808 insecure CVE vulnerability
-    
     # [[PROGRAMMING]]
     bats
     cargo
     gcc
-    clang-tools
+    #clang-tools_9
     bear
     kotlin
     lua
@@ -56,15 +55,15 @@
     python3
     #(pkgs.callPackage ./rstudio.nix { })
     rustc
-    
+
     # [[SOCIAL]]
     discord
     signal-desktop
-    
+
     # [[Terminal]]
     alacritty
     starship
-    
+
     # [[TOOLS]]
     alsa-utils
     apparix
@@ -78,6 +77,7 @@
     dos2unix
     fastfetch
     feh
+    ffmpeg
     file
     flameshot
     fzf
@@ -103,6 +103,7 @@
     mpv
     multilockscreen    
     nodejs
+    nodejs.libv8
     ntfs3g
     pavucontrol
     peek
@@ -112,7 +113,12 @@
     psmisc
     ptouch-print
     pulseaudioFull
-    #qemu_full
+    qt5.qtgraphicaleffects
+    qt5.qtmultimedia
+    qt5.qtquickcontrols
+    qt5.qtquickcontrols2
+    qt5.qtwayland
+    qt6.full
     restream
     rofi
     rsync
@@ -123,6 +129,10 @@
     sshpass
     stow
     swayfx
+    swaybg
+    swayidle
+    swaylock-effects
+    swww
     tree
     unzip
     usbutils
@@ -130,6 +140,9 @@
     vivid
     vlc
     volumeicon
+    wl-clipboard
+    wl-screenrec
+    wlr-randr
     wf-recorder
     wget
     yarn
@@ -137,7 +150,6 @@
     zellij
     zettlr
     zip
-    
     # [[NIXOS-TOOLS]]
     nixpkgs-fmt
     nix-output-monitor

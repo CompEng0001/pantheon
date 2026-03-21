@@ -3,6 +3,6 @@
 {
     imports = [
         ./packages.nix
-        ./vm.nix
+        #./vm.nix
     ];
 }

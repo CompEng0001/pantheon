@@ -5,13 +5,13 @@
 { config, pkgs, lib, ... }:
 
 {
-  services.udev.extraRules = ''
-    ACTION=="add",
-    SUBSYSTEM=="backlight",
-    KERNEL=="intel_backlight",
-    MODE="0666",
-    RUN+="${pkgs.coreutils}/bin/chmod a+w /sys/class/backlight/intel_backlight/brightness"
-  '';
+#  services.udev.extraRules = ''
+#    ACTION=="add",
+#    SUBSYSTEM=="backlight",
+#    KERNEL=="intel_backlight",
+#    MODE="0666",
+#    RUN+="${pkgs.coreutils}/bin/chmod a+w /sys/class/backlight/intel_backlight/brightness"
+#  '';
 
   services.geoclue2 = {
     enable = true;
@@ -37,9 +37,17 @@
     };
   };
 
-  services.udev.packages = [
-    pkgs.android-udev-rules
-  ];
+  services.greetd ={
+    enable = true;
+    settings = {
+      default_session = {
+	command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd sway";
+	user = "greeter";
+	vt = "1";
+      };
+    };
+  };
+
 
   services.dbus.packages = [ pkgs.mako ];
 

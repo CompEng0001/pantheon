@@ -34,9 +34,6 @@
     };
   };
 
-  services.udev.packages = [
-    pkgs.android-udev-rules
-  ];
 
   services.dbus.packages = [ pkgs.mako ];
 
@@ -50,20 +47,5 @@
     socketActivation = true;
   };
 
-  services.mysql = {
-    enable = true;
-    user = "seb";
-    package = pkgs.mysql80;
 
-    settings.mysqld = {
-      port = 1337;
-      secure_file_priv = "";
-      local_infile = 1;
-      autocommit = 0;
-    };
-
-    settings.mysql = {
-      local_infile = 1;
-    };
-  };
 }
