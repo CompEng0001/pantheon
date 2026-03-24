@@ -2,21 +2,38 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, lib, pkgs, modulesPath, ... }:
 
 {
   #imports =
-   # [ # Include the results of the hardware scan.
-   #   ./hardware-configuration.nix
-   # ];
+  # [ # Include the results of the hardware scan.
+  #   ./hardware-configuration.nix
+  # ];
 
   # Bootloader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/nvme0n1";
+  boot.loader.systemd-boot.enable = true;
   boot.loader.grub.useOSProber = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.initrd.luks.devices."luks-e37ce0b6-2e91-465f-8fb9-3884f22e9edb".device = "/dev/disk/by-uuid/e37ce0b6-2e91-465f-8fb9-3884f22e9edb";
+
+
+  imports =
+    [
+      (modulesPath + "/installer/scan/not-detected.nix")
+    ];
+
+  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
+  boot.initrd.kernelModules = [ ];
+  boot.kernelModules = [ "kvm-intel" ];
+  boot.extraModulePackages = [ ];
+
+  swapDevices = [ ];
+
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   networking.hostName = "boreas";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -53,19 +70,15 @@
     experimental-features = [ "nix-command" "flakes" ];
   };
 
-  # Enable the X11 windowing system.
-  # You can disable this if you're only using the Wayland session.
-  services.xserver.enable = true;
-
   services.greetd = {
-   enable = true;
-   settings = {
-   default_session = {
-     command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd niri-session";
-     user = "greeter";
-     vt = 2;
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd niri-session";
+        user = "greeter";
+        vt = 2;
+      };
     };
-   };
   };
 
   services.dbus.packages = [ pkgs.mako ];
@@ -111,85 +124,83 @@
   # Install firefox.
   programs.firefox.enable = true;
   programs.niri.enable = true;
-  
   programs = {
     
-
     ssh = {
-        startAgent = false;
+      startAgent = false;
     };
-    
+
     bash = {
-       completion.enable = true;
+      completion.enable = true;
     };
 
     starship = {
-        enable = true;
-        settings = {
-          command_timeout = 2000;
-          nix_shell.disabled = false;
-        };
+      enable = true;
+      settings = {
+        command_timeout = 2000;
+        nix_shell.disabled = false;
+      };
     };
 
     zsh = {
-        enable = true;
-        promptInit = ''
-          eval "$(${pkgs.starship}/bin/starship init zsh)"
-          ${pkgs.any-nix-shell}/bin/any-nix-shell zsh --info-right | source /dev/stdin
-        '';
-        interactiveShellInit = ''
-          zstyle ':completion:*' menu select
-          source ${pkgs.fzf}/share/fzf/key-bindings.zsh
-        '';
-        shellAliases = {
-          ls = "lsd";
-          ip = "ip --color=auto";
-          tree = "broot";
-          ps = "procs";
-          ack = "ag";
-          less = "peep";
-        };
-        setOptions = [
-          "auto_cd"
-          "auto_pushd"
-          "correct"
-          "hist_fcntl_lock"
-          "hist_ignore_dups"
-          "hist_no_store"
-          "hist_reduce_blanks"
-        ];
+      enable = true;
+      promptInit = ''
+        eval "$(${pkgs.starship}/bin/starship init zsh)"
+        ${pkgs.any-nix-shell}/bin/any-nix-shell zsh --info-right | source /dev/stdin
+      '';
+      interactiveShellInit = ''
+        zstyle ':completion:*' menu select
+        source ${pkgs.fzf}/share/fzf/key-bindings.zsh
+      '';
+      shellAliases = {
+        ls = "lsd";
+        ip = "ip --color=auto";
+        tree = "broot";
+        ps = "procs";
+        ack = "ag";
+        less = "peep";
       };
-  };  
+      setOptions = [
+        "auto_cd"
+        "auto_pushd"
+        "correct"
+        "hist_fcntl_lock"
+        "hist_ignore_dups"
+        "hist_no_store"
+        "hist_reduce_blanks"
+      ];
+    };
+  };
 
   xdg.portal = {
-   enable = true;
-   extraPortals = [
-    pkgs.xdg-desktop-portal-wlr
-    pkgs.xdg-desktop-portal-gtk
-   ];
+    enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-wlr
+      pkgs.xdg-desktop-portal-gtk
+    ];
   };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   environment.sessionVariables = {
-   NIXOS_OZONE_WL = "1";
-   XDG_SESSION_TYPE = "wayland";
-   MOZ_ENABLE_WAYLAND = "1";
-   MOZ_USE_XINPUT2 = "1";
-   SDL_VIDEODRIVER = "wayland";
-   QT_QPA_PLATFORM = "wayland";
-   QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-   XKB_DEFAULT_LAYOUT = "gb";
+    NIXOS_OZONE_WL = "1";
+    XDG_SESSION_TYPE = "wayland";
+    MOZ_ENABLE_WAYLAND = "1";
+    MOZ_USE_XINPUT2 = "1";
+    SDL_VIDEODRIVER = "wayland";
+    QT_QPA_PLATFORM = "wayland";
+    QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+    XKB_DEFAULT_LAYOUT = "gb";
   };
   environment.shellInit = ''
-        export GPG_AGENT_INFO=$HOME/.gnupg/S.gpg-agent
-        export LIBVIRT_DEFAULT_URI=qemu:///system
-        export GROFF_NO_SGR=1
-      '';
-  
+    export GPG_AGENT_INFO=$HOME/.gnupg/S.gpg-agent
+    export LIBVIRT_DEFAULT_URI=qemu:///system
+    export GROFF_NO_SGR=1
+  '';
+
   environment.shells = [ pkgs.zsh ];
-  
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -213,7 +224,7 @@
     man-pages
     man-pages-posix
     nix-output-monitor
-    nix-update 
+    nix-update
     nixfmt
     nixpkgs-fmt
     onefetch
@@ -227,7 +238,7 @@
     ripgrep
     rofi
     shellcheck
-    signal-desktop-bin
+    signal-desktop
     slurp
     starship
     stow
@@ -257,39 +268,39 @@
     zip
     zstd
   ];
-  
+
   fonts = {
-       fontconfig = {
-         enable = true;
-         useEmbeddedBitmaps = true;
-         localConf = ''
-           <?xml version='1.0'?>
-           <!DOCTYPE fontconfig SYSTEM 'urn:fontconfig:fonts.dtd'>
-           <fontconfig>
-           <alias binding="same">
-           <family>MxPlus IBM VGA 8x16</family>
-           <prefer>
-             <family>MxPlus IBM VGA 8x16</family>
-             <family>DejaVuSansM Nerd Font</family>
-           </prefer>
-           </alias>
-           </fontconfig>
-         '';
-       };
-       enableGhostscriptFonts = true;
-       packages = with pkgs; [
-         unscii
-         corefonts
-         cozette
-         google-fonts
-         junicode
-         siji
-         tt2020
-         ultimate-oldschool-pc-font-pack
-         unifont
-         vista-fonts
-       ] ++ lib.filter lib.isDerivation (lib.attrValues nerd-fonts);
-     };
+    fontconfig = {
+      enable = true;
+      useEmbeddedBitmaps = true;
+      localConf = ''
+        <?xml version='1.0'?>
+        <!DOCTYPE fontconfig SYSTEM 'urn:fontconfig:fonts.dtd'>
+        <fontconfig>
+        <alias binding="same">
+        <family>MxPlus IBM VGA 8x16</family>
+        <prefer>
+          <family>MxPlus IBM VGA 8x16</family>
+          <family>DejaVuSansM Nerd Font</family>
+        </prefer>
+        </alias>
+        </fontconfig>
+      '';
+    };
+    enableGhostscriptFonts = true;
+    packages = with pkgs; [
+      unscii
+      corefonts
+      cozette
+      google-fonts
+      junicode
+      siji
+      tt2020
+      ultimate-oldschool-pc-font-pack
+      unifont
+      vista-fonts
+    ] ++ lib.filter lib.isDerivation (lib.attrValues nerd-fonts);
+  };
 
 
   # Some programs need SUID wrappers, can be configured further or are

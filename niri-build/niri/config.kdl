@@ -333,9 +333,9 @@ layer-rule {
 //spawn-at-startup "noctalia-shell"
 spawn-at-startup "systemctl" "--user" "import-environment" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP"
 spawn-at-startup "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP=niri"
-spawn-sh-at-startup "swaybg -o DP-1 -i ~/.config/wallpaper/wallpaper_1.jpg"
-spawn-sh-at-startup "swaybg -o DP-2 -i ~/.config/wallpaper/wallpaper.jpg"
-spawn-sh-at-startup "swaybg -o DP-3 -i ~/.config/wallpaper/wallpaper_1.jpg"
+spawn-sh-at-startup "swaybg -o DP-1 -i ~/Git/pantheon/config/aitvaras/Wallpaper/wallpaper_1.jpg"
+spawn-sh-at-startup "swaybg -o DP-2 -i ~/Git/pantheon/config/aitvaras/Wallpaper/wallpaper.jpg"
+spawn-sh-at-startup "swaybg -o DP-3 -i ~/Git/pantheon/config/aitvaras/Wallpaper/wallpaper_1.jpg"
 
 // spawn / spawn-sh / spawn-sh-at-startup / spawn-at-startup
 
@@ -347,7 +347,7 @@ hotkey-overlay {
 // You can change the path where screenshots are saved.
 // A ~ at the front will be expanded to the home directory.
 // The path is formatted with strftime(3) to give you the screenshot date and time.
-screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+//screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 // Animation settings.
 // The wiki explains how to configure individual animations:
@@ -397,9 +397,15 @@ window-rule {
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
+    // Capture.
+    Mod+S            hotkey-overlay-title="Screenshot (region)" { spawn "~/.config/scripts/dot-screenshot" "region"; }
+    Mod+Shift+S      hotkey-overlay-title="Screenshot (window)" { spawn "~/.config/scripts/dot-screenshot" "window"; }
+    Mod+Ctrl+S       hotkey-overlay-title="Screenshot (monitor: focused)" { spawn "~/.config/scripts/dot-screenshot" "monitor-focused"; }
+    Mod+Ctrl+Shift+S hotkey-overlay-title="Screenshot (monitor: all)" { spawn "~/.config/scripts/dot-screenshot" "monitor-all"; }
+
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+Return hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
-    Mod+D hotkey-overlay-title="Run an Application: wofi" { spawn-sh "rofi -show drun"; }
+    Mod+D { spawn "rofi" "-show" "drun"; }
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
     Super+Alt+S allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill orca || exec orca"; }
@@ -623,9 +629,9 @@ binds {
     // Mod+Space       { switch-layout "next"; }
     // Mod+Shift+Space { switch-layout "prev"; }
 
-    Print { screenshot; }
-    Ctrl+Print { screenshot-screen; }
-    Alt+Print { screenshot-window; }
+    //Print { screenshot; }
+    //Ctrl+Print { screenshot-screen; }
+    //Alt+Print { screenshot-window; }
 
     // Applications such as remote-desktop clients and software KVM switches may
     // request that niri stops processing the keyboard shortcuts defined here

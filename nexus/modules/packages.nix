@@ -20,21 +20,22 @@
     arduino
     arduino-core
     arduino-cli
-    (pkgs.callPackage ./vim.nix { })
+    #(pkgs.callPackage ./vim.nix { })
     vscode
-    jetbrains.idea-community
+    jetbrains.idea-oss
 
     # [[INTERNET]]
     brave
-    chromium
+    firefox-devedition
     nmap
     speedtest-cli
+    
     # [[OTHER]]
     flavours
     teamviewer
     virt-viewer
     virt-manager
-    vmware-horizon-client
+    
     # [[PHD]]
     jupyter
     libreoffice
@@ -42,24 +43,28 @@
     zathura
     zettlr
     # zotero # https://github.com/NixOS/nixpkgs/pull/262808 insecure CVE vulnerability
+    
     # [[PROGRAMMING]]
     bats
     cargo
     gcc
-    clang-tools_9
+    clang-tools
     bear
     kotlin
     lua
     powershell
     python3
-    (pkgs.callPackage ./rstudio.nix { })
+    #(pkgs.callPackage ./rstudio.nix { })
     rustc
+    
     # [[SOCIAL]]
     discord
     signal-desktop
+    
     # [[Terminal]]
     alacritty
     starship
+    
     # [[TOOLS]]
     alsa-utils
     apparix
@@ -67,11 +72,11 @@
     bc
     brightnessctl
     calc
-    check-uptime
     cryptsetup
     curl
     delta
     dos2unix
+    fastfetch
     feh
     file
     flameshot
@@ -80,7 +85,7 @@
     geoclue2
     git
     git-lfs
-    globalprotect-openconnect
+    openconnect
     guvcview
     htop
     imagemagick
@@ -96,8 +101,7 @@
     mako
     mdbook
     mpv
-    multilockscreen
-    neofetch
+    multilockscreen    
     nodejs
     ntfs3g
     pavucontrol
@@ -108,17 +112,13 @@
     psmisc
     ptouch-print
     pulseaudioFull
-    qemu_full
-    qt5.qtgraphicaleffects
-    qt5.qtmultimedia
-    qt5.qtquickcontrols
-    qt5.qtquickcontrols2
-    qt5.qtwayland
-    qt6.full
+    #qemu_full
     restream
     rofi
     rsync
+    satty
     scrot
+    slurp
     spotify
     sshpass
     stow
@@ -126,20 +126,18 @@
     tree
     unzip
     usbutils
-    v8
     virt-manager
     vivid
     vlc
     volumeicon
     wf-recorder
     wget
-    wineWowPackages.waylandFull
-    xclip
     yarn
     zathura
     zellij
     zettlr
     zip
+    
     # [[NIXOS-TOOLS]]
     nixpkgs-fmt
     nix-output-monitor

@@ -19,12 +19,13 @@
 
   outputs = inputs@{ self, nixpkgs, ... }: {
     nixosConfigurations.awesomebox = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";               # <- don’t omit this
+      system = "x86_64-linux"; # <- don’t omit this
       specialArgs = { inherit inputs; };
 
       modules = [
         ./hardware-configuration.nix
         ./configuration.nix
+	../nexus/modules/packages.nix
         ./noctalia.nix
       ];
     };
