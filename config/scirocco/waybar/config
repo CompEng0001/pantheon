@@ -2,7 +2,7 @@
     {
         "layer": "top",
         "position": "top",
-        "modules-left": [ "sway/workspaces", "sway/mode" ],
+        "modules-left": [ "niri/workspaces", "niri/mode" ],
         "modules-center": [ "tray", "disk#boot", "disk#root" ],
         "modules-right": [ "network#wifi", "network#wg", "idle_inhibitor", "clock" ],
 
@@ -72,7 +72,7 @@
     },
 
     {
-        "layer": "bottom",
+        "layer": "top",
         "output": [ "eDP-1" ],
         "position": "bottom",
         "modules-right": [ "backlight", "memory", "cpu", "temperature#cpu", "custom/tempNvme", "custom/tempWifi", "battery" ],
@@ -140,7 +140,7 @@
         "cpu": {
             "tooltip": false,
             "interval": 1,
-            "format": "{icon0} {icon1} {icon2} {icon3} {icon4} {icon5} {icon6} {icon7} [ {usage:3}% ] ﬙",
+            "format": "{icon0} {icon1} {icon2} {icon3} {icon4} {icon5} {icon6} {icon7} {icon8} {icon9} {icon10} {icon11} [ {usage:3}% ] ﬙",
             "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
         },
         "wireplumber": {
@@ -157,7 +157,7 @@
     },
 
     {
-        "layer": "bottom",
+        "layer": "top",
         "output": [ "DP-1" , "HDMI-A-1" ],
         "position": "bottom",
         "modules-right": [ "backlight", "memory", "cpu", "temperature#cpu", "custom/tempNvme", "custom/tempWifi", "battery" ],

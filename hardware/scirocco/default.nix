@@ -37,7 +37,7 @@
     enableAllFirmware = true;
     graphics = {
       enable = true;
-      extraPackages = with pkgs; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];
+      extraPackages = with pkgs; [ intel-vaapi-driver libvdpau-va-gl libva-vdpau-driver ];
     };
 
     bluetooth.enable = true;

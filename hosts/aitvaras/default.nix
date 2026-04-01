@@ -6,11 +6,6 @@
 
 {
 
-  imports = [
-    ../../hardware/aitvaras
-    ../../nexus/modules
-  ];
-
   boot = {
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;

@@ -5,22 +5,14 @@
 { config, pkgs, lib, ... }:
 
 {
-  imports = [
-    ../../hardware/scirocco
-    ../../nexus/modules
-    ../../services/scirocco
-  ];
-
   boot = {
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
-    # kernelPackages = pkgs.linuxPackages_lastest;
   };
 
   time.timeZone = "Europe/London";
   networking = {
-    hostName =
-      "scirocco"; # east wind Mediterranean
+    hostName = "scirocco";
     useNetworkd = true;
     interfaces.wlan0.useDHCP = true;
     firewall.enable = false;
@@ -41,25 +33,25 @@
     shell = "${pkgs.zsh}/bin/zsh";
   };
 
-  programs.adb.enable = true;
-  programs.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true;
-    extraPackages = with pkgs; [
-      alacritty
-      firefox-devedition
-      grim
-      kanshi
-      rofi-wayland
-      slurp
-      swaybg
-      swayidle
-      swaylock-effects
-      waybar
-      wl-clipboard
-      wlr-randr
-    ];
-  };
+  programs.niri.enable = true;
+# programs.sway = {
+#    enable = true;
+#    wrapperFeatures.gtk = true;
+#    extraPackages = with pkgs; [
+#      alacritty
+#      firefox-devedition
+#      grim
+#      kanshi
+#      rofi-wayland
+#      slurp
+#      swaybg
+#      swayidle
+#      swaylock-effects
+#      waybar
+#      wl-clipboard
+#      wlr-randr
+#`    ];
+#  };
   programs.git.enable = true;
   nixpkgs.config.allowUnfree = true;
 
@@ -81,12 +73,12 @@
 
   environment = {
     sessionVariables = {
+      NIXOS_OZONE_WL = "1";
       XDG_SESSION_TYPE = "wayland";
       MOZ_ENABLE_WAYLAND = "1";
       MOZ_USE_XINPUT2 = "1";
       SDL_VIDEODRIVER = "wayland";
-     # QT_QPA_PLATFORM = "wayland-egl"; # NVIDIA
-      QT_QPA_PLATFORM = "xcb"; # Anfroid studio on wayland
+      QT_QPA_PLATFORM = "wayland-egl"; # NVIDIA
       QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
       XKB_DEFAULT_LAYOUT = "gb";
     };
@@ -95,13 +87,6 @@
       export GPG_AGENT_INFO=$HOME/.gnupg/S.gpg-agent
       export LIBVIRT_DEFAULT_URI=qemu:///system
       export LS_COLORS="$(vivid generate snazzy)"
-      export LESS_TERMCAP_mb=$'\E[1;31m'
-      export LESS_TERMCAP_md=$'\E[1;36m'
-      export LESS_TERMCAP_me=$'\E[0m'
-      export LESS_TERMCAP_so=$'\E[01;33m'
-      export LESS_TERMCAP_se=$'\E[0m'
-      export LESS_TERMCAP_us=$'\E[1;32m'
-      export LESS_TERMCAP_ue=$'\E[0m'
       export EDITOR='vim'
     '';
     shells = [ pkgs.zsh ];
@@ -110,7 +95,6 @@
 
   xdg.portal = {
     enable = true;
-    extraPortals = with pkgs; [ xdg-desktop-portal-wlr xdg-desktop-portal-gtk ];
   };
 
   programs = {
@@ -126,7 +110,7 @@
           source ~/.config/zsh/aliases.zsh
         fi
       '';
-
+	
       interactiveShellInit = ''
         zstyle ':completion:*' menu select
         source ${pkgs.fzf}/share/fzf/key-bindings.zsh
@@ -143,18 +127,7 @@
       ];
     };
 
-    steam = {
-      enable = true;
-      remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-      dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-    };
   };
-
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "steam"
-    "steam-original"
-    "steam-run"
-  ];
 
   fonts = {
     fontconfig = {
@@ -174,11 +147,9 @@
         google-fonts
         junicode
         siji
-        tewi-font
         tt2020
         ultimate-oldschool-pc-font-pack
         unifont
-        vistafonts
         wqy_microhei
       ] ++ lib.filter lib.isDerivation (lib.attrValues lohit-fonts ++ lib.attrValues nerd-fonts);
   };

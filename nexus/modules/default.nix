@@ -1,8 +1,8 @@
-{config, pkgs, ...}:
+{inputs, pkgs, ... }:
 
 {
     imports = [
         ./packages.nix
-        #./vm.nix
+	#./vm.nix
     ];
 }

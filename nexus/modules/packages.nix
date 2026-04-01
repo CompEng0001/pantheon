@@ -15,39 +15,39 @@
     nvme-cli
 
     # [[EDITORS]]
+    (pkgs.callPackage ./vim.nix { })
     android-studio
     android-tools
     arduino
-    arduino-core
     arduino-cli
-    #(pkgs.callPackage ./vim.nix { })
-    vscode
+    arduino-core
     jetbrains.idea-oss
+    libreoffice
+    vim
+    vscode
 
     # [[INTERNET]]
     brave
     firefox-devedition
     nmap
     speedtest-cli
+
     # [[OTHER]]
     flavours
     teamviewer
     virt-viewer
     virt-manager
-    #omissa-horizon-client
 
-# [[PHD]]
+    # [[PHD]]
     jupyter
-    libreoffice
-    mysql80
     zathura
     zettlr
     # zotero # https://github.com/NixOS/nixpkgs/pull/262808 insecure CVE vulnerability
+    
     # [[PROGRAMMING]]
     bats
     cargo
     gcc
-    #clang-tools_9
     bear
     kotlin
     lua
@@ -65,11 +65,12 @@
     starship
 
     # [[TOOLS]]
+    adwaita-icon-theme
     alsa-utils
     apparix
     bat
     bc
-    brightnessctl
+    broot
     calc
     cryptsetup
     curl
@@ -85,6 +86,7 @@
     geoclue2
     git
     git-lfs
+    grim
     openconnect
     guvcview
     htop
@@ -103,22 +105,17 @@
     mpv
     multilockscreen    
     nodejs
-    nodejs.libv8
     ntfs3g
     pavucontrol
     peek
+    peep
     playerctl
     polkit
     polkit_gnome
+    procs
     psmisc
     ptouch-print
     pulseaudioFull
-    qt5.qtgraphicaleffects
-    qt5.qtmultimedia
-    qt5.qtquickcontrols
-    qt5.qtquickcontrols2
-    qt5.qtwayland
-    qt6.full
     restream
     rofi
     rsync
@@ -140,6 +137,7 @@
     vivid
     vlc
     volumeicon
+    waybar	    
     wl-clipboard
     wl-screenrec
     wlr-randr
@@ -151,6 +149,7 @@
     zettlr
     zip
     # [[NIXOS-TOOLS]]
+    nix-tree
     nixpkgs-fmt
     nix-output-monitor
     nix-prefetch-github
