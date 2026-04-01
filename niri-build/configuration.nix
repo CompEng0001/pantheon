@@ -51,18 +51,6 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_GB.UTF-8";
 
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_GB.UTF-8";
-    LC_IDENTIFICATION = "en_GB.UTF-8";
-    LC_MEASUREMENT = "en_GB.UTF-8";
-    LC_MONETARY = "en_GB.UTF-8";
-    LC_NAME = "en_GB.UTF-8";
-    LC_NUMERIC = "en_GB.UTF-8";
-    LC_PAPER = "en_GB.UTF-8";
-    LC_TELEPHONE = "en_GB.UTF-8";
-    LC_TIME = "en_GB.UTF-8";
-  };
-
   nix.settings = {
     sandbox = true;
     cores = 0;
@@ -174,10 +162,6 @@
 
   xdg.portal = {
     enable = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal-wlr
-      pkgs.xdg-desktop-portal-gtk
-    ];
   };
 
   # Allow unfree packages
@@ -198,7 +182,7 @@
     export LIBVIRT_DEFAULT_URI=qemu:///system
     export GROFF_NO_SGR=1
   '';
-
+  
   environment.shells = [ pkgs.zsh ];
 
   # List packages installed in system profile. To search, run:

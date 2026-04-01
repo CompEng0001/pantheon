@@ -55,7 +55,10 @@
 #backlight,
 #clock,
 #cpu,
+#custom-apc,
+#custom-audio,
 #custom-mail,
+#custom-mp,
 #custom-wttr,
 #custom-uptime,
 #custom-temperatureGPU,
@@ -142,4 +145,31 @@
   background-color: @base0F;
 }
 
+#custom-apc.online {
+  color: @base04;
+}
 
+#custom-apc.onbattery {
+  color: @base00;
+  background-color: @base08;
+  font-weight: bold;
+  animation: blink 1s steps(2) infinite alternate;
+}
+
+#custom-apc.warning {
+  color: @base00;
+  background-color: @base0A;
+}
+
+#custom-apc.critical {
+  color: @base00;
+  background-color: @base08;
+  font-weight: bold;
+}
+#custom-audio {
+  padding: 0 8px;
+}
+
+#custom-audio.muted {
+  opacity: 0.6;
+}

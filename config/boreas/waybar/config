@@ -2,8 +2,8 @@
     {
         "layer": "top",
         "position": "top",
-        "output": [ "Samsung Electric Company C43J89x H4ZN800352" ],
-        "modules-left": ["sway/workspaces" ],
+        "output": [ "DP-2" ],
+        "modules-left": ["niri/workspaces" ],
         "modules-center": [ "disk#boot", "disk#home", "disk#storage", "disk#netstorage", "memory", "cpu" ],
         "modules-right": ["idle_inhibitor", "network","clock" ],
 
@@ -35,7 +35,7 @@
         "cpu": {
             "tooltip": false,
             "interval": 1,
-            "format": "{icon0} {icon1} {icon2} {icon3} [ {usage:3}% ] ﬙",
+            "format": "{icon0} {icon1} {icon2} {icon3} {icon4} {icon5} {icon6} {icon7} {icon8} {icon9} {icon10} {icon11} [ {usage:3}% ] ﬙",
             "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
         },
         "idle_inhibitor": {
@@ -50,7 +50,7 @@
             "interface": "en*",
             "format": " {ifname}",
             "format-linked": " {ifname} [No IP]",
-            "format-ethernet": " [ {bandwidthUpBytes}] [ {bandwidthDownBytes}] [{ifname} @ {ipaddr}/{cidr} on {gwaddr}]",
+            "format-ethernet": " [ {bandwidthUpBytes:>4}] [ {bandwidthDownBytes:>4}] [{ifname} @ {ipaddr}/{cidr} on {gwaddr}]",
             "format-disconnected": " disconnected",
             "format-disabled": " disabled",
             "interval": 2
@@ -63,17 +63,17 @@
     },
 
     {
-        "layer": "bottom",
-        "output": [ "Samsung Electric Company C43J89x H4ZN800352" ],
+        "layer": "top",
+        "output": [ "DP-2" ],
         "position": "bottom",
-        "modules-right": [ "wireplumber", "temperature#acpitz", "temperature#asus", "temperature#cpu", "custom/temperatureGPU", "custom/fanGPU" ],
-        "modules-center": [ "tray","custom/mp" ],
-        "modules-left": [ "custom/uptime","custom/wttr" ],
+        "modules-right": [  "temperature#acpitz", "temperature#asus", "temperature#cpu", "temperature#nvme", "custom/temperatureGPU", "custom/fanGPU" ],
+        "modules-center": [ "custom/mp", "custom/audio" ],
+        "modules-left": ["custom/apc", "custom/uptime","custom/wttr" ],
 
         "tray": {
             "icon-size": 15
         },
-        "sway/mode": {
+        "niri/mode": {
         },
         "custom/uptime": {
             "format": "uptime: {}",
@@ -86,31 +86,38 @@
             "exec": "curl -sf 'http://wttr.in/Canterbury?format=%l:+%C+%t'",
             "interval": 600
         },
-        "temperature#cpu": {
-            "tooltip": false,
-            "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
-            "critical-threshold": 80,
-            "format-critical": "[ CPU :: {temperatureC}°C  ]",
-            "format": "[ CPU :: {temperatureC}°C  ]"
-        },
         "clock": {
             "interval": 1,
             "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
             "format": "{:%A, %F [%V] %H:%M:%S} "
         },
-        "temperature#asus": {
+        "temperature#nvme": {
             "tooltip": false,
-            "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+            "hwmon-path": "/sys/class/hwmon/hwmon0/temp1_input",
             "critical-threshold": 80,
-            "format-critical": "[ TCTL :: {temperatureC}°C  ]",
-            "format": "[ TCTL :: {temperatureC}°C  ]"
+            "format-critical": "[ NVME :: {temperatureC}°C  ]",
+            "format": "[ NVME :: {temperatureC}°C  ]"
         },
         "temperature#acpitz": {
             "tooltip": false,
-            "hwmon-path": "/sys/class/hwmon/hwmon0/temp2_input",
+            "hwmon-path": "/sys/class/hwmon/hwmon1/temp2_input",
             "critical-threshold": 80,
             "format-critical": "[ ACPITZ :: {temperatureC}°C  ]",
             "format": "[ ACPIZ :: {temperatureC}°C  ]"
+        },
+        "temperature#cpu": {
+            "tooltip": false,
+            "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+            "critical-threshold": 80,
+            "format-critical": "[ CPU :: {temperatureC}°C  ]",
+            "format": "[ CPU :: {temperatureC}°C  ]"
+        },
+        "temperature#asus": {
+            "tooltip": false,
+            "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input",
+            "critical-threshold": 80,
+            "format-critical": "[ ASUS :: {temperatureC}°C  ]",
+            "format": "[ ASUS :: {temperatureC}°C  ]"
         },
         "custom/temperatureGPU": {
             "tooltip": false,
@@ -133,18 +140,44 @@
             "format-icons": ["", "", ""]
 
         },
+        "custom/apc": {
+            "exec": "~/.config/waybar/scripts/apc-status.sh",
+            "return-type": "json",
+            "interval": 5,
+            "format": "{}",
+            "tooltip": true
+        },
         "custom/mp": {
+            "exec": "~/.config/waybar/scripts/mediaplayer.sh status",
+            "return-type": "json",
+            "interval": 2,
+            "exec-on-event": true,
+            "max-length": 80,
+            "on-click": "~/.config/waybar/scripts/mediaplayer.sh play-pause",
+            "on-click-middle": "~/.config/waybar/scripts/mediaplayer.sh next",
+            "on-click-right": "~/.config/waybar/scripts/mediaplayer.sh cycle",
+            "on-scroll-up": "~/.config/waybar/scripts/mediaplayer.sh next",
+            "on-scroll-down": "~/.config/waybar/scripts/mediaplayer.sh previous",
+            "tooltip": true
+        },
+        "custom/audio": {
+            "exec": "~/.config/waybar/scripts/audio.sh status",
+            "return-type": "json",
             "interval": 1,
-            "exec": "~/.config/waybar/scripts/mediaplayer.sh",
-            "format": "{}"
+            "exec-on-event": true,
+            "on-click": "~/.config/waybar/scripts/audio.sh mute",
+            "on-click-right": "~/.config/waybar/scripts/audio-menu.sh",
+            "on-scroll-up": "~/.config/waybar/scripts/audio.sh up",
+            "on-scroll-down": "~/.config/waybar/scripts/audio.sh down",
+            "tooltip": true
         }
     },
 
     {
         "layer": "top",
         "position": "top",
-        "output": [ "HP Inc. HP E243 CNK91609CN", "HP Inc. HP E243 CNK8220KVF" ],
-        "modules-left": ["sway/workspaces"],
+        "output": [ "DP-1", "DP-3" ],
+        "modules-left": ["niri/workspaces"],
         "modules-right": ["clock"],
         "clock": {
             "interval": 1,
@@ -161,13 +194,13 @@
     },
 
     {
-        "layer": "bottom",
-        "output": [ "HP Inc. HP E243 CNK91609CN", "HP Inc. HP E243 CNK8220KVF" ],
+        "layer": "top",
+        "output": [ "DP-1", "DP-3" ],
         "position": "bottom",
         "modules-right": [],
         "modules-left": [ "custom/uptime", "custom/wttr"],
 
-        "sway/mode": {
+        "niri/mode": {
         },
 
         "custom/uptime": {

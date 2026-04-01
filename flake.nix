@@ -1,4 +1,4 @@
-# /home/seb/Git/personal/pantheon/flake.nix
+# /home/dev/Git/personal/pantheon/flake.nix
 {
   description = "NixOS configuration for multiple machines";
 
@@ -14,16 +14,16 @@
           ./hosts/vakare
           ./hardware/vakare
           ./nexus/modules
-          ./services
+          ./services/vakare
         ];
       };
-      aitvaras = nixpkgs.lib.nixosSystem {
+      boreas = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./hosts/aitvaras
-          ./hardware/aitvaras
+          ./hosts/boreas
+          ./hardware/boreas
+	  ./services/boreas
           ./nexus/modules
-          ./services
         ];
       };
       minerva = nixpkgs.lib.nixosSystem {

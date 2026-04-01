@@ -1,6 +1,6 @@
 { pkgs }:
 
-pkgs.vim_configurable.overrideAttrs (drv: {
+pkgs.vim-full.overrideAttrs (drv: {
   vimrc = pkgs.vimUtils.vimrcFile {
     packages.myplugins = with pkgs.vimPlugins; {
       start = [
@@ -13,7 +13,7 @@ pkgs.vim_configurable.overrideAttrs (drv: {
         lightline-vim
         limelight-vim
         minimap-vim
-        sleuth
+        vim-sleuth
         swayconfig-vim
         tabular
         #vim-clap
