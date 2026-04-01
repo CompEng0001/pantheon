@@ -1,0 +1,225 @@
+[
+    {
+        "layer": "top",
+        "position": "top",
+        "output": [ "DP-2" ],
+        "modules-left": ["niri/workspaces" ],
+        "modules-center": [ "disk#boot", "disk#home", "disk#storage", "disk#netstorage", "memory", "cpu" ],
+        "modules-right": ["idle_inhibitor", "network","clock" ],
+
+        "disk#home": {
+            "interval": 30,
+            "format": "[ {path} :: {percentage_used:3}% ]",
+            "path": "/"
+        },
+        "disk#boot": {
+            "interval": 30,
+            "format": "[ {path} :: {percentage_used:3}% ]",
+            "path": "/boot"
+        },
+        "disk#storage": {
+            "interval": 30,
+            "format": "[ {path} :: {percentage_used:3}% ]",
+            "path": "/mnt/storage"
+        },
+        "disk#netstorage": {
+            "interval": 30,
+            "format": "[ {path} :: {percentage_used:3}% ]",
+            "path": "/mnt/networkStorage"
+        },
+        "memory": {
+            "tooltip": false,
+            "interval": 10,
+            "format": "{used:0.1f}G [ {percentage:3}% ] "
+        },
+        "cpu": {
+            "tooltip": false,
+            "interval": 1,
+            "format": "{icon0} {icon1} {icon2} {icon3} {icon4} {icon5} {icon6} {icon7} {icon8} {icon9} {icon10} {icon11} [ {usage:3}% ] ﬙",
+            "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
+        },
+        "idle_inhibitor": {
+            "format": "{icon}",
+            "format-icons": {
+                "activated": "",
+                "deactivated": ""
+            }
+        },
+        "network": {
+            "tooltip": false,
+            "interface": "en*",
+            "format": " {ifname}",
+            "format-linked": " {ifname} [No IP]",
+            "format-ethernet": " [ {bandwidthUpBytes:>4}] [ {bandwidthDownBytes:>4}] [{ifname} @ {ipaddr}/{cidr} on {gwaddr}]",
+            "format-disconnected": " disconnected",
+            "format-disabled": " disabled",
+            "interval": 2
+        },
+        "clock": {
+            "interval": 1,
+            "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+            "format": "{:%A, %F [%V] %H:%M:%S} "
+        }
+    },
+
+    {
+        "layer": "top",
+        "output": [ "DP-2" ],
+        "position": "bottom",
+        "modules-right": [  "temperature#acpitz", "temperature#asus", "temperature#cpu", "temperature#nvme", "custom/temperatureGPU", "custom/fanGPU" ],
+        "modules-center": [ "custom/mp", "custom/audio" ],
+        "modules-left": ["custom/apc", "custom/uptime","custom/wttr" ],
+
+        "tray": {
+            "icon-size": 15
+        },
+        "niri/mode": {
+        },
+        "custom/uptime": {
+            "format": "uptime: {}",
+            "exec": "check_uptime | grep -o -P '(?<=(: )).*(?=\\|)'",
+            "interval": 60
+        },
+        "custom/wttr": {
+            "tooltip": false,
+            "format": "{}",
+            "exec": "curl -sf 'http://wttr.in/Canterbury?format=%l:+%C+%t'",
+            "interval": 600
+        },
+        "clock": {
+            "interval": 1,
+            "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+            "format": "{:%A, %F [%V] %H:%M:%S} "
+        },
+        "temperature#nvme": {
+            "tooltip": false,
+            "hwmon-path": "/sys/class/hwmon/hwmon0/temp1_input",
+            "critical-threshold": 80,
+            "format-critical": "[ NVME :: {temperatureC}°C  ]",
+            "format": "[ NVME :: {temperatureC}°C  ]"
+        },
+        "temperature#acpitz": {
+            "tooltip": false,
+            "hwmon-path": "/sys/class/hwmon/hwmon1/temp2_input",
+            "critical-threshold": 80,
+            "format-critical": "[ ACPITZ :: {temperatureC}°C  ]",
+            "format": "[ ACPIZ :: {temperatureC}°C  ]"
+        },
+        "temperature#cpu": {
+            "tooltip": false,
+            "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+            "critical-threshold": 80,
+            "format-critical": "[ CPU :: {temperatureC}°C  ]",
+            "format": "[ CPU :: {temperatureC}°C  ]"
+        },
+        "temperature#asus": {
+            "tooltip": false,
+            "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input",
+            "critical-threshold": 80,
+            "format-critical": "[ ASUS :: {temperatureC}°C  ]",
+            "format": "[ ASUS :: {temperatureC}°C  ]"
+        },
+        "custom/temperatureGPU": {
+            "tooltip": false,
+            "exec": "~/.config/waybar/scripts/nvidia.sh t",
+            "format-critical": "[ GPU :: {}°C ]",
+            "critical-threshold": 70,
+            "format": "[ GPU :: {}°C ]"
+        },
+        "custom/fanGPU": {
+            "tooltip": false,
+            "exec": "~/.config/waybar/scripts/nvidia.sh f",
+            "format-critical": "[ GPU Fan :: {} RPM ]",
+            "critical-threshold": 3000,
+            "format": "[ GPU Fan :: {} RPM ]"
+        },
+        "wireplumber": {
+            "tooltip": false,
+            "format": "{node_name}: {volume:3}%",
+            "format-muted": "{node_name}: ﱝ",
+            "format-icons": ["", "", ""]
+
+        },
+        "custom/apc": {
+            "exec": "~/.config/waybar/scripts/apc-status.sh",
+            "return-type": "json",
+            "interval": 5,
+            "format": "{}",
+            "tooltip": true
+        },
+        "custom/mp": {
+            "exec": "~/.config/waybar/scripts/mediaplayer.sh status",
+            "return-type": "json",
+            "interval": 2,
+            "exec-on-event": true,
+            "max-length": 80,
+            "on-click": "~/.config/waybar/scripts/mediaplayer.sh play-pause",
+            "on-click-middle": "~/.config/waybar/scripts/mediaplayer.sh next",
+            "on-click-right": "~/.config/waybar/scripts/mediaplayer.sh cycle",
+            "on-scroll-up": "~/.config/waybar/scripts/mediaplayer.sh next",
+            "on-scroll-down": "~/.config/waybar/scripts/mediaplayer.sh previous",
+            "tooltip": true
+        },
+        "custom/audio": {
+            "exec": "~/.config/waybar/scripts/audio.sh status",
+            "return-type": "json",
+            "interval": 1,
+            "exec-on-event": true,
+            "on-click": "~/.config/waybar/scripts/audio.sh mute",
+            "on-click-right": "~/.config/waybar/scripts/audio-menu.sh",
+            "on-scroll-up": "~/.config/waybar/scripts/audio.sh up",
+            "on-scroll-down": "~/.config/waybar/scripts/audio.sh down",
+            "tooltip": true
+        }
+    },
+
+    {
+        "layer": "top",
+        "position": "top",
+        "output": [ "DP-1", "DP-3" ],
+        "modules-left": ["niri/workspaces"],
+        "modules-right": ["clock"],
+        "clock": {
+            "interval": 1,
+            "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+            "format": "{:%A, %F [%V] %H:%M:%S} "
+        },
+        "idle_inhibitor": {
+            "format": "{icon}",
+            "format-icons": {
+                "activated": "",
+                "deactivated": ""
+            }
+        }
+    },
+
+    {
+        "layer": "top",
+        "output": [ "DP-1", "DP-3" ],
+        "position": "bottom",
+        "modules-right": [],
+        "modules-left": [ "custom/uptime", "custom/wttr"],
+
+        "niri/mode": {
+        },
+
+        "custom/uptime": {
+            "format": "uptime: {}",
+            "exec": "check_uptime | grep -o -P '(?<=(: )).*(?=\\|)'",
+            "interval": 60
+        },
+
+        "custom/wttr": {
+            "tooltip": false,
+            "format": "{}",
+            "exec": "curl -sf 'http://wttr.in/Canterbury?format=%l:+%C+%t'",
+            "interval": 600
+        },
+        "sway/language": {
+            "tooltip": false,
+            "format": "{short} {variant} "
+        }
+    }
+]
+
+

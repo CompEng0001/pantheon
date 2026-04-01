@@ -3,34 +3,30 @@
 {
   programs.dconf.enable = true;
 
-  users.users.seb.extraGroups = [ "libvirtd" ];
+  users.users.dev.extraGroups = [ "libvirtd" ];
 
   environment.systemPackages = with pkgs; [
-    android-studio
-    bridge-utils
     adwaita-icon-theme
+    bridge-utils
     libvirt
     qemu_kvm
-    spice
-    spice-gtk
-    spice-protocol
+    swtpm
     virt-manager
     virt-viewer
-    win-spice
-    win-virtio
   ];
 
   virtualisation = {
-    libvirtd = {
-      enable = true;
-      qemu = {
-        swtpm.enable = true;
-        ovmf.enable = true;
-        ovmf.packages = [ pkgs.OVMFFull.fd ];
+    libvirtd.qemu.swtpm.enable = true;
+    virtualbox = {
+      host = {
+        enable = false;
+        enableHardening = false;
       };
     };
-    spiceUSBRedirection.enable = true;
-
+    libvirtd = {
+      enable = true;
+      qemu.package = pkgs.qemu_kvm;
+    };
+    podman.enable = true;
   };
-  services.spice-vdagentd.enable = true;
 }

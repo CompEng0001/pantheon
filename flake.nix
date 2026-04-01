@@ -9,21 +9,20 @@
     nixosConfigurations = {
       scirocco = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-	specialArgs = { inherit inputs; };
         modules = [
           ./hosts/scirocco
           ./hardware/scirocco
           ./services/scirocco
-	  ./nexus/modules
+	        ./nexus/modules
         ];
       };
-      aitvaras = nixpkgs.lib.nixosSystem {
+      boreas = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./hosts/aitvaras
-          ./hardware/aitvaras
+          ./hosts/boreas
+          ./hardware/boreas
+	        ./services/boreas
           ./nexus/modules
-          ./services
         ];
       };
       minerva = nixpkgs.lib.nixosSystem {
