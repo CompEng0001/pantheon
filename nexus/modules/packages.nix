@@ -127,7 +127,7 @@
     pulseaudioFull              # full PulseAudio sound server package
     #qemu_full                  # full QEMU virtualisation package
     restream                    # stream forwarding/restreaming tool
-    ripgrep                     # fast recursive search (grep alt
+    ripgrep                     # fast recursive search (grep alt)
     rofi                        # application launcher and dmenu replacement
     ripgrep                     # fast recursive text search tool
     rsync                       # fast local/remote file synchronisation

@@ -5,16 +5,18 @@
 { config, pkgs, lib, ... }:
 
 {
-
+  programs.niri.enable = true;
+  
   services.geoclue2 = {
     enable = true;
     enableWifi = true;
   };
 
   services.xserver.xkb = {
-	layout = "gb";
-	variant = "";
+    layout = "gb";
+    variant = "";
   };
+
   systemd.user.services.kanshi = {
     description = "Kanshi output autoconfig ";
     wantedBy = [ "graphical-session.target" ];
@@ -34,15 +36,14 @@
     enable = true;
     settings = {
       default_session = {
-	command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd niri-session";
-	user = "greeter";
-	vt = "1";
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd niri-session";
+        user = "greeter";
+        vt = "1";
       };
     };
   };
 
-
-  #services.dbus.packages = [ pkgs.mako ];
+  services.dbus.packages = [ pkgs.mako ];
 
   services.pipewire = {
     enable = true;

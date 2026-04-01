@@ -39,7 +39,7 @@ input {
     focus-follows-mouse max-scroll-amount="0%"
 }
 
-cursor {   
+cursor {
     xcursor-theme "Adwaita"
 }
 
@@ -54,7 +54,7 @@ output "eDP-1" {
 layout {
 
 	// Set gaps around windows in logical pixels.
-	gaps 5 
+	gaps 5
 
 	// When to center a column when changing focus, options are:
 	// - "never", default behavior, focusing an off-screen column will keep at the left
@@ -89,7 +89,7 @@ layout {
 	default-column-width { proportion 0.33333; }
 
 	focus-ring {
-		width 1 
+		width 1
 		active-color "#AA8FFC"
 		inactive-color "#505050"
 	}
@@ -129,7 +129,7 @@ layout {
 		// right 64
 		top 0
 		// bottom 64
-	} 
+	}
 }
 
 
@@ -190,9 +190,8 @@ layer-rule {
 //spawn-`at-startup "noctalia-shell"
 spawn-at-startup "waybar"
 spawn-at-startup "xwayland-satellite"
-spawn-at-startup "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP=niri"
-spawn-sh-at-startup "swaybg -o eDP-1 -i ~/Git/pantheon/config/aitvaras/Wallpaper/wallpaper.jpg"
-spawn-sh-at-startup "swaybg -o DP-1 -i ~/Git/pantheon/config/aitvaras/Wallpaper/wallpaper.jpg"
+spawn-sh-at-startup "swaybg -o eDP-1 -i ~/.config/Wallpaper/wallpaper.jpg"
+spawn-sh-at-startup "swaybg -o DP-1 -i ~/.config/Wallpaper/wallpaper.jpg"
 spawn-at-startup "swayidle" "-w" "timeout" "601" "niri msg action power-off-monitors" "timeout" "600" "swaylock -f" "before-sleep" "swaylock -f"
 
 // spawn / spawn-sh / spawn-sh-at-startup / spawn-at-startup

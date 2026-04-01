@@ -339,9 +339,9 @@ layer-rule {
 
 spawn-at-startup "waybar"
 spawn-at-startup "xwayland-satellite"
-spawn-sh-at-startup "swaybg -o DP-1 -i ~/Git/pantheon/config/boreas/Wallpaper/wallpaper_1.jpg"
-spawn-sh-at-startup "swaybg -o DP-2 -i ~/Git/pantheon/config/boreas/Wallpaper/wallpaper.jpg"
-spawn-sh-at-startup "swaybg -o DP-3 -i ~/Git/pantheon/config/boreas/Wallpaper/wallpaper_1.jpg"
+spawn-sh-at-startup "swaybg -o DP-1 -i ~/.config/Wallpaper/terminal_wallpaper.jpg"
+spawn-sh-at-startup "swaybg -o DP-2 -i ~/.config/Wallpaper/wallpaper.jpg"
+spawn-sh-at-startup "swaybg -o DP-3 -i ~/.config/Wallpaper/terminal_wallpaper.jpg"
 //spawn "waybar"
 // spawn / spawn-sh / spawn-sh-at-startup / spawn-at-startup
 
@@ -411,7 +411,7 @@ binds {
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+Return hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
-    Mod+D { spawn "fuzzel"; }
+    Mod+D { spawn "rofi" "-show" "drun"; }
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
     Super+Alt+S allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill orca || exec orca"; }

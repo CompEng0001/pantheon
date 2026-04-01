@@ -16,24 +16,6 @@
     '';
   };
 
- # programs.sway = {
- #   enable = true;
- #   wrapperFeatures.gtk = true;
- #   extraPackages = with pkgs; [
- #     alacritty
- #     grim
- #     kooha
- #     rofi-wayland
- #     slurp
- #     swaybg
- #     swayidle
- #     swaylock-effects
- #     waybar
- #     wl-clipboard
- #     wlr-randr
- #   ];
-#  };
-
   services.greetd = {
     enable = true;
     settings = {

@@ -128,7 +128,7 @@
         },
         "custom/fanGPU": {
             "tooltip": false,
-            "exec": "~/.config/waybar/scripts/nvidia.sh f",
+            "exec": "~/.config/scripts/waybar/nvidia.sh f",
             "format-critical": "[ GPU Fan :: {} RPM ]",
             "critical-threshold": 3000,
             "format": "[ GPU Fan :: {} RPM ]"
@@ -148,27 +148,27 @@
             "tooltip": true
         },
         "custom/mp": {
-            "exec": "~/.config/waybar/scripts/mediaplayer.sh status",
+            "exec": "~/.config/scripts/waybar/mediaplayer.sh status",
             "return-type": "json",
             "interval": 2,
             "exec-on-event": true,
             "max-length": 80,
-            "on-click": "~/.config/waybar/scripts/mediaplayer.sh play-pause",
-            "on-click-middle": "~/.config/waybar/scripts/mediaplayer.sh next",
-            "on-click-right": "~/.config/waybar/scripts/mediaplayer.sh cycle",
-            "on-scroll-up": "~/.config/waybar/scripts/mediaplayer.sh next",
-            "on-scroll-down": "~/.config/waybar/scripts/mediaplayer.sh previous",
+            "on-click": "~/.config/scripts/waybar/mediaplayer.sh play-pause",
+            "on-click-middle": "~/.config/scripts/waybar/mediaplayer.sh next",
+            "on-click-right": "~/.config/scripts/waybar/mediaplayer.sh cycle",
+            "on-scroll-up": "~/.config/scripts/waybar/mediaplayer.sh next",
+            "on-scroll-down": "~/.config/scripts/waybar/mediaplayer.sh previous",
             "tooltip": true
         },
         "custom/audio": {
-            "exec": "~/.config/waybar/scripts/audio.sh status",
+            "exec": "~/.config/scripts/waybar/audio.sh status",
             "return-type": "json",
             "interval": 1,
             "exec-on-event": true,
-            "on-click": "~/.config/waybar/scripts/audio.sh mute",
-            "on-click-right": "~/.config/waybar/scripts/audio-menu.sh",
-            "on-scroll-up": "~/.config/waybar/scripts/audio.sh up",
-            "on-scroll-down": "~/.config/waybar/scripts/audio.sh down",
+            "on-click": "~/.config/scripts/waybar/audio.sh mute",
+            "on-click-right": "~/.config/scripts/waybar/audio-menu.sh",
+            "on-scroll-up": "~/.config/scripts/waybar/audio.sh up",
+            "on-scroll-down": "~/.config/scripts/waybar/audio.sh down",
             "tooltip": true
         }
     },
