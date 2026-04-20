@@ -34,6 +34,7 @@
   };
 
   programs.niri.enable = true;
+
 # programs.sway = {
 #    enable = true;
 #    wrapperFeatures.gtk = true;
@@ -110,7 +111,7 @@
           source ~/.config/zsh/aliases.zsh
         fi
       '';
-	
+
       interactiveShellInit = ''
         zstyle ':completion:*' menu select
         source ${pkgs.fzf}/share/fzf/key-bindings.zsh

@@ -11,12 +11,15 @@
     enable = true;
     enableWifi = true;
   };
+  services.xserver.videoDrivers = [
+    "modesetting"
+  ];
 
   services.xserver.xkb = {
     layout = "gb";
     variant = "";
   };
-
+  systemd.services.dlm.wantedBy = [ "multi-user.target" ];
   systemd.user.services.kanshi = {
     description = "Kanshi output autoconfig ";
     wantedBy = [ "graphical-session.target" ];

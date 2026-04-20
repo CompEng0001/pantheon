@@ -15,7 +15,7 @@
             "interface": "en*",
             "format": " {ifname}",
             "format-linked": " {ifname} [No IP]",
-            "format-ethernet": " {ifname} @ {ipaddr}/{cidr} on {gwaddr} [ {bandwidthUpBytes}] [ {bandwidthDownBytes}]",
+            "format-ethernet": " {ifname} @ {ipaddr}/{cidr} on {gwaddr} [ {bandwidthUpBytes}] [ {bandwidthDownBytes:>4}]",
             "format-disconnected": " disconnected",
             "format-disabled": " disabled",
             "interval": 2,
@@ -25,7 +25,7 @@
             "interface": "wlan0",
             "format": "  {ifname}",
             "format-linked": "  {ifname} [No IP]",
-            "format-wifi": "  {essid} @ {ipaddr}/{cidr} [{signalStrength:3}% @ {frequency}GHz] [ {bandwidthUpBytes}] [ {bandwidthDownBytes}]",
+            "format-wifi": "  {essid} @ {ipaddr}/{cidr} [{signalStrength:3}% @ {frequency}GHz] [ {bandwidthUpBytes:>4}] [ {bandwidthDownBytes}]",
             "format-disconnected": "  disconnected",
             "format-disabled": "  disabled",
             "interval": 2,
@@ -67,7 +67,7 @@
         "clock": {
             "interval": 1,
             "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-            "format": "{:%A, %F [%V] %H:%M:%S} "
+            "format": "{:%A, %F [%V] %H:%M:%S}"
         }
     },
 
@@ -75,8 +75,8 @@
         "layer": "top",
         "output": [ "eDP-1" ],
         "position": "bottom",
-        "modules-right": [ "backlight", "memory", "cpu", "temperature#cpu", "custom/tempNvme", "custom/tempWifi", "battery" ],
-        "modules-center": [ ],
+        "modules-right": [ "backlight", "memory", "cpu", "temperature#cpu", "temperature#nvme", "battery" ],
+        "modules-center": [ "custom/mp", "custom/audio" ],
         "modules-left": ["custom/uptime" ,"custom/wttr"  ],
 
         "battery": {
@@ -104,27 +104,19 @@
             "exec-on-event": true,
             "interval": 600
         },
-        "custom/tempNvme": {
+        "temperature#nvme": {
             "tooltip": false,
-            "critical-threshold":70,
+            "critical-threshold": 80,
             "exec": "~/.config/waybar/scripts/temperature.sh nvme",
-            "format-critical": "D:{}°C ",
-            "format": " D:{}°C "
+            "format-critical": "[ NVME :: {temperatureC}°C  ]",
+            "format": "[ NVME :: {temperatureC}°C  ]"
         },
         "temperature#cpu": {
             "tooltip": false,
             "thermal-zone": 0,
             "critical-threshold": 80,
-            "format-critical": "C:{temperatureC}°C",
-            "format": " C:{}°C"
-        },
-        "custom/tempWifi": {
-            "tooltip": false,
-            "exec": "~/.config/waybar/scripts/temperature.sh iwlwifi_1",
-            "format-critical": "C: {}°C",
-            "critical-threshold": 70,
-            "format-critical": "W:{}°C",
-            "format": " W:{}°C "
+            "format-critical": "[ CPU :: {temperatureC}°C  ]",
+            "format": "[ CPU :: {temperatureC}°C  ]"
         },
         "memory": {
             "tooltip": false,
@@ -147,7 +139,33 @@
             "tooltip": false,
             "format": "{percent:3}% {icon}",
             "format-icons": ["", "", "", "", "", "", "", "", ""]
+        },
+        "custom/mp": {
+            "exec": "~/.config/scripts/waybar/mediaplayer.sh status",
+            "return-type": "json",
+            "interval": 2,
+            "exec-on-event": true,
+            "max-length": 80,
+            "on-click": "~/.config/scripts/waybar/mediaplayer.sh play-pause",
+            "on-click-middle": "~/.config/scripts/waybar/mediaplayer.sh next",
+            "on-click-right": "~/.config/scripts/waybar/mediaplayer.sh cycle",
+            "on-scroll-up": "~/.config/scripts/waybar/mediaplayer.sh next",
+            "on-scroll-down": "~/.config/scripts/waybar/mediaplayer.sh previous",
+            "tooltip": true
+        },
+        "custom/audio": {
+            "exec": "~/.config/scripts/waybar/audio.sh status",
+            "return-type": "json",
+            "interval": 1,
+            "exec-on-event": true,
+            "on-click": "~/.config/scripts/waybar/audio.sh mute",
+            "on-click-right": "~/.config/scripts/waybar/audio-menu.sh",
+            "on-scroll-up": "~/.config/scripts/waybar/audio.sh up",
+            "on-scroll-down": "~/.config/scripts/waybar/audio.sh down",
+            "tooltip": true
         }
+
+
     },
 
     {
@@ -193,16 +211,8 @@
             "tooltip": false,
             "thermal-zone": 0,
             "critical-threshold": 80,
-            "format-critical": "C:{temperatureC}°C",
-            "format": " C:{}°C"
-        },
-        "custom/tempWifi": {
-            "tooltip": false,
-            "exec": "~/.config/waybar/scripts/temperature.sh iwlwifi_1",
-            "format-critical": "C: {}°C",
-            "critical-threshold": 70,
-            "format-critical": "W:{}°C",
-            "format": " W:{}°C "
+            "format-critical": "[ CPU :: {temperatureC}°C  ]",
+            "format": "[ CPU :: {temperatureC}°C  ]"
         },
         "memory": {
             "tooltip": false,
