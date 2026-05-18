@@ -10,11 +10,14 @@ MODE="${1:-region}"
 
 case "${MODE}" in
 region)
-  grim -g "$(slurp -d)" -
+  niri msg action screenshot
+  sleep 0.9
+  wl-paste --type image/png
+  #grim -g "$(slurp -d)" -
   ;;
 window)
   niri msg action screenshot-window
-  sleep 0.5
+  sleep 0.9
   wl-paste --type image/png
   ;;
 monitor-focused)

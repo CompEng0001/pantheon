@@ -4,24 +4,26 @@ pkgs.vim-full.overrideAttrs (drv: {
   vimrc = pkgs.vimUtils.vimrcFile {
     packages.myplugins = with pkgs.vimPlugins; {
       start = [
-        ale
-        awesome-vim-colorschemes
-        delimitMate
-        goyo-vim
+        ale                         # Asybchronous Lint Engine
+        awesome-vim-colorschemes    # ColourSchemes
+        delimitMate                 # automatic closing of quotes, parenthesis, brackets
+        goyo-vim                    # Distraction-free writing in Vim.
         i3config-vim
-        indentLine
-        lightline-vim
-        limelight-vim
-        minimap-vim
-        vim-sleuth
+        indentLine                  # used for displaying thin vertical lines at each indentation level for code indented with spaces
+        lightline-vim               # provides multiple colorschemes to meet your editor colorscheme.
+        limelight-vim               # visual range, hightlights where you are.
+        minimap-vim                 # show minimap of file
+        vim-sleuth                  # automatically adjusts 'shiftwidth' and 'expandtab' heuristically based on the current file
+        rust-vim                    # rust analyser
         swayconfig-vim
-        tabular
+        tabular                     # improve the readability of your code by lining up the elements on neighbouring lines
         #vim-clap
         vim-illuminate
         vim-better-whitespace
         vim-lastplace
         vim-nix
         vim-mucomplete
+        rustaceanvim
         vim-signify
         vim-toml
         vim-hexokinase
@@ -51,6 +53,7 @@ pkgs.vim-full.overrideAttrs (drv: {
       set nu
       set cursorline
       set laststatus=2
+      set conceallevel=0
       set signcolumn=number
       set timeout timeoutlen=5000 ttimeoutlen=100
       if exists('+termguicolors')
@@ -96,6 +99,26 @@ pkgs.vim-full.overrideAttrs (drv: {
 
       " Autoload
       autocmd FileType tex :packadd vimtex
+
+      " Show full message for diagnostic under cursor
+      nnoremap <silent> <leader>m :ALEDetail<CR>
+
+      " Optional message formatting
+      let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+
+      " Start minimap automatically
+      let g:minimap_auto_start = 1
+      let g:minimap_auto_start_win_enter = 1
+
+      " Open folds automatically
+      set foldopen=all
+
+      " limelight.vim
+      let g:limelight_default_coefficient = 0.7
+      augroup limelight_start
+        autocmd!
+        autocmd VimEnter * Limelight 0.7
+      augroup END
     '';
   };
 

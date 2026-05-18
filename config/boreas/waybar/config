@@ -2,7 +2,7 @@
     {
         "layer": "top",
         "position": "top",
-        "output": [ "DP-2" ],
+        "output": [ "DP-7" ],
         "modules-left": ["niri/workspaces" ],
         "modules-center": [ "disk#boot", "disk#home", "disk#storage", "disk#netstorage", "memory", "cpu" ],
         "modules-right": ["idle_inhibitor", "network","clock" ],
@@ -64,7 +64,7 @@
 
     {
         "layer": "top",
-        "output": [ "DP-2" ],
+        "output": [ "DP-7" ],
         "position": "bottom",
         "modules-right": [  "temperature#acpitz", "temperature#asus", "temperature#cpu", "temperature#nvme", "custom/temperatureGPU", "custom/fanGPU" ],
         "modules-center": [ "custom/mp", "custom/audio" ],
@@ -176,7 +176,7 @@
     {
         "layer": "top",
         "position": "top",
-        "output": [ "DP-1", "DP-3" ],
+        "output": [ "DP-5", "DP-6" ],
         "modules-left": ["niri/workspaces"],
         "modules-right": ["clock"],
         "clock": {
@@ -195,7 +195,7 @@
 
     {
         "layer": "top",
-        "output": [ "DP-1", "DP-3" ],
+        "output": [ "DP-5", "DP-6" ],
         "position": "bottom",
         "modules-right": [],
         "modules-left": [ "custom/uptime", "custom/wttr"],

@@ -41,12 +41,19 @@ input {
 
 cursor {
     xcursor-theme "Adwaita"
-    xcursor-size 10
+    xcursor-size 8
     hide-when-typing
     hide-after-inactive-ms 1000
 }
 
-output "DP-3" {
+gestures {
+    // Disable overview when mousing over the top left of primary screen.
+    hot-corners {
+        off
+    }
+}
+
+output "DP-5" {
   mode "1080x1920"
   position  x=0 y=0
   transform "90"
@@ -119,7 +126,7 @@ output "DP-3" {
   }
 }
 
-output "DP-2" {
+output "DP-7" {
 	mode "3840x1200"
 	position  x=1081 y=0
 	transform "normal"
@@ -207,7 +214,7 @@ output "DP-2" {
 
 }
 
-output "DP-1" {
+output "DP-6" {
   mode "1080x1920"
   position  x=4921 y=0
   transform "270"
@@ -282,44 +289,6 @@ output "DP-1" {
   }
 }
 
-
-// You can configure outputs by their name, which you can find
-// by running `niri msg outputs` while inside a niri instance.
-// The built-in laptop monitor is usually called "eDP-1".
-// Find more information on the wiki:
-// https://yalter.github.io/niri/Configuration:-Outputs
-// Remember to uncomment the node by removing "/-"!
-/-output "eDP-1" {
-    // Uncomment this line to disable this output.
-    // off
-
-    // Resolution and, optionally, refresh rate of the output.
-    // The format is "<width>x<height>" or "<width>x<height>@<refresh rate>".
-    // If the refresh rate is omitted, niri will pick the highest refresh rate
-    // for the resolution.
-    // If the mode is omitted altogether or is invalid, niri will pick one automatically.
-    // Run `niri msg outputs` while inside a niri instance to list all outputs and their modes.
-    mode "1920x1080@120.030"
-
-    // You can use integer or fractional scale, for example use 1.5 for 150% scale.
-    scale 2
-
-    // Transform allows to rotate the output counter-clockwise, valid values are:
-    // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
-    transform "normal"
-
-    // Position of the output in the global coordinate space.
-    // This affects directional monitor actions like "focus-monitor-left", and cursor movement.
-    // The cursor can only move between directly adjacent outputs.
-    // Output scale and rotation has to be taken into account for positioning:
-    // outputs are sized in logical, or scaled, pixels.
-    // For example, a 3840×2160 output with scale 2.0 will have a logical size of 1920×1080,
-    // so to put another output directly adjacent to it on the right, set its x to 1920.
-    // If the position is unset or results in an overlap, the output is instead placed
-    // automatically.
-    position x=1280 y=0
-}
-
 overview {
 	zoom 0.40
 }
@@ -329,21 +298,11 @@ layer-rule {
     place-within-backdrop true
 }
 
-// Settings that influence how windows are positioned and sized.
-// Find more information on the wiki:
-// https://yalter.github.io/niri/Configuration:-Layout
-// Add lines like this to spawn processes at startup.
-// Note that running niri as a session supports xdg-desktop-autostart,
-// which may be more convenient to use.
-// See the binds section below for more spawn examples.
-
 spawn-at-startup "waybar"
 spawn-at-startup "xwayland-satellite"
-spawn-sh-at-startup "swaybg -o DP-1 -i ~/.config/Wallpaper/terminal_wallpaper.jpg"
-spawn-sh-at-startup "swaybg -o DP-2 -i ~/.config/Wallpaper/wallpaper.jpg"
-spawn-sh-at-startup "swaybg -o DP-3 -i ~/.config/Wallpaper/terminal_wallpaper.jpg"
-//spawn "waybar"
-// spawn / spawn-sh / spawn-sh-at-startup / spawn-at-startup
+spawn-sh-at-startup "swaybg -o DP-5 -i ~/.config/Wallpaper/terminal_wallpaper.jpg"
+spawn-sh-at-startup "swaybg -o DP-6 -i ~/.config/Wallpaper/terminal_wallpaper.jpg"
+spawn-sh-at-startup "swaybg -o DP-7 -i ~/.config/Wallpaper/wallpaper.jpg"
 
 hotkey-overlay {
     // Uncomment this line to disable the "Important Hotkeys" pop-up at startup.
@@ -377,20 +336,86 @@ window-rule {
     // - host Firefox (app-id is "firefox")
     // - Flatpak Firefox (app-id is "org.mozilla.firefox")
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    match app-id=r#"soffice"# title=r#".*"#
+    open-floating true
+    open-focused true
+}
+
+window-rule {
+    match title=r#"^\s*$"#
+    match title=r#"^Add/Edit Citation$"#
+    match title=r#"^Zotero Settings$"#
+    match title=r#"^Zotero Item Selector$"#
+    match title=r#"^Found Duplicate Items$"#
+    match title="^(Preferences)$"
+    match title="^(Print)$"
+    match title="satty"
+    match app-id="^com.gabm.satty$"
+    match title=r#"^[Rr][Ee][Mm][Ii][Nn][Dd][Ee][Rr]$"#
+    match title="^(file_progress)$"
+    match title="^(Smile)$"
+    match title="^(confirm)$"
+    match title="^(dialog)$"
+    match title="^(download)$"
+    match title="^(notification )$"
+    match title="^(error)$"
+    match title="^(splash)$"
+    match title="^(nwg-look)$"
+    match title="^(Subtitulado instantáneo)$"
+    match title="^(confirmreset)$"
+    match title="^(Delete profile)$"
+    match title="^File Operation Progress$"
+    match title="^Confirm to replace files$"
+    match title="^(Open)(.*)$"
+    match title="^(Select a File)(.*)$"
+    match title="^(Choose wallpaper)(.*)$"
+    match title="^(Save)(.*)$"
+    match title="^(Library)(.*)$"
+    match title="^(File Upload)(.*)$"
+    match title="^(.*)-Google$"
+    match title=r#"^Progress$"#
+    match title=r#"^(progress)$"#
+    match app-id="^xdm-app$"
+    match app-id="^com.github.hluk.copyq$"
     open-floating true
 }
 
+
+
 // Example: block out two password managers from screen capture.
 // (This example rule is commented out with a "/-" in front.)
-/-window-rule {
+window-rule {
     match app-id=r#"^org\.keepassxc\.KeePassXC$"#
     match app-id=r#"^org\.gnome\.World\.Secrets$"#
 
-    block-out-from "screen-capture"
+    //block-out-from "screen-capture"
 
     // Use this instead if you want them visible on third-party screenshot tools.
-    // block-out-from "screencast"
+    block-out-from "screencast"
 }
+
+window-rule {
+    match is-window-cast-target=true
+
+    focus-ring {
+        active-color "#f38ba8"
+        inactive-color "#7d0d2d"
+    }
+
+    border {
+        inactive-color "#7d0d2d"
+    }
+
+    shadow {
+        color "#7d0d2d70"
+    }
+
+    tab-indicator {
+        active-color "#f38ba8"
+        inactive-color "#7d0d2d"
+    }
+}
+
 
 // Example: enable rounded corners for all windows.
 // (This example rule is commented out with a "/-" in front.)
@@ -410,24 +435,24 @@ binds {
     Mod+Ctrl+Shift+S hotkey-overlay-title="Screenshot (monitor: all)" { spawn "~/.config/scripts/dot-screenshot" "monitor-all"; }
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
-    Mod+Return hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
+    Mod+Return hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
     Mod+D { spawn "rofi" "-show" "drun"; }
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
     Super+Alt+S allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill orca || exec orca"; }
 
-    XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"; }
-    XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
-    XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
-    XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
+    // XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"; }
+    // XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
+    // XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
+    // XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
 
-    //XF86AudioPlay        allow-when-locked=true { spawn-sh "playerctl play-pause"; }
-    //XF86AudioStop        allow-when-locked=true { spawn-sh "playerctl stop"; }
-    //XF86AudioPrev        allow-when-locked=true { spawn-sh "playerctl previous"; }
-    //XF86AudioNext        allow-when-locked=true { spawn-sh "playerctl next"; }
+    Mod+Ctrl+w { spawn "~/.config/scripts/toggle_share_layout.sh"; }
 
-    //XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+10%"; }
-    //XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "10%-"; }
+    Mod+Shift+W hotkey-overlay-title="Cast focused window" {
+      spawn-sh "niri msg action set-dynamic-cast-window --id $(niri msg -j focused-window | jq .id)";
+    }
+
+    Mod+Ctrl+E repeat=false { spawn-sh "wl-mirror $(niri msg -j focused-output | jq -r .name)"; }
 
     // Open/close the Overview: a zoomed-out view of workspaces and windows.
     // You can also move the mouse into the top-left hot corner,
@@ -635,9 +660,6 @@ binds {
     // Mod+Space       { switch-layout "next"; }
     // Mod+Shift+Space { switch-layout "prev"; }
 
-    Print { screenshot; }
-    //Ctrl+Print { screenshot-screen; }
-    //Alt+Print { screenshot-window; }
 
     // Applications such as remote-desktop clients and software KVM switches may
     // request that niri stops processing the keyboard shortcuts defined here

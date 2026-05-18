@@ -38,6 +38,7 @@
     jupyter                     # notebooks for research, experiments, and teaching
     libreoffice                 # office suite for documents, spreadsheets, and presentations
     mysql80                     # MySQL 8.0 database server and client tools
+    obsidian                    # Powerful knowledge base that works on top of a local folder of plain text Markdown files
     zathura                     # lightweight keyboard-driven PDF/document viewer
     zettlr                      # markdown-based academic writing and note-taking tool
     # zotero                    # reference manager; currently commented due to insecure CVE issue
@@ -61,6 +62,7 @@
 
     # [[Terminal]]
     alacritty                   # GPU-accelerated terminal emulator
+    kitty                       # Fast, feature-rich, GPU based terminal emulator
     starship                    # cross-shell prompt customisation tool
 
     # [[TOOLS]]
@@ -127,6 +129,7 @@
     pulseaudioFull              # full PulseAudio sound server package
     #qemu_full                  # full QEMU virtualisation package
     restream                    # stream forwarding/restreaming tool
+    resvg                       # svg rendering library
     ripgrep                     # fast recursive search (grep alt)
     rofi                        # application launcher and dmenu replacement
     ripgrep                     # fast recursive text search tool
@@ -155,7 +158,8 @@
     wf-recorder                 # screen recorder for Wayland
     wget                        # download files from the web
     xwayland-satellite          # run Xwayland rootlessly alongside Wayland compositors
-    yarn                        # JavaScript package manager
+    yarn                        # JavaScript package manageri
+    yazi                        # Blazing fast terminal file manager written in Rust, based on async I/O
     yt-dlp                      # download videos (YouTube etc.)
     zellij                      # terminal workspace and multiplexer
     zip                         # create ZIP archives

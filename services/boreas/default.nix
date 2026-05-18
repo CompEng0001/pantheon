@@ -22,10 +22,12 @@
       default_session = {
         command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd niri-session";
         user = "greeter";
-        vt = 1;
+        vt = 3;
       };
     };
   };
+
+  services.xserver.videoDrivers = [ "nvidia" ];
 
 #  services.udev.packages = [
 #    pkgs.android-udev-rules
