@@ -133,6 +133,7 @@
     ripgrep                     # fast recursive search (grep alt)
     rofi                        # application launcher and dmenu replacement
     ripgrep                     # fast recursive text search tool
+    rustic                      # Fast, encrypted, deduplicated backups powered by pure Rust
     rsync                       # fast local/remote file synchronisation
     satty                       # screenshot annotation tool for Wayland
     slurp                       # region selection tool for Wayland
