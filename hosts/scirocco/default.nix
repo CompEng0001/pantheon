@@ -34,26 +34,8 @@
   };
 
   programs.niri.enable = true;
-
-# programs.sway = {
-#    enable = true;
-#    wrapperFeatures.gtk = true;
-#    extraPackages = with pkgs; [
-#      alacritty
-#      firefox-devedition
-#      grim
-#      kanshi
-#      rofi-wayland
-#      slurp
-#      swaybg
-#      swayidle
-#      swaylock-effects
-#      waybar
-#      wl-clipboard
-#      wlr-randr
-#`    ];
-#  };
   programs.git.enable = true;
+
   nixpkgs.config.allowUnfree = true;
 
   systemd.tmpfiles.rules = [

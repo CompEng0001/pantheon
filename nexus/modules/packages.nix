@@ -100,8 +100,8 @@
     guvcview                    # webcam viewer and capture tool
     htop                        # interactive process viewer
     imagemagick                 # image conversion and manipulation tools
-    immich                      # Self-hosted photo and video backup solution (GUI)
-    immich-cli                  # Self-hosted photo and video backup solution (CLI)
+    immich                      # Self-hosted photo and video backup solution (command line interface))
+    immich-cli                  # Self-hosted photo and video backup solution
     imv                         # lightweight image viewer for X11/Wayland
     inkscape                    # vector graphics editor
     iotop                       # monitor per-process disk I/O usage
@@ -153,6 +153,7 @@
     tree                        # display directories as a tree
     unzip                       # extract ZIP archives
     usbutils                    # tools such as lsusb for USB inspection
+    udiscks                     # Daemon, tools, libraries to access and manipulate disks, storage devices
     vale                        # prose linting tool
     vhs                         # terminal GIF/demo recorder
     vivid                       # generate LS_COLORS themes

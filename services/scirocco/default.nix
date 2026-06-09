@@ -5,8 +5,8 @@
 { config, pkgs, lib, ... }:
 
 {
-  programs.niri.enable = true;
-  
+  services.hardware.bolt.enable = true;
+
   services.geoclue2 = {
     enable = true;
     enableWifi = true;
@@ -45,6 +45,23 @@
       };
     };
   };
+
+
+  services.openssh = {
+    enable = true;
+    # ports = [ 22 ]; # Port 22 is used by default if not specified
+  };
+
+
+  services.immich = {
+    enable = true;
+    port = 8096;
+    host = "0.0.0.0";
+    mediaLocation = "/var/lib/immich";
+    openFirewall = true;
+  };
+
+
 
   services.dbus.packages = [ pkgs.mako ];
 
