@@ -37,7 +37,6 @@
     # [[PHD]]
     jupyter                     # notebooks for research, experiments, and teaching
     libreoffice                 # office suite for documents, spreadsheets, and presentations
-    mysql80                     # MySQL 8.0 database server and client tools
     obsidian                    # Powerful knowledge base that works on top of a local folder of plain text Markdown files
     zathura                     # lightweight keyboard-driven PDF/document viewer
     zettlr                      # markdown-based academic writing and note-taking tool
@@ -75,9 +74,11 @@
     bc                          # arbitrary precision calculator language
     brightnessctl               # control screen backlight brightness
     broot                       # interactive terminal file tree navigator
+    btrfs-progs                 # Utilities for the btrfs filesystem
     calc                        # command-line calculator
     nagiosPlugins.check_uptime  # check system uptime for monitoring
     nagiosPlugins.check_ups_health # check UPS status and health for monitoring
+    cliphist                    # Wayland clipboard manager
     cryptsetup                  # manage encrypted disks with LUKS/dm-crypt
     csvlens                     # CSV file explorer (TUI)
     curl                        # transfer data from URLs
@@ -91,6 +92,7 @@
     fzf                         # fuzzy finder for terminal workflows
     gammastep                   # adjust screen colour temperature
     geoclue2                    # geolocation service used by desktop apps
+    gh                          # GitHub CLI tool
     git                         # distributed version control system
     git-lfs                     # Git Large File Storage support
     gfold                       # tree-style Git repository status viewer
@@ -98,6 +100,8 @@
     guvcview                    # webcam viewer and capture tool
     htop                        # interactive process viewer
     imagemagick                 # image conversion and manipulation tools
+    immich                      # Self-hosted photo and video backup solution (GUI)
+    immich-cli                  # Self-hosted photo and video backup solution (CLI)
     imv                         # lightweight image viewer for X11/Wayland
     inkscape                    # vector graphics editor
     iotop                       # monitor per-process disk I/O usage
@@ -118,6 +122,7 @@
     nodejs                      # Node.js JavaScript runtime
     ntfs3g                      # NTFS filesystem support
     openssh                     # SSH client and server tools
+    parted                      # Create, destroy, resize, check, and copy partitions
     pavucontrol                 # PulseAudio volume control GUI
     peek                        # animated screen recorder for short captures
     playerctl                   # control media players from command line

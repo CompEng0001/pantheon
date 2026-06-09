@@ -2,7 +2,7 @@
     {
         "layer": "top",
         "position": "top",
-        "output": [ "DP-7" ],
+        "output": [ "DP-3" ],
         "modules-left": ["niri/workspaces" ],
         "modules-center": [ "disk#boot", "disk#home", "disk#storage", "disk#netstorage", "memory", "cpu" ],
         "modules-right": ["idle_inhibitor", "network","clock" ],
@@ -30,12 +30,12 @@
         "memory": {
             "tooltip": false,
             "interval": 10,
-            "format": "{used:0.1f}G [ {percentage:3}% ] "
+            "format": "{used:0.1f}G [ {percentage:3}% ]   "
         },
         "cpu": {
             "tooltip": false,
             "interval": 1,
-            "format": "{icon0} {icon1} {icon2} {icon3} {icon4} {icon5} {icon6} {icon7} {icon8} {icon9} {icon10} {icon11} [ {usage:3}% ] ﬙",
+            "format": "{icon0} {icon1} {icon2} {icon3} {icon4} {icon5} {icon6} {icon7} {icon8} {icon9} {icon10} {icon11} [ {usage:3}% ]  " ,
             "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
         },
         "idle_inhibitor": {
@@ -48,11 +48,11 @@
         "network": {
             "tooltip": false,
             "interface": "en*",
-            "format": " {ifname}",
-            "format-linked": " {ifname} [No IP]",
-            "format-ethernet": " [ {bandwidthUpBytes:>4}] [ {bandwidthDownBytes:>4}] [{ifname} @ {ipaddr}/{cidr} on {gwaddr}]",
-            "format-disconnected": " disconnected",
-            "format-disabled": " disabled",
+            "format": " {ifname}",
+            "format-linked": " {ifname} [No IP]",
+            "format-ethernet": "  [󰁞 {bandwidthUpBytes:>4}] [󰁆 {bandwidthDownBytes:>4}] [{ifname} @ {ipaddr}/{cidr} on {gwaddr}]",
+            "format-disconnected": "󰌙 disconnected",
+            "format-disabled": "󰌙 disabled",
             "interval": 2
         },
         "clock": {
@@ -64,7 +64,7 @@
 
     {
         "layer": "top",
-        "output": [ "DP-7" ],
+        "output": [ "DP-3" ],
         "position": "bottom",
         "modules-right": [  "temperature#acpitz", "temperature#asus", "temperature#cpu", "temperature#nvme", "custom/temperatureGPU", "custom/fanGPU" ],
         "modules-center": [ "custom/mp", "custom/audio" ],
@@ -176,7 +176,7 @@
     {
         "layer": "top",
         "position": "top",
-        "output": [ "DP-5", "DP-6" ],
+        "output": [ "DP-1", "DP-4" ],
         "modules-left": ["niri/workspaces"],
         "modules-right": ["clock"],
         "clock": {
@@ -195,7 +195,7 @@
 
     {
         "layer": "top",
-        "output": [ "DP-5", "DP-6" ],
+        "output": [ "DP-1", "DP-4" ],
         "position": "bottom",
         "modules-right": [],
         "modules-left": [ "custom/uptime", "custom/wttr"],

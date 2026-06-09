@@ -29,5 +29,8 @@ alias -- passcode='~/Git/.secrets/.OTP/target/release/./OTP'
 alias -- pwdGen='~/Git/contributor/pwdGenUtil/target/release/./pwdGenUtil'
 alias -- mdbook-pwd='mdbook serve . -p 8000 -n 127.0.0.1'
 alias -- marp-watch='marp --watch $1 --html --theme themes/uog-theme.css'
-alias -- marp-pdf='marp -I $1 -o $1 --html --pdf --allow-local-files --theme themes/uog-theme.css'
+
+marp-pdf (){
+    marp -I $1 -o $1 --html --pdf --allow-local-files --theme themes/uog-theme.css
+}
 

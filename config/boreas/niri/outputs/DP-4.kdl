@@ -1,0 +1,74 @@
+output "DP-4" {
+    mode "1080x1920"
+    position  x=4921 y=0
+    transform "270"
+
+    layout {
+
+	// Set gaps around windows in logical pixels.
+	gaps 5
+
+	// When to center a column when changing focus, options are:
+	// - "never", default behavior, focusing an off-screen column will keep at the left
+	//   or right edge of the screen.
+	// - "always", the focused column will always be centered.
+	// - "on-overflow", focusing a column will center it if it doesn't fit
+	//   together with the previously focused column.
+	center-focused-column "never"
+
+	background-color "transparent"
+
+	default-column-width { proportion 1.0; }
+	preset-column-widths { proportion 1.0; }
+
+	// You can also customize the heights that "switch-preset-window-height" (Mod+Shift+R) toggles between.
+	preset-window-heights {
+	    proportion 0.5
+	    proportion 1.0
+	}
+
+	focus-ring {
+	    width 1
+	    active-color "#AA8FFC"
+	    inactive-color "#505050"
+	}
+
+	// You can also add a border. It's similar to the focus ring, but always visible.
+	border {
+	    // The settings are the same as for the focus ring.
+	    // If you enable the border, you probably want to disable the focus ring.
+	    off
+
+	}
+
+	// You can enable drop shadows for windows.
+	shadow {
+	    draw-behind-window true
+
+	    // Softness controls the shadow blur radius.
+	    softness 30
+
+	    // Spread expands the shadow.
+	    spread 5
+
+	    // Offset moves the shadow relative to the window.
+	    offset x=0 y=0
+
+	    // You can also change the shadow color and opacity.
+	    color "#0007"
+	}
+
+	// Struts shrink the area occupied by windows, similarly to layer-shell panels.
+	// You can think of them as a kind of outer gaps. They are set in logical pixels.
+	// Left and right struts will cause the next window to the side to always be visible.
+	// Top and bottom struts will simply add outer gaps in addition to the area occupied by
+	// layer-shell panels and regular gaps.
+	struts {
+	    // left 64
+	    // right 64
+	    top 0
+	    // bottom 64
+	}
+
+    }
+}
