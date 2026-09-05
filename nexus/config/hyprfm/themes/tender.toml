@@ -1,0 +1,15 @@
+[general]
+theme = "tender"
+
+[colors]
+base    = "#282828"
+mantle  = "#282828"
+crust   = "#282828"
+surface = "#282828"
+overlay = "#aa8ffc"
+text    = "#eeeeee"
+subtext = "#dddddd"
+muted   = "#6c7086"
+success = "#d3b987"
+warning = "#ffc24b"
+error   = "#f43753"

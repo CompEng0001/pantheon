@@ -6,7 +6,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
 
-  outputs = { self, nixpkgs }: {
+  outputs = { self, nixpkgs,  }: {
     nixosConfigurations = {
       scirocco = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";

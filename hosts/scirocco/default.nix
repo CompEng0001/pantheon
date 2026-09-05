@@ -28,14 +28,18 @@
   users.users.dev = {
     isNormalUser = true;
     extraGroups =
-      [ "wheel" "libvirtd" "video" "audio" "netdev" "pulse" "pulse-access" "adbusers" ];
+      [ "wheel" "libvirtd" "video" "audio" "netdev" "pulse" "pulse-access" "adbusers" "wireshark" ];
     uid = 1000;
     shell = "${pkgs.zsh}/bin/zsh";
   };
 
   programs.niri.enable = true;
   programs.git.enable = true;
-
+  programs.wireshark.enable = true;
+  programs.skim = {
+    enable = true;
+    keybindings = true;
+  };
   nixpkgs.config.allowUnfree = true;
 
   systemd.tmpfiles.rules = [
@@ -92,17 +96,27 @@
         if [ -f ~/.config/zsh/aliases.zsh ]; then
           source ~/.config/zsh/aliases.zsh
         fi
+        if [ -f ~/.config/zsh/history.zsh ]; then
+          source ~/.config/zsh/history.zsh
+        fi
+        if [ -f ~/.config/zsh/termcap.zsh ]; then
+          source ~/.config/zsh/termcap.zsh
+        fi
       '';
 
       interactiveShellInit = ''
         zstyle ':completion:*' menu select
-        source ${pkgs.fzf}/share/fzf/key-bindings.zsh
       '';
 
       setOptions = [
         "auto_cd"
         "auto_pushd"
         "correct"
+        "share_history"
+        "extended_history"
+        "hist_expire_dups_first"
+        "hist_find_no_dups"
+        "hist_save_no_dups"
         "hist_fcntl_lock"
         "hist_ignore_dups"
         "hist_no_store"

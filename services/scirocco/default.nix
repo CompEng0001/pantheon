@@ -13,6 +13,8 @@
   };
   services.xserver.videoDrivers = [
     "modesetting"
+    #"displaylink"
+
   ];
 
   services.xserver.xkb = {
@@ -46,12 +48,10 @@
     };
   };
 
-
   services.openssh = {
     enable = true;
     # ports = [ 22 ]; # Port 22 is used by default if not specified
   };
-
 
   services.immich = {
     enable = true;
@@ -62,7 +62,11 @@
   };
 
 
+ # environment.systemPackages = with pkgs; [
+ #   displaylink
+ # ];
 
+  services.gvfs.enable = true; # mtp file transfer android
   services.dbus.packages = [ pkgs.mako ];
 
   services.pipewire = {

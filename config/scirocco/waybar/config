@@ -4,7 +4,7 @@
         "position": "top",
         "modules-left": [ "niri/workspaces", "niri/mode" ],
         "modules-center": [ "tray", "disk#boot", "disk#root" ],
-        "modules-right": [ "network#wifi", "network#wg", "idle_inhibitor", "clock" ],
+        "modules-right": [ "network#wifi", "network#wg", "custom/bluetooth", "idle_inhibitor", "clock" ],
 
         "tray": {
             "icon-size": 15
@@ -67,7 +67,18 @@
         "clock": {
             "interval": 1,
             "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-            "format": "{:%A, %F [%V] %H:%M:%S}"
+            "format": "{:%a, %F [%V] %H:%M:%S}"
+        },
+        "custom/bluetooth": {
+            "exec": "~/.config/waybar/scripts/bluetooth-menu.sh --status",
+            "return-type": "json",
+            "interval": 5,
+            "signal": 8,
+            "tooltip": true,
+
+            "on-click": "~/.config/waybar/scripts/bluetooth-menu.sh",
+            "on-click-right": "~/.config/waybar/scripts/bluetooth-menu.sh --toggle-power",
+            "on-click-middle": "~/.config/waybar/scripts/bluetooth-menu.sh --scan"
         }
     },
 
@@ -164,8 +175,6 @@
             "on-scroll-down": "~/.config/scripts/waybar/audio.sh down",
             "tooltip": true
         }
-
-
     },
 
     {

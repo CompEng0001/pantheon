@@ -3,7 +3,7 @@
 * {
   transition: none;
   box-shadow: none;
-  font-family: Caskaydia Cove Nerd Font, unifont, siji;
+  font-family: DejaVu Sans Mono, unifont, siji;
   font-size: 11px;
   min-height: 0;
 }
@@ -53,6 +53,7 @@
 }
 
 #backlight,
+#custom-bluetooth,
 #clock,
 #cpu,
 #custom-apc,
@@ -172,4 +173,19 @@
 
 #custom-audio.muted {
   opacity: 0.6;
+}
+
+#custom-bluetooth.off {
+    color: @base00;
+    background-color: @base08;
+}
+
+#custom-bluetooth.on {
+    color: @base04;
+    background-color: @base02;
+}
+
+#custom-bluetooth.connected {
+    color: @base00;
+    background-color: @base0C;
 }

@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-# Take a screenshot in a number of different ways. Any of the case statement
-# options can be passed in as a value.
 
 set -o errexit
 set -o pipefail
@@ -10,24 +8,48 @@ MODE="${1:-region}"
 
 case "${MODE}" in
 region)
-  niri msg action screenshot
-  sleep 0.9
-  wl-paste --type image/png
-  #grim -g "$(slurp -d)" -
+  tmpdir="$(mktemp -d)"
+  trap 'rm -rf "$tmpdir"' EXIT
+
+  screenshot="${tmpdir}/screenshot.png"
+
+  niri msg action screenshot --path "$screenshot" >/dev/null
+
+  # Wait until the interactive screenshot has actually completed.
+  until [[ -s "$screenshot" ]]; do
+    sleep 0.05
+  done
+
+  cat "$screenshot"
   ;;
+
 window)
-  niri msg action screenshot-window
-  sleep 0.9
-  wl-paste --type image/png
+  tmpdir="$(mktemp -d)"
+  trap 'rm -rf "$tmpdir"' EXIT
+
+  screenshot="${tmpdir}/screenshot.png"
+
+  niri msg action screenshot-window --path "$screenshot" >/dev/null
+
+  until [[ -s "$screenshot" ]]; do
+    sleep 0.05
+  done
+
+  cat "$screenshot"
   ;;
+
 monitor-focused)
   grim -o "$(niri msg --json focused-output | jq --raw-output .name)" -
   ;;
+
 monitor-all)
   grim -
   ;;
+
 *)
-  echo "'${MODE}' is not a supported, aborting!" >&2
+  echo "'${MODE}' is not supported, aborting!" >&2
   exit 1
   ;;
-esac | satty --filename - --output-filename "${HOME}/Pictures/screenshot-%+.png"
+esac | satty \
+  --filename - \
+  --output-filename "${HOME}/Pictures/screenshot-%+.png"

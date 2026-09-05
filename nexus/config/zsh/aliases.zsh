@@ -19,7 +19,7 @@ alias -- gpl='git pull'
 alias -- gfa='git fetch -va'
 alias -- gd='git diff'
 alias -- gtp='~/Git/contributor/git_utils/git_tagging/target/release/./git_tagging'
-alias -- gw='~/Git/contributor/git_utils/git_workflows/target/release/./git_workflows'
+alias -- gw='~/Git/contributor/git_utils/git_workflows/target/release/./git_workflow'
 alias -- gitStats='~/Git/contributor/git_utils/git_stats/target/release/./git_stats'
 alias -- gitCheck='~/Git/contributor/git_utils/git_better-branch/target/release/./git_better-branch'
 
@@ -34,3 +34,7 @@ marp-pdf (){
     marp -I $1 -o $1 --html --pdf --allow-local-files --theme themes/uog-theme.css
 }
 
+
+
+
+export GITHUB_TOKEN_PATH="/home/dev/Git/.secrets/.COMPENG0001_WORKFLOWS"

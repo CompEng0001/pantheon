@@ -4,5 +4,6 @@
     imports = [
         ./packages.nix
 	#./vm.nix
+        ./hyprfm.nix
     ];
 }

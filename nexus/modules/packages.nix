@@ -18,7 +18,9 @@
     arduino                     # Arduino IDE for microcontroller development
     arduino-core                # core Arduino tooling and platform support
     arduino-cli                 # command-line interface for Arduino projects
-    (pkgs.callPackage ./vim.nix { }) # custom Vim package from local nix file
+    (pkgs.callPackage ./neovim.nix { }) # custom Vim package from local nix file
+    neovim                      # neovim like vim
+    (pkgs.callPackage ./neovim.nix { }) # custom Vim package from local nix file
     vscode                      # Visual Studio Code editor
     jetbrains.idea-oss          # IntelliJ IDEA Community Edition
 
@@ -27,12 +29,15 @@
     firefox-devedition          # Firefox Developer Edition browser
     nmap                        # network scanner and service discovery tool
     speedtest-cli               # command-line internet speed test
+    wireshark                   # Powerful network protocol analyzer
 
     # [[OTHER]]
+    android-tools
     flavours                    # theme and colour scheme manager
     teamviewer                  # remote desktop and support software
     virt-viewer                 # viewer for virtual machine consoles
     virt-manager                # graphical virtual machine manager
+
 
     # [[PHD]]
     jupyter                     # notebooks for research, experiments, and teaching
@@ -86,6 +91,7 @@
     dos2unix                    # convert line endings between DOS and Unix formats
     fastfetch                   # display system information in terminal
     feh                         # lightweight image viewer
+    ffmpeg-full                 # Complete, cross-platform solution to record, convert and stream audio and video
     file                        # identify file types
     flac                        # FLAC audio tools
     fuzzel                      # Wayland application launcher
@@ -99,6 +105,7 @@
     openconnect                 # VPN client for Cisco/AnyConnect compatible VPNs
     guvcview                    # webcam viewer and capture tool
     htop                        # interactive process viewer
+    hyprfm                      # Dynamic tiling Wayland compositor that doesn't sacrifice on its looks
     imagemagick                 # image conversion and manipulation tools
     immich                      # Self-hosted photo and video backup solution (command line interface))
     immich-cli                  # Self-hosted photo and video backup solution
@@ -141,6 +148,7 @@
     rustic                      # Fast, encrypted, deduplicated backups powered by pure Rust
     rsync                       # fast local/remote file synchronisation
     satty                       # screenshot annotation tool for Wayland
+    skim                        # Command-line fuzzy finder written in Rust
     slurp                       # region selection tool for Wayland
     sox                         # audio processing toolkit
     spotify                     # Spotify desktop client
@@ -153,7 +161,7 @@
     tree                        # display directories as a tree
     unzip                       # extract ZIP archives
     usbutils                    # tools such as lsusb for USB inspection
-    udiscks                     # Daemon, tools, libraries to access and manipulate disks, storage devices
+    udisks                     # Daemon, tools, libraries to access and manipulate disks, storage devices
     vale                        # prose linting tool
     vhs                         # terminal GIF/demo recorder
     vivid                       # generate LS_COLORS themes
