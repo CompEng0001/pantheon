@@ -77,6 +77,15 @@
     ];
   };
 
+  fileSystems."/mnt/storage" = {
+    device = "/dev/disk/by-uuid/38499a54-e446-4f32-ae92-a61a397acd4f";
+    fsType = "btrfs";
+    options = [
+      "compress=zstd:3"
+      "noatime"
+    ];
+  };
+
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
   hardware = {

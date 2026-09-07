@@ -2,6 +2,7 @@
 
 {
   security.polkit.enable = true;
+  security.rtkit.enable = true;
 
   services.fwupd.enable = true;
   programs.niri.enable = true;

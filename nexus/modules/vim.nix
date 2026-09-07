@@ -54,6 +54,8 @@ pkgs.vim-full.overrideAttrs (drv: {
       set cursorline
       set laststatus=2
       set conceallevel=0
+      set foldlevel=99
+      set relativenumber
       set signcolumn=number
       set timeout timeoutlen=5000 ttimeoutlen=100
       if exists('+termguicolors')
