@@ -18,7 +18,7 @@
     arduino                     # Arduino IDE for microcontroller development
     arduino-core                # core Arduino tooling and platform support
     arduino-cli                 # command-line interface for Arduino projects
-    (pkgs.callPackage ./neovim.nix { }) # custom Vim package from local nix file
+    (pkgs.callPackage ./vim.nix { }) # custom Vim package from local nix file
     neovim                      # neovim like vim
     (pkgs.callPackage ./neovim.nix { }) # custom Vim package from local nix file
     vscode                      # Visual Studio Code editor

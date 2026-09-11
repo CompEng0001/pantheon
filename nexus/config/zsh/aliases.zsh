@@ -38,3 +38,4 @@ marp-pdf (){
 
 
 export GITHUB_TOKEN_PATH="/home/dev/Git/.secrets/.COMPENG0001_WORKFLOWS"
+export GITHUB_CLASSROOM_TOKEN="/home/dev/Git/.secrets/.GHCU_TOKEN"
