@@ -34,10 +34,12 @@
     # [[OTHER]]
     android-tools
     flavours                    # theme and colour scheme manager
+    remmina                     # Remote desktop client written in GTK
+    tailscale                   # Node agent for Tailscale, a mesh VPN built on WireGuard
     teamviewer                  # remote desktop and support software
     virt-viewer                 # viewer for virtual machine consoles
     virt-manager                # graphical virtual machine manager
-
+    
 
     # [[PHD]]
     jupyter                     # notebooks for research, experiments, and teaching

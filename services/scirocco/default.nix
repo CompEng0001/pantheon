@@ -17,6 +17,8 @@
 
   ];
 
+  services.tailscale.enable = true;
+
   services.xserver.xkb = {
     layout = "gb";
     variant = "";

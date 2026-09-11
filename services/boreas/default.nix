@@ -6,7 +6,9 @@
 
   services.fwupd.enable = true;
   programs.niri.enable = true;
-
+ 
+ services.tailscale.enable = true;
+  
   services.apcupsd = {
     enable = true;
     configText = ''
