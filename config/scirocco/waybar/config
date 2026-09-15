@@ -179,7 +179,7 @@
 
     {
         "layer": "top",
-        "output": [ "DP-1" , "HDMI-A-1" ],
+        "output": [ "DP-1" , "HDMI-A-1", "DVI-I-1", "DVI-I-2" ],
         "position": "bottom",
         "modules-right": [ "backlight", "memory", "cpu", "temperature#cpu", "custom/tempNvme", "custom/tempWifi", "battery" ],
         "modules-left": ["custom/uptime" ,"custom/wttr"  ],

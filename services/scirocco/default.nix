@@ -11,9 +11,13 @@
     enable = true;
     enableWifi = true;
   };
+  imports = [
+    ../../nexus/modules/displaylink.nix
+  ];
+
   services.xserver.videoDrivers = [
     "modesetting"
-    #"displaylink"
+    "displaylink"
 
   ];
 

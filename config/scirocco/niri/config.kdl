@@ -51,9 +51,30 @@ output "eDP-1" {
 }
 
 output "HDMI-A-1" {
-	mode "38490x1200"
+	mode "3840x1200"
 	position x=1081 y=0
 	transform "normal"
+
+}
+
+output "DP-1" {
+	mode "1920x1200"
+	position x=1081 y=0
+	transform "normal"
+
+}
+
+output "DVI-I-1" {
+	mode "2560x1440"
+	position x=3001 y=0
+	transform "normal"
+
+}
+
+output "DVI-I-2" {
+	mode "2560x1440"
+	position x=5561 y=0
+	transform "270"
 
 }
 
@@ -161,6 +182,8 @@ spawn-at-startup "xwayland-satellite"
 spawn-sh-at-startup "swaybg -o eDP-1 -i ~/.config/Wallpaper/wallpaper.jpg"
 spawn-sh-at-startup "swaybg -o DP-1 -i ~/.config/Wallpaper/wallpaper.jpg"
 spawn-sh-at-startup "swaybg -o HDMI-A-1 -i ~/.config/Wallpaper/wallpaper.jpg"
+spawn-sh-at-startup "swaybg -o DVI-I-1 -i ~/.config/Wallpaper/wallpaper.jpg"
+spawn-sh-at-startup "swaybg -o DVI-I-2 -i ~/.config/Wallpaper/terminal-wallpaper.jpg"
 //spawn-at-startup "swayidle" "-w" "timeout" "601" "niri msg action power-off-monitors" "timeout" "600" "swaylock -f" "before-sleep" "swaylock -f"
 
 // spawn / spawn-sh / spawn-sh-at-startup / spawn-at-startup

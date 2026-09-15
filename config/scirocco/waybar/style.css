@@ -53,6 +53,7 @@
 }
 
 #backlight,
+#battery,
 #custom-bluetooth,
 #clock,
 #cpu,
@@ -63,6 +64,8 @@
 #custom-wttr,
 #custom-uptime,
 #custom-temperatureGPU,
+#custom-tempNMVE,
+#custom-wifi,
 #custom-fanGPU,
 #disk,
 #idle_inhibitor,
