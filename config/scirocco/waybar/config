@@ -2,6 +2,7 @@
     {
         "layer": "top",
         "position": "top",
+        "output": [ "eDP-1", "Iiyama North America PL2493H 1187721208215", "Iiyama North America PL2779Q 0", "HDMI-A-1" ],
         "modules-left": [ "niri/workspaces", "niri/mode" ],
         "modules-center": [ "tray", "disk#boot", "disk#root" ],
         "modules-right": [ "network#wifi", "network#wg", "custom/bluetooth", "idle_inhibitor", "clock" ],
@@ -84,7 +85,7 @@
 
     {
         "layer": "top",
-        "output": [ "eDP-1" ],
+        "output": [ "eDP-1", "Iiyama North America PL2779Q 0" ],
         "position": "bottom",
         "modules-right": [ "backlight", "memory", "cpu", "temperature#cpu", "temperature#nvme", "battery" ],
         "modules-center": [ "custom/mp", "custom/audio" ],
@@ -177,9 +178,10 @@
         }
     },
 
+
     {
         "layer": "top",
-        "output": [ "DP-1" , "HDMI-A-1", "DVI-I-1", "DVI-I-2" ],
+        "output": [ "HDMI-A1", "DVI-I-1", "DVI-I-2" ],
         "position": "bottom",
         "modules-right": [ "backlight", "memory", "cpu", "temperature#cpu", "custom/tempNvme", "custom/tempWifi", "battery" ],
         "modules-left": ["custom/uptime" ,"custom/wttr"  ],
@@ -250,6 +252,93 @@
             "tooltip": false,
             "format": "{percent:3}% {icon}",
             "format-icons": ["", "", "", "", "", "", "", "", ""]
+        }
+    },
+
+    {
+        "layer": "top",
+        "position": "top",
+        "output": [ "Iiyama North America - PL2493H 1187721200661" ],
+        "modules-left": [ "niri/workspaces", "niri/mode" ],
+        "modules-center": [ "tray", "disk#boot", "disk#root" ],
+        "modules-right": [ "custom/bluetooth", "idle_inhibitor", "clock" ],
+
+        "tray": {
+            "icon-size": 15
+        },
+        "sway/mode": {
+        },
+        "idle_inhibitor": {
+            "tooltip": false,
+            "format": "{icon}",
+            "format-icons": {
+                "activated": "",
+                "deactivated": ""
+            }
+        },
+        "disk#boot": {
+            "interval": 30,
+            "states": {
+                "warning": 80,
+                "critical": 90
+            },
+            "format": "[ {path} :: {percentage_used:3}% ]",
+            "path": "/boot"
+        },
+        "disk#root": {
+            "interval": 30,
+            "states": {
+                "warning": 80,
+                "critical": 90
+            },
+            "format": "[ {path} :: {percentage_used:3}% ]",
+            "path": "/"
+        },
+        "clock": {
+            "interval": 1,
+            "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+            "format": "{:%a, %F [%V] %H:%M:%S}"
+        },
+        "custom/bluetooth": {
+            "exec": "~/.config/waybar/scripts/bluetooth-menu.sh --status",
+            "return-type": "json",
+            "interval": 5,
+            "signal": 8,
+            "tooltip": true,
+
+            "on-click": "~/.config/waybar/scripts/bluetooth-menu.sh",
+            "on-click-right": "~/.config/waybar/scripts/bluetooth-menu.sh --toggle-power",
+            "on-click-middle": "~/.config/waybar/scripts/bluetooth-menu.sh --scan"
+        }
+    },
+    {
+        "layer": "top",
+        "output": [ "Iiyama North America PL2493H 1187721200661" ],
+        "position": "bottom",
+        "modules-right": [ "battery" ],
+        "modules-left": ["custom/uptime" ],
+        "custom/uptime":{
+            "tooltip":false,
+            "interval":60,
+            "format": "Uptime: {} ",
+            "exec": "check_uptime | grep -o -P '(?<=(: )).*(?=\\|)'"
+        },
+        "battery": {
+            "tooltip": false,
+            "states": {
+                "good": 95,
+                "warning": 30,
+                "critical": 10
+            },
+            "interval": 5,
+            "format": "{capacity:3}% [{time}] {icon}",
+            "full-at": 98,
+            "format-time": "{H:02}:{M:02}",
+            "format-charging": "[] {capacity:3}% [{time}]",
+            "format-plugged": "{capacity:3}% ",
+            "format-alt": "{time} {icon}",
+            "format-full": " [fully charged]",
+            "format-icons": [" ", " ", " ", " ", " "]
         }
     }
 ]

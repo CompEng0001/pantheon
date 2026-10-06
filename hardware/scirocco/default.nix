@@ -11,6 +11,11 @@
   # Kernel modules
   boot.kernelModules = [ "kvm-intel" ];         # added evdi
   boot.extraModulePackages = [ config.boot.kernelPackages.evdi ]; # added evdi DKMS package
+ 
+  # for display link - evdi.0, evdi.1
+  boot.extraModprobeConfig = ''
+   options evdi initial_device_count=2
+  '';
 
   # Filesystems
   fileSystems."/" = {

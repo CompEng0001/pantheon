@@ -1,1 +1,1 @@
-systemctl --user restart kanshi.service
+systemctl restart kanshi.service
