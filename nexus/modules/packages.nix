@@ -96,6 +96,7 @@
     ffmpeg-full                 # Complete, cross-platform solution to record, convert and stream audio and video
     file                        # identify file types
     flac                        # FLAC audio tools
+    flowblade                   # video editor
     fuzzel                      # Wayland application launcher
     fzf                         # fuzzy finder for terminal workflows
     gammastep                   # adjust screen colour temperature
@@ -169,7 +170,8 @@
     vivid                       # generate LS_COLORS themes
     vlc                         # media player
     volumeicon                  # system tray volume control icon
-    waybar                      # highly configurable Wayland status bar
+    waybar                      # highly configurable Wayland status baro
+    wayscriber                  # Screen annotater
     wl-clipboard                # clipboard utilities for Wayland
     wl-mirror                   # mirror Wayland outputs/windows
     wf-recorder                 # screen recorder for Wayland
