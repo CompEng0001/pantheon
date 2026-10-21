@@ -23,7 +23,6 @@ profile DISPLAYLINK {
 
   output "Iiyama North America PL2493H 1187721208215"  mode 1920x1080@60Hz position 3000,0
 
-  exec ~/.config/waybar/start.sh
 }
 
 profile DISPLAYLINK2 {
@@ -36,6 +35,5 @@ profile DISPLAYLINK2 {
 
   output "Iiyama North America PL2493H 1187721208215"  mode 1920x1080@60Hz position 3000,0
 
-  exec ~/.config/waybar/start.sh
 }
 

@@ -2,7 +2,7 @@
   {
     "layer": "top",
     "position": "top",
-    "output": ["eDP-1", "$WB_DL_RIGHT", "$WB_DL_CENTRE", "HDMI-A-1"],
+    "output": ["eDP-1", "DVI-I-2", "DVI-I-1", "HDMI-A-1"],
     "modules-left": ["niri/workspaces", "niri/mode"],
     "modules-center": ["tray", "disk#boot", "disk#root"],
     "modules-right": [
@@ -192,7 +192,7 @@
 
   {
     "layer": "top",
-    "output": ["HDMI-A-1", "$WB_DL_CENTRE", "$WB_DL_RIGHT"],
+    "output": ["HDMI-A-1", "DVI-I-1", "DVI-I-2"],
     "position": "bottom",
     "modules-center" :["custom/audio", "custom/mp"],
     "modules-right": [
@@ -302,7 +302,7 @@
   {
     "layer": "top",
     "position": "top",
-    "output": "$WB_DL_LEFT",
+    "output": "DP-3",
     "modules-left": ["niri/workspaces", "niri/mode"],
     "modules-center": ["tray", "disk#boot", "disk#root"],
     "modules-right": ["custom/bluetooth", "idle_inhibitor", "clock"],
@@ -356,7 +356,7 @@
   },
   {
     "layer": "top",
-    "output": "$WB_DL_LEFT",
+    "output": "DP-3",
     "position": "bottom",
     "modules-right": ["battery"],
     "modules-left": ["custom/uptime"],

@@ -53,8 +53,8 @@ for _ in {1..20}; do
         resolve_output \
             "$outputs" \
             "Iiyama North America" \
-            "PL2779Q" \
-            "0"
+            "PL2493H" \
+            "1225744350418"
     )"
 
     WB_DL_RIGHT="$(

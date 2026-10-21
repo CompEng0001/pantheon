@@ -5,15 +5,16 @@
 { config, pkgs, lib, ... }:
 
 {
+  imports = [
+    ../../nexus/modules/displaylink.nix
+  ];
+
   services.hardware.bolt.enable = true;
 
   services.geoclue2 = {
     enable = true;
     enableWifi = true;
   };
-  imports = [
-    ../../nexus/modules/displaylink.nix
-  ];
 
   services.xserver.videoDrivers = [
     "modesetting"
@@ -27,7 +28,9 @@
     layout = "gb";
     variant = "";
   };
+
   systemd.services.dlm.wantedBy = [ "multi-user.target" ];
+  
   systemd.user.services.kanshi = {
     description = "Kanshi output autoconfig ";
     wantedBy = [ "graphical-session.target" ];
@@ -69,11 +72,6 @@
     mediaLocation = "/var/lib/immich";
     openFirewall = true;
   };
-
-
- # environment.systemPackages = with pkgs; [
- #   displaylink
- # ];
 
   services.gvfs.enable = true; # mtp file transfer android
   services.dbus.packages = [ pkgs.mako ];

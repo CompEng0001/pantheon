@@ -22,7 +22,7 @@
     neovim                      # neovim like vim
     (pkgs.callPackage ./neovim.nix { }) # custom Vim package from local nix file
     vscode                      # Visual Studio Code editor
-    jetbrains.idea-oss          # IntelliJ IDEA Community Edition
+    #jetbrains.idea-oss          # IntelliJ IDEA Community Edition
 
     # [[INTERNET]]
     brave                       # Chromium-based web browser
