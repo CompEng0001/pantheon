@@ -1,4 +1,43 @@
-@import url(url_bottom.css);
-@import url(url_view_bar_bottom.css);
-@import url(tabs_on_bottom_v2.css);
-@import url(profileIndicator.css);
+/* Firefox bottom toolbar setup. Imports must come first. */
+@import url("toolbars_below_content_v2.css");
+
+/* Optional empty profile badge (change content if wanted). */
+#nav-bar::after {
+  content: "";
+  display: inline-flex;
+  align-items: center;
+  margin-inline: 8px 6px;
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  opacity: .9;
+}
+
+/* Site permission panels: small configurable offset for bottom toolbars.
+   Only applies when Firefox gives the panel side="top".
+   If the top of the panel is already clipped above the window,
+   DO NOT increase this negative offset; disable it and diagnose anchoring. */
+:root { --uc-permission-popup-lift: 80px; }
+@media (-moz-platform: linux) {
+
+  #permission-popup[side="top"],
+  #notification-popup[side="top"] {
+    margin-top: -450px !important;
+  }
+
+}
+
+#nav-bar {
+  order: 1 !important;
+}
+
+#PersonalToolbar {
+  order: 2 !important;
+}
+
+#TabsToolbar {
+  order: 3 !important;
+}
+/* No URL-bar position/flex/transform overrides here: the imported
+   stylesheet supports the modern :popover-open positioning. */
