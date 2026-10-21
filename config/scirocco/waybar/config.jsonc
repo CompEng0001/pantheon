@@ -2,7 +2,7 @@
   {
     "layer": "top",
     "position": "top",
-    "output": ["eDP-1", "DVI-I-2", "DVI-I-1", "HDMI-A-1"],
+    "output": ["eDP-1", "DVI-I-2", "DVI-I-1", "HDMI-A-1", "DP-1", "DP-2"],
     "modules-left": ["niri/workspaces", "niri/mode"],
     "modules-center": ["tray", "disk#boot", "disk#root"],
     "modules-right": [
@@ -91,7 +91,7 @@
   {
     "layer": "top",
     "position": "bottom",
-    "output": "eDP-1",
+    "output": ["eDP-1"],
     "modules-right": [
       "backlight",
       "memory",
@@ -101,7 +101,7 @@
       "battery",
     ],
     "modules-center": ["custom/mp", "custom/audio"],
-    "modules-left": ["custom/uptime", "custom/wttr"],
+    "modules-left": ["custom/uptime", "custom/nixpkgs"],
 
     "battery": {
       "tooltip": false,
@@ -188,13 +188,21 @@
       "on-scroll-down": "~/.config/scripts/waybar/audio.sh down",
       "tooltip": true,
     },
+    "custom/nixpkgs": {
+      "exec": "~/.config/waybar/scripts/nixpkgs-check.sh",
+      "return-type": "json",
+      "format": "{}",
+      "interval": 3600,
+      "tooltip": true,
+      "on-click-right": "~/.config/waybar/scripts/nixpkgs-check.sh --force > /dev/null",
+    },
   },
 
   {
     "layer": "top",
-    "output": ["HDMI-A-1", "DVI-I-1", "DVI-I-2"],
+    "output": ["HDMI-A-1", "DVI-I-1", "DVI-I-2", "DP-1", "DP-2"],
     "position": "bottom",
-    "modules-center" :["custom/audio", "custom/mp"],
+    "modules-center": ["custom/audio", "custom/mp"],
     "modules-right": [
       "backlight",
       "memory",

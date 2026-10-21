@@ -58,9 +58,11 @@
     kotlin                      # Kotlin compiler and tooling
     lua                         # Lua programming language interpreter
     powershell                  # PowerShell shell and scripting environment
+    prettier                    # Code formatter
     python3                     # Python 3 interpreter
     #(pkgs.callPackage ./rstudio.nix { }) # custom RStudio package from local nix file
     rustc                       # Rust compiler
+    stylua                      # Opinionated Lua code formatter
 
     # [[SOCIAL]]
     discord                     # chat, voice, and community platform
