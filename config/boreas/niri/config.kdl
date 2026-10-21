@@ -197,6 +197,7 @@ window-rule {
 binds {
     Mod+Shift+Slash hotkey-overlay-title="Hotkey-overlay" { show-hotkey-overlay; }
 
+    Mod+Shift+O hotkey-overlay-title="wayscriber toggle" { spawn "wayscriber" "--daemon-toggle"; }
     // Overrides Ctrl+h system-wide to open your Rofi image clipboard
     Ctrl+h hotkey-overlay-title="cliphist show" { spawn "rofi" "-modi" "clipboard:~/.config/scripts/cliphist-rofi-img" "-show" "clipboard" "-show-icons"; }
 

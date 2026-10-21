@@ -36,6 +36,21 @@
 #    pkgs.android-udev-rules
 #  ];
 
+  systemd.user.services.wayscriber = {
+    description = "Wayscriber Wayland annotation daemon";
+
+    wantedBy = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
+    partOf = [ "graphical-session.target" ];
+
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.wayscriber}/bin/wayscriber --daemon";
+      Restart = "on-failure";
+      RestartSec = 2;
+    };
+  };
+
   services.immich = {
     enable = true;
     host = "0.0.0.0";
@@ -77,6 +92,8 @@
         /var/lib/immich/immich-data
     '';
   };
+
+
 
   services.dbus.packages = [ pkgs.mako ];
 

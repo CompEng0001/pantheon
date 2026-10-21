@@ -68,7 +68,7 @@
         "position": "bottom",
         "modules-right": [  "temperature#acpitz", "temperature#asus", "temperature#cpu", "temperature#nvme", "custom/temperatureGPU", "custom/fanGPU" ],
         "modules-center": [ "custom/mp", "custom/audio" ],
-        "modules-left": ["custom/apc", "custom/uptime","custom/wttr" ],
+        "modules-left": ["custom/apc", "custom/uptime", "custom/nixpkgs", "custom/wttr" ],
 
         "tray": {
             "icon-size": 15
@@ -170,7 +170,15 @@
             "on-scroll-up": "~/.config/scripts/waybar/audio.sh up",
             "on-scroll-down": "~/.config/scripts/waybar/audio.sh down",
             "tooltip": true
-        }
+        },
+        "custom/nixpkgs": {
+        "exec": "~/.config/waybar/scripts/nixpkgs-check.sh",
+        "return-type": "json",
+        "format": "{}",
+        "interval": 3600,
+        "tooltip": true,
+        "on-click-right": "~/.config/waybar/scripts/nixpkgs-check.sh --force > /dev/null"
+        },
     },
 
     {

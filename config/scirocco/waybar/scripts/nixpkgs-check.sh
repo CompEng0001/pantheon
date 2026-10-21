@@ -17,7 +17,7 @@ show_status() {
     local status="$1"
     local message="$2"
     local detail="${3:-}"
-
+    local cmd="nix flake update nixpkgs"
     jq -cn \
         --arg status "$status" \
         --arg message "$message" \
@@ -94,9 +94,17 @@ else
     description="New nixpkgs revision available"
 fi
 
-tooltip=$(printf '%s\nBranch: %s\nLocal: %.12s\nRemote: %.12s\nChecked: %s' \
-    "$description" "$branch" "$local_rev" "$remote_rev" \
-    "$(date '+%Y-%m-%d %H:%M')")
+if [ "$local_rev" != "$remote_rev" ]; then
+
+    tooltip=$(printf '%s\nBranch: %s\nLocal: %.12s\nRemote: %.12s\nChecked: %s\ncmd: nix flake update nixpkgs' \
+        "$description" "$branch" "$local_rev" "$remote_rev" \
+        "$(date '+%Y-%m-%d %H:%M')")
+else
+
+    tooltip=$(printf '%s\nBranch: %s\nLocal: %.12s\nRemote: %.12s\nChecked: %s' \
+        "$description" "$branch" "$local_rev" "$remote_rev" \
+        "$(date '+%Y-%m-%d %H:%M')")
+fi
 
 jq -cn \
     --arg status "$status" \

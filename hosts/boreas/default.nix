@@ -130,7 +130,9 @@
       ultimate-oldschool-pc-font-pack
       unifont
       vista-fonts
-    ] ++ lib.filter lib.isDerivation (lib.attrValues nerd-fonts);
+      nerd-fonts.dejavu-sans-mono
+      nerd-fonts.fira-code
+    ]; 
   };
 
   # List services that you want to enable:

@@ -17,7 +17,6 @@ show_status() {
     local status="$1"
     local message="$2"
     local detail="${3:-}"
-
     jq -cn \
         --arg status "$status" \
         --arg message "$message" \
@@ -25,7 +24,7 @@ show_status() {
         '{
             text: $message,
             tooltip: $detail,
-            class: $status
+            class: $status,
         }'
 }
 
@@ -67,7 +66,7 @@ if [[ "${1:-}" != "--force" &&
     if [[ "$checked" =~ ^[0-9]+$ ]] &&
        (( now >= checked && now - checked < TTL )) &&
        [[ "$cached_rev" == "$local_rev" ]]; then
-        jq -c '{text, tooltip, class}' "$CACHE"
+        jq -c '{text, tooltip, class, cmd}' "$CACHE"
         exit 0
     fi
 fi
@@ -94,9 +93,17 @@ else
     description="New nixpkgs revision available"
 fi
 
-tooltip=$(printf '%s\nBranch: %s\nLocal: %.12s\nRemote: %.12s\nChecked: %s' \
-    "$description" "$branch" "$local_rev" "$remote_rev" \
-    "$(date '+%Y-%m-%d %H:%M')")
+if [ "$local_rev" != "$remote_rev" ]; then
+
+    tooltip=$(printf '%s\nBranch: %s\nLocal: %.12s\nRemote: %.12s\nChecked: %s\ncmd: nix flake update nixpkgs' \
+        "$description" "$branch" "$local_rev" "$remote_rev" \
+        "$(date '+%Y-%m-%d %H:%M')")
+else
+
+    tooltip=$(printf '%s\nBranch: %s\nLocal: %.12s\nRemote: %.12s\nChecked: %s' \
+        "$description" "$branch" "$local_rev" "$remote_rev" \
+        "$(date '+%Y-%m-%d %H:%M')")
+fi
 
 jq -cn \
     --arg status "$status" \
@@ -107,10 +114,10 @@ jq -cn \
         text: $message,
         tooltip: $tooltip,
         class: $status,
-        local_rev: $local_rev
+        local_rev: $local_rev,
     }' > "$CACHE"
 
 printf '%s\n' "$now" > "$STAMP"
 
-jq -c '{text, tooltip, class}' "$CACHE"
+jq -c '{text, tooltip, class, cmd}' "$CACHE"
 

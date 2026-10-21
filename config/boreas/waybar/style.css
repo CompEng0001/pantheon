@@ -63,6 +63,7 @@
 #custom-uptime,
 #custom-temperatureGPU,
 #custom-fanGPU,
+#custom-nixpkgs,
 #disk,
 #idle_inhibitor,
 #language,
@@ -172,4 +173,23 @@
 
 #custom-audio.muted {
   opacity: 0.6;
+}
+
+#custom-bluetooth.connected {
+    color: @base00;
+    background-color: @base0C;
+}
+
+#custom-nixpkgs.updated {
+    background-color: @base02;
+
+}
+#custom-nixpkgs.outdated {
+    background-color: @base0A;
+    color: @base00;
+}
+
+#custom-nixpkgs.error {
+    background-color: @base08;
+    color: @base00;
 }
