@@ -172,13 +172,14 @@
             "tooltip": true
         },
         "custom/nixpkgs": {
-        "exec": "~/.config/waybar/scripts/nixpkgs-check.sh",
-        "return-type": "json",
-        "format": "{}",
-        "interval": 3600,
-        "tooltip": true,
-        "on-click-right": "~/.config/waybar/scripts/nixpkgs-check.sh --force > /dev/null"
-        },
+            "exec": "~/.config/waybar/scripts/nixpkgs-check.sh",
+            "return-type": "json",
+            "format": "{}",
+            "interval": 3600,
+            "tooltip": true,
+            "on-click-right": "~/.config/waybar/scripts/nixpkgs-check.sh --force > /dev/null",
+            "exec-on-event": true
+        }
     },
 
     {

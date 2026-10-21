@@ -198,6 +198,7 @@ binds {
     Mod+Shift+Slash hotkey-overlay-title="Hotkey-overlay" { show-hotkey-overlay; }
 
     Mod+Shift+O hotkey-overlay-title="wayscriber toggle" { spawn "wayscriber" "--daemon-toggle"; }
+    
     // Overrides Ctrl+h system-wide to open your Rofi image clipboard
     Ctrl+h hotkey-overlay-title="cliphist show" { spawn "rofi" "-modi" "clipboard:~/.config/scripts/cliphist-rofi-img" "-show" "clipboard" "-show-icons"; }
 
@@ -226,8 +227,6 @@ binds {
     Mod+Shift+C hotkey-overlay-title="Clear-cast focused window" {
       spawn-sh "niri msg action clear-dynamic-cast-target ";
     }
-
-    Mod+Ctrl+E repeat=false { spawn-sh "wl-mirror $(niri msg -j focused-output | jq -r .name)"; }
 
     // Open/close the Overview: a zoomed-out view of workspaces and windows.
     // You can also move the mouse into the top-left hot corner,
